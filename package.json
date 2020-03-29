@@ -1,0 +1,31 @@
+{
+  "name": "@atomico/kit",
+  "description": "a repo to start with atomico",
+  "version": "0.0.0",
+  "scripts": {
+    "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",
+    "start": "bundle src/**/*.md docs --watch --server --template template/theme/theme.html",
+    "build:docs": "bundle src/**/*.md docs --minify --template template/theme/theme.html",
+    "build:components": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
+    "create:component": "tfolder template/tfolder/component src/components"
+  },
+  "dependencies": {
+    "atomico": "^0.21.0"
+  },
+  "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.4.3",
+    "bundle-cli": "^0.21.4",
+    "jasmine": "^3.5.0",
+    "karma": "^4.4.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-edge-launcher": "^0.4.2",
+    "karma-firefox-launcher": "^1.3.0",
+    "karma-jasmine": "^3.1.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "tfolder-cli": "0.0.0"
+  },
+  "exports": {
+    ".": "./dest/"
+  }
+}

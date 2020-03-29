@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;a-router/&gt;</title>
+    <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --theme-font-title: "Sen", sans-serif;
+        --theme-font: "Fira Code", monospace;
+        --theme-font-color: #404049;
+        --theme-font-color-light: #f1f1f9;
+        --theme-font-color-dark: black;
+        --theme-font-color-selection: #7afee1;
+        --theme-box-radius: 7px;
+        --theme-box-padding: 2rem;
+        --theme-box-border-color: rgba(0, 0, 0, 0.15);
+        --theme-primary: black;
+        --theme-second: #0033ff;
+        --theme-contrast: #f1f1f9;
+        --theme-background: white;
+        --theme-background-dark: #232329;
+      }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+  </head>
+  <body>
+    <input type="checkbox" id="toggle-menu">
+    <main class="theme-layout -box">
+      <aside class="theme-layout -aside">
+        <div class="theme-layout -layer -aside-background"></div>
+        <div class="theme-layout -layer -aside-scroll">
+          <div class="theme-aside -logo">
+            <img src="https://unpkg.com/atomico@0.20.0/docs/brand/logo-black.svg" alt="Logo @atomico/kit">
+          </div>
+          <ul class="theme-aside -list-root">
+            <li>
+              <strong class="theme-aside -list-root-title">Welcome</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="index.html">Introduction</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Components</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-true">
+                  <a href="a-router.html">&lt;a-router/&gt;</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="theme-layout -tags">
+            <a href="https://github.com/atomicojs/atomico" target="_blank">Github</a>
+            <a href="https://twitter.com/uppercod" target="_blank">Twitter</a>
+          </div>
+        </div>
+      </aside>
+      <section class="theme-layout -content">
+        <article>
+          <h1 id="pagetitle">&lt;a-router/&gt;</h1>
+<blockquote>
+<p>Component that allows rendering different views based on a selector and resizing the container</p>
+</blockquote>
+<h2 id="installation">Installation</h2>
+<pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit"</span></code></pre><h2 id="usage">Usage</h2>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">"@atomico/kit/a-router"</span><span class="token punctuation">;</span></code></pre><p>this component import the module defined by the <code>src</code> property, the module must require the following exports:</p>
+<pre class="markdown -code-container" data-code="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:every<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./src/chunk.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-switch</span><span class="token punctuation">&gt;</span></span></code></pre><h1 id="demo">Demo</h1>
+<p></p><div class="markdown -html-container"><a-showcase src="a-router.showcase.js"></a-showcase></div><div class="markdown -html-container"></div><p></p>
+<div class="markdown -html-container"><script type="module" src="a-showcase.js"></script>
+</div>
+          <footer class="theme-layout -footer">
+ 
+            <a class="theme-layout -footer-link" href="a-showcase.html">
+              <strong>
+                &lt;a-showcase/&gt;
+              </strong>
+              <span class="theme-layout -footer-link-icon">⯈</span>
+            </a>
+          </footer>
+        </article>
+      </section>
+
+      <label for="toggle-menu">
+        <div class="theme-layout -toggle-menu">
+          <div></div>
+        </div>
+      </label>
+    </main>
+  
+
+</body></html>

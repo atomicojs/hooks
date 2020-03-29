@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use-event-move</title>
+    <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --theme-font-title: "Sen", sans-serif;
+        --theme-font: "Fira Code", monospace;
+        --theme-font-color: #404049;
+        --theme-font-color-light: #f1f1f9;
+        --theme-font-color-dark: black;
+        --theme-font-color-selection: #7afee1;
+        --theme-box-radius: 7px;
+        --theme-box-padding: 2rem;
+        --theme-box-border-color: rgba(0, 0, 0, 0.15);
+        --theme-primary: black;
+        --theme-second: #0033ff;
+        --theme-contrast: #f1f1f9;
+        --theme-background: white;
+        --theme-background-dark: #232329;
+      }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+  </head>
+  <body>
+    <input type="checkbox" id="toggle-menu">
+    <main class="theme-layout -box">
+      <aside class="theme-layout -aside">
+        <div class="theme-layout -layer -aside-background"></div>
+        <div class="theme-layout -layer -aside-scroll">
+          <div class="theme-aside -logo">
+            <img src="https://unpkg.com/atomico@0.20.0/docs/brand/logo-black.svg" alt="Logo @atomico/kit">
+          </div>
+          <ul class="theme-aside -list-root">
+            <li>
+              <strong class="theme-aside -list-root-title">Welcome</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="index.html">Introduction</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Components</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="a-router.html">&lt;a-router/&gt;</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-true">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="theme-layout -tags">
+            <a href="https://github.com/atomicojs/atomico" target="_blank">Github</a>
+            <a href="https://twitter.com/uppercod" target="_blank">Twitter</a>
+          </div>
+        </div>
+      </aside>
+      <section class="theme-layout -content">
+        <article>
+          <h1 id="useeventmove">useEventMove</h1>
+<p>This hooks is used by the component <a href="./a-slide.html">a-slide</a>, allows you to capture the mousemove or touchmove event from the selected target, eg:</p>
+<pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useEventMove<span class="token punctuation">,</span> getSwiper <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-event-move"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> props <span class="token operator">=</span> <span class="token function">useEventMove</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> range</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token string">"end"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token function">getSwipe</span><span class="token punctuation">(</span>range<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token string">"toLeft"</span><span class="token operator">:</span>
+          <span class="token function">prev</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">case</span> <span class="token string">"toRight"</span><span class="token operator">:</span>
+          <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>host <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><p>Where :</p>
+<ul>
+<li><p><code>props</code> :configuration for the target to trigger the capture, this will revive a ref and the associated events for the capture <code>{ref, ontouchstart, onmousedown}</code></p>
+</li>
+<li><p><code>useEventMove(callback)</code> : This callback receives the state of the capture be <code>start, move, end</code>. the second argument of the callback is the capture data <code>{x:number, y: number, y : TimeStamp }</code></p>
+</li>
+</ul>
+
+          <footer class="theme-layout -footer">
+ 
+            <a class="theme-layout -footer-link" href="use-lazy.html">
+              <strong>
+                use-lazy
+              </strong>
+              <span class="theme-layout -footer-link-icon">⯈</span>
+            </a>
+          </footer>
+        </article>
+      </section>
+
+      <label for="toggle-menu">
+        <div class="theme-layout -toggle-menu">
+          <div></div>
+        </div>
+      </label>
+    </main>
+  
+
+</body></html>

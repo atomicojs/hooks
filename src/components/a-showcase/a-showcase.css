@@ -1,0 +1,72 @@
+:host {
+  width: 100%;
+  display: block;
+  --scope-border-color: var(--border-color, #d6d8d8);
+  --scope-border-radius: var(--border-border-radius, 5px);
+}
+
+:host([centered]) .showcase.-sandbox {
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase {
+  &.-preview {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--scope-border-radius);
+    border: 1px solid var(--scope-border-color);
+    height: calc(100% - 38px);
+    box-sizing: border-box;
+  }
+  &.-select {
+    border: 1px solid var(--scope-border-color);
+    border-bottom: none;
+    padding: 10px;
+    background: transparent;
+    color: currentColor;
+    border-radius: var(--scope-border-radius) var(--scope-border-radius) 0px 0px;
+    & option {
+      color: black;
+    }
+    & ~ .-preview {
+      border-top-left-radius: 0px;
+    }
+  }
+  &.-sandbox {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem 30px 1rem 1rem;
+    overflow-y: auto;
+  }
+  &.-resize {
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    border: none;
+    background: transparent;
+    cursor: col-resize;
+    border-left: 1px solid var(--scope-border-color);
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 20px;
+      background: var(--scope-border-color);
+    }
+    &:after {
+      margin-left: 3px;
+    }
+  }
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>use-lazy</title>
+    <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --theme-font-title: "Sen", sans-serif;
+        --theme-font: "Fira Code", monospace;
+        --theme-font-color: #404049;
+        --theme-font-color-light: #f1f1f9;
+        --theme-font-color-dark: black;
+        --theme-font-color-selection: #7afee1;
+        --theme-box-radius: 7px;
+        --theme-box-padding: 2rem;
+        --theme-box-border-color: rgba(0, 0, 0, 0.15);
+        --theme-primary: black;
+        --theme-second: #0033ff;
+        --theme-contrast: #f1f1f9;
+        --theme-background: white;
+        --theme-background-dark: #232329;
+      }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+  </head>
+  <body>
+    <input type="checkbox" id="toggle-menu">
+    <main class="theme-layout -box">
+      <aside class="theme-layout -aside">
+        <div class="theme-layout -layer -aside-background"></div>
+        <div class="theme-layout -layer -aside-scroll">
+          <div class="theme-aside -logo">
+            <img src="https://unpkg.com/atomico@0.20.0/docs/brand/logo-black.svg" alt="Logo @atomico/kit">
+          </div>
+          <ul class="theme-aside -list-root">
+            <li>
+              <strong class="theme-aside -list-root-title">Welcome</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="index.html">Introduction</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Components</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="a-router.html">&lt;a-router/&gt;</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-true">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="theme-layout -tags">
+            <a href="https://github.com/atomicojs/atomico" target="_blank">Github</a>
+            <a href="https://twitter.com/uppercod" target="_blank">Twitter</a>
+          </div>
+        </div>
+      </aside>
+      <section class="theme-layout -content">
+        <article>
+          <h1 id="pagetitle">use-lazy</h1>
+<blockquote>
+<p>Allows you to apply operations to capture the target dimension.</p>
+</blockquote>
+<h3 id="sintax">Sintax</h3>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token string">"my-module.js"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">callback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> optionalArguments <span class="token operator">=</span> <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>lazyState<span class="token punctuation">,</span> lazyResult<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useLazy</span><span class="token punctuation">(</span>callback<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> optionalArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p><strong>Donde :</strong></p>
+<p><code>callback</code> : Funcion que retona una promesa, esta no condiciona la regeneracion de useLazy, si se busca hacer esta regeneracion condicional al cambio del modulo, se debe usar un tercer algumento que agrupe los parametros a observar para regenerar la importacion.</p>
+<p><code>lazyState</code>:String, Es el estado actual de la importacion siendo :</p>
+<div class="markdown -table-container"><table><tbody><tr>
+<th>String value</th>
+<th>Constants</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>unimport</td>
+<td>USE_LAZY_UNIMPORT</td>
+<td>El modulo no se ha importado</td>
+</tr>
+<tr>
+<td>loading</td>
+<td>USE_LAZY_LOADING</td>
+<td>El modulo se esta cargando</td>
+</tr>
+<tr>
+<td>error</td>
+<td>USE_LAZY_ERROR</td>
+<td>El modulo a importar ha generado un error de carga</td>
+</tr>
+<tr>
+<td>done</td>
+<td>USE_LAZY_DONE</td>
+<td>El modulo se ha cargado</td>
+</tr>
+</tbody></table></div><p><code>optionalArguments</code>: Array opcional, permite regenerar el llamado del callback si un argumento cambia, esto es util si el modulo a importar se define de forma dinamica.</p>
+<h3 id="example">Example</h3>
+<pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useLazy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-lazy"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">Example</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>load<span class="token punctuation">,</span> setLoad<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>lazyState<span class="token punctuation">,</span> LazyResult<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useLazy</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"my-module.js"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> load<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>host shadowDom<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>button onclick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setLoad</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span> load module<span class="token operator">?</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>style<span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">:host{display:block;width:100%}img{width:100%}</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+      <span class="token punctuation">{</span>lazyState <span class="token operator">==</span> <span class="token string">"unimport"</span> <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token string">"✋"</span>
+      <span class="token punctuation">)</span> <span class="token operator">:</span> lazyState <span class="token operator">==</span> <span class="token string">"loading"</span> <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token string">"⏳"</span>
+      <span class="token punctuation">)</span> <span class="token operator">:</span> lazyState <span class="token operator">==</span> <span class="token string">"error"</span> <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token string">"😞"</span>
+      <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>LazyResult<span class="token operator">&gt;</span>🥂<span class="token operator">&lt;</span><span class="token operator">/</span>LazyResult<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>host<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre><p></p><div class="markdown -html-container"><a-showcase src="use-lazy.showcase.js"></a-showcase></div><div class="markdown -html-container"></div><p></p>
+<div class="markdown -html-container"><script type="module" src="a-showcase.js"></script>
+</div>
+          <footer class="theme-layout -footer">
+            <a class="theme-layout -footer-link" href="use-event-move.html">
+              <span class="theme-layout -footer-link-icon">⯇</span>
+              <strong>
+                use-event-move
+              </strong>
+            </a>
+             
+            <a class="theme-layout -footer-link" href="use-media-resize.html">
+              <strong>
+                use-media-resize
+              </strong>
+              <span class="theme-layout -footer-link-icon">⯈</span>
+            </a>
+          </footer>
+        </article>
+      </section>
+
+      <label for="toggle-menu">
+        <div class="theme-layout -toggle-menu">
+          <div></div>
+        </div>
+      </label>
+    </main>
+  
+
+</body></html>

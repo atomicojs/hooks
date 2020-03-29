@@ -1,0 +1,36 @@
+@import "./theme-default.css";
+@import "./theme-layout.css";
+@import "./theme-aside.css";
+@import "./theme-code.css";
+
+#toggle-menu {
+  display: none;
+  & ~ .theme-layout.-box {
+    & .theme-layout.-aside {
+      transition: 0.5s ease all;
+    }
+  }
+  &:checked {
+    & ~ .theme-layout.-box {
+      & .theme-layout.-aside {
+        transform: translateX(-100%);
+      }
+      & .theme-layout.-toggle-menu {
+        &:before {
+          height: 1px;
+          border-bottom-color: transparent;
+          transform: rotate(45deg);
+          top: 50%;
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+[for="toggle-menu"] {
+  z-index: 2;
+  position: fixed;
+}

@@ -1,0 +1,103 @@
+---
+logo: https://unpkg.com/atomico@0.20.0/docs/brand/logo-black.svg
+social:
+  - title: Github
+    link: https://github.com/atomicojs/atomico
+  - title: Twitter
+    link: https://twitter.com/uppercod
+groupOrder:
+  - Welcome
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{page.title}}</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --theme-font-title: "Sen", sans-serif;
+        --theme-font: "Fira Code", monospace;
+        --theme-font-color: #404049;
+        --theme-font-color-light: #f1f1f9;
+        --theme-font-color-dark: black;
+        --theme-font-color-selection: #7afee1;
+        --theme-box-radius: 7px;
+        --theme-box-padding: 2rem;
+        --theme-box-border-color: rgba(0, 0, 0, 0.15);
+        --theme-primary: black;
+        --theme-second: #0033ff;
+        --theme-contrast: #f1f1f9;
+        --theme-background: white;
+        --theme-background-dark: #232329;
+      }
+    </style>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body>
+    <input type="checkbox" id="toggle-menu" />
+    <main class="theme-layout -box">
+      <aside class="theme-layout -aside">
+        <div class="theme-layout -layer -aside-background"></div>
+        <div class="theme-layout -layer -aside-scroll">
+          <div class="theme-aside -logo">
+            <img src="{{theme.logo}}" alt="Logo {{pkg.name}}" />
+          </div>
+          <ul class="theme-aside -list-root">
+            {{#pages}}
+            <li>
+              <strong class="theme-aside -list-root-title">{{title}}</strong>
+              <ul class="theme-aside -list-child">
+                {{#pages}}
+                <li class="theme-aside -list-child-item --active-{{active}}">
+                  <a href="{{link}}">{{title}}</a>
+                </li>
+                {{/pages}}
+              </ul>
+            </li>
+            {{/pages}}
+          </ul>
+          <div class="theme-layout -tags">
+            {{#theme.social}}
+            <a href="{{link}}" target="_blank">{{title}}</a>
+            {{/ theme.social}}
+          </div>
+        </div>
+      </aside>
+      <section class="theme-layout -content">
+        <article>
+          {{{page.content}}}
+          <footer class="theme-layout -footer">
+            {{#page.prev}}
+            <a class="theme-layout -footer-link" href="{{link}}">
+              <span class="theme-layout -footer-link-icon">⯇</span>
+              <strong>
+                {{title}}
+              </strong>
+            </a>
+            {{/page.prev}} {{#page.next}}
+            <a class="theme-layout -footer-link" href="{{link}}">
+              <strong>
+                {{title}}
+              </strong>
+              <span class="theme-layout -footer-link-icon">⯈</span>
+            </a>
+            {{/page.next}}
+          </footer>
+        </article>
+      </section>
+
+      <label for="toggle-menu">
+        <div class="theme-layout -toggle-menu">
+          <div></div>
+        </div>
+      </label>
+    </main>
+  </body>
+</html>
