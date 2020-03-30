@@ -1,5 +1,5 @@
-import { d as createElement } from './chunks/d1ffcc7b.js';
-export { r as render } from './chunks/d1ffcc7b.js';
+import { b as createElement } from './chunks/eaceffd6.js';
+export { r as render } from './chunks/eaceffd6.js';
 
 var aShowcase_showcase = [{
   label: "Ejemplo 1",

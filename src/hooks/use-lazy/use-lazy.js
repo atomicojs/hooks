@@ -18,7 +18,7 @@ export function useLazy(callbackImport, initImport, reload = []) {
   const [state, setState] = useState([USE_LAZY_UNIMPORT]);
 
   useEffect(() => {
-    if (!initImport) return;
+    if (!initImport || !callbackImport) return;
     let cancel;
     let done;
 

@@ -2,7 +2,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;a-router/&gt;</title>
+    <title>@atomico/kit - &lt;a-router/&gt;</title>
+    <meta name="description" content="Component that allows rendering different views based on a selector and resizing the container">
     <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
     <style>
       :root {
@@ -83,19 +84,39 @@
 <h2 id="installation">Installation</h2>
 <pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit"</span></code></pre><h2 id="usage">Usage</h2>
 <pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">"@atomico/kit/a-router"</span><span class="token punctuation">;</span></code></pre><p>this component import the module defined by the <code>src</code> property, the module must require the following exports:</p>
-<pre class="markdown -code-container" data-code="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">/&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:every<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./src/chunk.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-switch</span><span class="token punctuation">&gt;</span></span></code></pre><h1 id="demo">Demo</h1>
+<p><strong>HTML</strong></p>
+<pre class="markdown -code-container" data-code="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-home.js<span class="token punctuation">"</span></span> <span class="token attr-name">default</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-users.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>loading...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>error<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-switch</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span></code></pre><p><strong>Where :</strong></p>
+<ol>
+<li><code>&lt;a-router-proxy&gt;</code> : Prevent click redirect event, to move effect to history popstate.</li>
+<li><code>&lt;a-router-switch&gt;</code> : Define the route case to use</li>
+<li><code>&lt;a-router-case&gt;</code> : Declare the route to listen to and define the resource to extract.</li>
+</ol>
+<p><strong>JSX</strong> :Do not forget to buy milk today</p>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token function-variable function">immutableImport</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"./page-home.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>immutableImport<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span></code></pre><h1 id="demo">Demo</h1>
 <p></p><div class="markdown -html-container"><a-showcase src="a-router.showcase.js"></a-showcase></div><div class="markdown -html-container"></div><p></p>
 <div class="markdown -html-container"><script type="module" src="a-showcase.js"></script>
-</div>
-          <footer class="theme-layout -footer">
+</div> 
+          <br>
+          <br>
+          <hr>
+          <footer class="theme-layout -cards">
  
-            <a class="theme-layout -footer-link" href="a-showcase.html">
+            <a class="theme-layout -card" href="a-showcase.html">
               <strong>
                 &lt;a-showcase/&gt;
               </strong>
-              <span class="theme-layout -footer-link-icon">⯈</span>
+              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
+                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+              </svg>
             </a>
           </footer>
         </article>

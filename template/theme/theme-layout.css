@@ -1,15 +1,14 @@
 .theme-layout {
-  &.-footer {
-    padding-top: 50px;
+  &.-cards {
     display: flex;
     flex-flow: row wrap;
     margin: 0px -0.5rem;
   }
-  &.-footer-link {
+  &.-card {
     min-width: 280px;
     flex: 0%;
     margin: 0.5rem;
-    height: 80px;
+    min-height: 80px;
     border: 1px solid var(--theme-box-border-color);
     display: block;
     display: flex;
@@ -20,8 +19,11 @@
     box-sizing: border-box;
     text-decoration: none;
   }
-  &.-footer-link-icon {
-    color: var(--theme-second);
+  &.-card-icon {
+    min-width: 16px;
+  }
+  &.-cart-group {
+    padding-right: 1rem;
   }
   &.-toggle-menu {
     width: 50px;
@@ -44,10 +46,10 @@
       box-sizing: border-box;
     }
     &:before {
-      height: 10px;
+      height: 11px;
       border-top: 1px solid white;
       border-bottom: 1px solid white;
-      top: calc(50% - 4px);
+      top: calc(50% - 5px);
     }
     &:after {
       height: 1px;
@@ -198,22 +200,19 @@
       &:after {
         display: inline-block;
         position: absolute;
-        font-size: 26px;
-        font-family: initial;
         color: var(--theme-font-color-dark);
       }
       &:before {
-        width: 16px;
-        height: 15px;
-        overflow: hidden;
-        content: "🙶";
-        top: 13px;
-        left: 0px;
+        padding: 12px 0px 0px 0px;
+        height: 9px;
+        content: open-quote;
+        font-family: sans-serif;
+        font-size: 50px;
+        top: 11px;
+        left: -1px;
         background: var(--theme-background);
         z-index: 1;
-        font-weight: bold;
         color: var(--theme-second);
-        padding: 4px 0px 0px 0px;
         font-style: normal;
       }
       &:after {
