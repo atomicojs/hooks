@@ -6,12 +6,12 @@ group: Components
 
 {{=<% %>=}}# {{page.title}}
 
-{{page.description}}<%={{ }}=%>
+> {{page.description}}<%={{ }}=%>
 
 ## Installation
 
 ```bash
-npm install {{=<% %>=}}{{pkg.name}}<%={{ }}=%>
+npm install "{{=<% %>=}}{{pkg.name}}<%={{ }}=%>"
 ```
 
 ## Usage
@@ -26,8 +26,8 @@ import {{=<% %>=}}"{{pkg.name}}<%={{ }}=%>/{{name}}"
 
 ## Properties
 
-| Property | Attribute | Description               | Type   | Reflect | Event          | Default Value |
-| -------- | --------- | ------------------------- | ------ | ------- | -------------- | ------------- |
-| message  | message   | little message...         | String | true    | changeMessage  | {{name}}      |
+| Property | Attribute | Description       | Type   | Reflect | Event         | Default Value |
+| -------- | --------- | ----------------- | ------ | ------- | ------------- | ------------- |
+| message  | message   | little message... | String | true    | changeMessage | {{name}}      |
 
 <script type="module" src="{{name}}.js"><script>

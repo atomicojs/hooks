@@ -7,6 +7,10 @@ body {
   color: var(--theme-font-color);
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 *::selection,
 mark {
   background: var(--theme-font-color-selection);
@@ -36,7 +40,7 @@ h1 {
   font-size: 40px;
 }
 h2 {
-  font-size: 30px;
+  font-size: 32px;
 }
 h3 {
   font-size: 26px;
@@ -45,8 +49,8 @@ h4 {
   font-size: 20px;
 }
 h5 {
-  font-size: 18px;
+  font-size: 16px;
 }
 h6 {
-  font-size: 16px;
+  font-size: 13px;
 }

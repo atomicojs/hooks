@@ -1,30 +1,4 @@
 .theme-layout {
-  &.-cards {
-    display: flex;
-    flex-flow: row wrap;
-    margin: 0px -0.5rem;
-  }
-  &.-card {
-    min-width: 280px;
-    flex: 0%;
-    margin: 0.5rem;
-    min-height: 80px;
-    border: 1px solid var(--theme-box-border-color);
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    border-radius: var(--theme-box-radius);
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-  &.-card-icon {
-    min-width: 16px;
-  }
-  &.-cart-group {
-    padding-right: 1rem;
-  }
   &.-toggle-menu {
     width: 50px;
     height: 50px;
@@ -106,6 +80,12 @@
       }
     }
 
+    & a:not(.theme-layout) {
+      color: var(--theme-second);
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
     & hr {
       margin: -1rem 0px 2rem;
       height: 2px;
@@ -117,16 +97,36 @@
       & input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
+        position: relative;
+        &::before,
+        &::after {
+          content: "";
+          border: 1px solid var(--theme-second);
+        }
         &:before {
-          content: "☐";
-          font-size: 1.5em;
-          position: relative;
+          width: 1em;
+          height: 1em;
           top: 3px;
+          position: relative;
+          display: inline-block;
+          box-sizing: border-box;
+          border-radius: 3px;
+        }
+        &:after {
+          border-top: none;
+          border-left: none;
+          display: none;
+          position: absolute;
+          border-width: 2px;
         }
         &:checked {
-          &:before {
-            content: "🗹";
-            color: var(--theme-second);
+          &:after {
+            display: block;
+            width: 0.2em;
+            height: 0.5em;
+            transform: rotate(45deg);
+            left: calc(50% - (0.1em + 1px));
+            top: calc(50% - (0.25em + 1px));
           }
         }
       }
@@ -134,15 +134,14 @@
     & code {
       font-size: 13px;
       font-weight: bold;
-      color: var(--theme-font-color-dark);
+      color: var(--theme-font-color-code);
       font-family: var(--theme-font);
-    }
-    & p > code {
       &::before,
       &::after {
         content: "`";
       }
     }
+
     & :matches(h1, h2, h3, h4, h5, h6, strong, b) {
       color: var(--theme-font-color-dark);
     }
@@ -156,6 +155,10 @@
         & code {
           color: var(--theme-font-color-light);
           font-weight: 500;
+          &:before,
+          &:after {
+            content: "";
+          }
         }
       }
       &.-table-container {
@@ -234,6 +237,32 @@
       font-size: 12px;
       padding: 2px 6px;
     }
+  }
+  &.-cards {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0px -0.5rem;
+  }
+  &.-card {
+    min-width: 280px;
+    flex: 0%;
+    margin: 0.5rem;
+    min-height: 80px;
+    border: 1px solid var(--theme-box-border-color);
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: var(--theme-box-radius);
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  &.-card-icon {
+    min-width: 16px;
+  }
+  &.-cart-group {
+    padding-right: 1rem;
   }
   @media (max-width: 870px) {
     &.-toggle-menu {
