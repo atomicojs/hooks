@@ -1,11 +1,12 @@
 ---
 title: use-event-move
+description :   This hooks allows you to observe the touch or mousemove event at the moment of the drag and drop action
 group: Hooks
 ---
 
-# useEventMove
+# {{page.title}}
 
-This hooks is used by the component [a-slide](./a-slide.html), allows you to capture the mousemove or touchmove event from the selected target, eg:
+> {{page.description}}
 
 ```js
 import { useEventMove, getSwiper } from "{{pkg.name}}/use-event-move";

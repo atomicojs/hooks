@@ -1,6 +1,6 @@
 ---
 title: use-lazy
-description: Allows you to apply operations to capture the target dimension.
+description: Hook that allows the import of dynamic modules or promise resolution
 group: Hooks
 ---
 
@@ -8,29 +8,45 @@ group: Hooks
 
 > {{page.description}}
 
-### Sintax
+## Installation
 
-```jsx
-const url = "my-module.js";
-const callback = () => import(url);
-const optionalArguments = [url];
-const [lazyState, lazyResult] = useLazy(callback, true, optionalArguments);
+```bash
+npm install "{{pkg.name}}"
 ```
 
-**Donde :**
+## Usage
 
-`callback` : Funcion que retona una promesa, esta no condiciona la regeneracion de useLazy, si se busca hacer esta regeneracion condicional al cambio del modulo, se debe usar un tercer algumento que agrupe los parametros a observar para regenerar la importacion.
+```jsx
+import { useLazy } from "{{pkg.name}}/use-lazy";
+```
 
-`lazyState`:String, Es el estado actual de la importacion siendo :
+## Sintax
+
+```jsx
+let [lazyState, lazyResult] = useLazy(
+  importCallback,
+  runImport,
+  optionalArguments
+);
+```
+
+**Where :**
+
+1.  `importCallback`: Function, executed if `runImport` is true.
+
+2.  `runImport`: Boolean, si es verdadero, comienza la resolución de la promesa obtenida de `importCallback`.
+3.  `optionalArguments`: Array, the execution of `importCallback` is not regenerated before if`runImport` is constant, if you look for a dynamic behavior, you can observe certain arguments that force the regeneration of the hook state.
+4.  `lazyResult` : String, shows the status of the promise resolution.
+5.  `lazyResult` : Any, return of the promise resolution.
+
+### Import states
 
 | String value | Constants         | Description                                        |
 | ------------ | ----------------- | -------------------------------------------------- |
-| unimport     | USE_LAZY_UNIMPORT | El modulo no se ha importado                       |
-| loading      | USE_LAZY_LOADING  | El modulo se esta cargando                         |
-| error        | USE_LAZY_ERROR    | El modulo a importar ha generado un error de carga |
-| done         | USE_LAZY_DONE     | El modulo se ha cargado                            |
-
-`optionalArguments`: Array opcional, permite regenerar el llamado del callback si un argumento cambia, esto es util si el modulo a importar se define de forma dinamica.
+| unimport     | USE_LAZY_UNIMPORT | The module has not been imported                   |
+| loading      | USE_LAZY_LOADING  | The module is loading                              |
+| error        | USE_LAZY_ERROR    | The module to import has generated a loading error |
+| done         | USE_LAZY_DONE     | The module has been loaded                         |
 
 ### Example
 

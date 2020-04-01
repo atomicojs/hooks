@@ -16,7 +16,6 @@ export const USE_LAZY_DONE = "done";
  */
 export function useLazy(callbackImport, initImport, reload = []) {
   const [state, setState] = useState([USE_LAZY_UNIMPORT]);
-
   useEffect(() => {
     if (!initImport || !callbackImport) return;
     let cancel;
