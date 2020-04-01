@@ -55,11 +55,11 @@ Where :
 
 ## Properties
 
-| Property | Attribute | Description              | Type   | Reflect | Event | Default Value |
-| -------- | --------- | ------------------------ | ------ | ------- | ----- | ------------- |
-| src      | src       | module to import         | String | --      | --    | --            |
-| width    | width     | Component width          | String | --      | --    | --            |
-| height   | height    | Component height         | String | --      | --    | --            |
-| centered | centered  | Center component content | String | --      | --    | --            |
+| Prop/Attr | Description              | Type   |
+| --------- | ------------------------ | ------ |
+| src       | module to import         | String |
+| width     | Component width          | String |
+| height    | Component height         | String |
+| centered  | Center component content | String |
 
 <script type="module" src="a-showcase.js"><script>

@@ -6,11 +6,10 @@ import {
   useEffect,
   customElement
 } from "atomico";
+import { isUrl } from "../../utils";
 import { useLazy } from "../../hooks/use-lazy/use-lazy";
 import { useEventMove } from "../../hooks/use-event-move/use-event-move";
 import style from "./a-showcase.css";
-
-export const isUrl = file => /^(http(s){0,1}:){0,1}\/\//.test(file);
 
 const AShowcase = ({ src, width, height }) => {
   const refSandbox = useRef();
