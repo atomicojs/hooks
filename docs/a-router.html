@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@atomico/kit - &lt;a-router/&gt;</title>
-    <meta name="description" content="Component that allows rendering different views based on a selector and resizing the container">
+    <meta name="description" content="Group of components to work with dynamic import based on the browser path">
     <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
     <style>
       :root {
@@ -13,6 +13,7 @@
         --theme-font-color-light: #f1f1f9;
         --theme-font-color-dark: black;
         --theme-font-color-selection: #7afee1;
+        --theme-font-color-code: deeppink;
         --theme-box-radius: 7px;
         --theme-box-padding: 2rem;
         --theme-box-border-color: rgba(0, 0, 0, 0.15);
@@ -44,6 +45,20 @@
               </ul>
             </li>
             <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+            <li>
               <strong class="theme-aside -list-root-title">Components</strong>
               <ul class="theme-aside -list-child">
                 <li class="theme-aside -list-child-item --active-true">
@@ -51,20 +66,6 @@
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
                   <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong class="theme-aside -list-root-title">Hooks</strong>
-              <ul class="theme-aside -list-child">
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-event-move.html">use-event-move</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-lazy.html">use-lazy</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-media-resize.html">use-media-resize</a>
                 </li>
               </ul>
             </li>
@@ -79,29 +80,84 @@
         <article>
           <h1 id="pagetitle">&lt;a-router/&gt;</h1>
 <blockquote>
-<p>Component that allows rendering different views based on a selector and resizing the container</p>
+<p>Group of components to work with dynamic import based on the browser path</p>
 </blockquote>
 <h2 id="installation">Installation</h2>
 <pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit"</span></code></pre><h2 id="usage">Usage</h2>
-<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">"@atomico/kit/a-router"</span><span class="token punctuation">;</span></code></pre><p>this component import the module defined by the <code>src</code> property, the module must require the following exports:</p>
-<p><strong>HTML</strong></p>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">"@atomico/kit/a-router"</span><span class="token punctuation">;</span></code></pre><p>This module includes the components <a href="#a-router-proxy">a-router-proxy</a>, <a href="#a-router-switch">a-router-switch</a> and <a href="#a-router-case">a-router-case</a>.</p>
+<h3 id="example-in-html">Example in html</h3>
 <pre class="markdown -code-container" data-code="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">/&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-home.js<span class="token punctuation">"</span></span> <span class="token attr-name">default</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-users.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-home.js<span class="token punctuation">"</span></span> <span class="token attr-name">default</span> <span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>./page-users.js<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>loading...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>error<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-switch</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span></code></pre><p><strong>Where :</strong></p>
-<ol>
-<li><code>&lt;a-router-proxy&gt;</code> : Prevent click redirect event, to move effect to history popstate.</li>
-<li><code>&lt;a-router-switch&gt;</code> : Define the route case to use</li>
-<li><code>&lt;a-router-case&gt;</code> : Declare the route to listen to and define the resource to extract.</li>
-</ol>
-<p><strong>JSX</strong> :Do not forget to buy milk today</p>
-<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token function-variable function">immutableImport</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"./page-home.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>immutableImport<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-case</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span></code></pre><h1 id="demo">Demo</h1>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span></code></pre><h3 id="example-in-jsx">Example in jsx</h3>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">importPageHome</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"./page-home.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">importPageUsers</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">"./page-users.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">home</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-switch</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>importPageHome<span class="token punctuation">}</span></span> <span class="token attr-name">default</span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a-router-case</span> <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/users/:id?<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>importPageUsers<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">loading...</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">error</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-switch</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a-router-proxy</span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="a-router-proxy">a-router-proxy</h2>
+<p>This component captures the click event of nodes that declare the <code>href</code> attribute to prevent browser redirection and force the use of history and the popstate event.</p>
+<div class="markdown -table-container"><table><tbody><tr>
+<th>Prop/Attr</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+<tr>
+<td>path</td>
+<td>allows to prefix a route to the one already declared in href</td>
+<td>String</td>
+</tr>
+</tbody></table></div><h2 id="a-router-switch">a-router-switch</h2>
+<p>This component observe the path to define the component to use from <code>to-router-case</code>.</p>
+<h2 id="a-router-case">a-router-case</h2>
+<p>This component declares the path to be used by <code>a-router-switch</code> to match the concurrent path.</p>
+<div class="markdown -table-container"><table><tbody><tr>
+<th>Prop/Attr</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+<tr>
+<td>path</td>
+<td>allows to prefix a route to the one already declared in href</td>
+<td>String</td>
+</tr>
+<tr>
+<td>default</td>
+<td>allows you to associate this component as default if none of your brothers meets the match</td>
+<td>Boolean</td>
+</tr>
+</tbody></table></div><h2 id="export-rule">Export rule</h2>
+<pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token comment">// Option 1, you can use the atomico</span>
+<span class="token comment">// pragma to build your component.</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>my<span class="token operator">-</span>component<span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// if you don't use atomico you can</span>
+<span class="token comment">// export a valid object for the</span>
+<span class="token comment">// declaration of the component.</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>nodeType <span class="token operator">:</span> <span class="token string">"my-component"</span><span class="token punctuation">,</span>children <span class="token operator">:</span> <span class="token string">"...any"</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// If you are only looking for</span>
+<span class="token comment">// component invocation, you</span>
+<span class="token comment">// can export only the component</span>
+<span class="token comment">// name for your build.</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">let</span> nodeType <span class="token operator">=</span> <span class="token string">"my-component"</span><span class="token punctuation">;</span></code></pre><h2 id="demo">Demo</h2>
 <p></p><div class="markdown -html-container"><a-showcase src="a-router.showcase.js"></a-showcase></div><div class="markdown -html-container"></div><p></p>
 <div class="markdown -html-container"><script type="module" src="a-showcase.js"></script>
 </div> 

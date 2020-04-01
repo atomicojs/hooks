@@ -13,6 +13,7 @@
         --theme-font-color-light: #f1f1f9;
         --theme-font-color-dark: black;
         --theme-font-color-selection: #7afee1;
+        --theme-font-color-code: deeppink;
         --theme-box-radius: 7px;
         --theme-box-padding: 2rem;
         --theme-box-border-color: rgba(0, 0, 0, 0.15);
@@ -44,6 +45,20 @@
               </ul>
             </li>
             <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+            <li>
               <strong class="theme-aside -list-root-title">Components</strong>
               <ul class="theme-aside -list-child">
                 <li class="theme-aside -list-child-item --active-false">
@@ -51,20 +66,6 @@
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
                   <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong class="theme-aside -list-root-title">Hooks</strong>
-              <ul class="theme-aside -list-child">
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-event-move.html">use-event-move</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-lazy.html">use-lazy</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-media-resize.html">use-media-resize</a>
                 </li>
               </ul>
             </li>
@@ -96,12 +97,43 @@
             </a>
           </div>
           
+          <h4 style="margin-bottom: 0px;">Hooks</h4>
+          <div class="theme-layout -cards">
+            <a class="theme-layout -card" href="use-lazy.html">
+              <div class="theme-layout -cart-group">
+                <strong> use-lazy </strong><br>
+                <span>Hook that allows the import of dynamic modules or promise resolution</span>
+              </div>
+              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
+                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+              </svg>
+            </a>
+            <a class="theme-layout -card" href="use-event-move.html">
+              <div class="theme-layout -cart-group">
+                <strong> use-event-move </strong><br>
+                <span>This hooks allows you to observe the touch or mousemove event at the moment of the drag and drop action</span>
+              </div>
+              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
+                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+              </svg>
+            </a>
+            <a class="theme-layout -card" href="use-media-resize.html">
+              <div class="theme-layout -cart-group">
+                <strong> use-media-resize </strong><br>
+                <span>These hooks allow to observe the size of the reference and define a state based on this.</span>
+              </div>
+              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
+                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+              </svg>
+            </a>
+          </div>
+          
           <h4 style="margin-bottom: 0px;">Components</h4>
           <div class="theme-layout -cards">
             <a class="theme-layout -card" href="a-router.html">
               <div class="theme-layout -cart-group">
                 <strong> &lt;a-router/&gt; </strong><br>
-                <span>Component that allows rendering different views based on a selector and resizing the container</span>
+                <span>Group of components to work with dynamic import based on the browser path</span>
               </div>
               <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
                 <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
@@ -111,37 +143,6 @@
               <div class="theme-layout -cart-group">
                 <strong> &lt;a-showcase/&gt; </strong><br>
                 <span>Component that allows rendering different views based on a selector and resizing the container</span>
-              </div>
-              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
-                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
-              </svg>
-            </a>
-          </div>
-          
-          <h4 style="margin-bottom: 0px;">Hooks</h4>
-          <div class="theme-layout -cards">
-            <a class="theme-layout -card" href="use-event-move.html">
-              <div class="theme-layout -cart-group">
-                <strong> use-event-move </strong><br>
-                <span></span>
-              </div>
-              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
-                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
-              </svg>
-            </a>
-            <a class="theme-layout -card" href="use-lazy.html">
-              <div class="theme-layout -cart-group">
-                <strong> use-lazy </strong><br>
-                <span>Allows you to apply operations to capture the target dimension.</span>
-              </div>
-              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
-                <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
-              </svg>
-            </a>
-            <a class="theme-layout -card" href="use-media-resize.html">
-              <div class="theme-layout -cart-group">
-                <strong> use-media-resize </strong><br>
-                <span>Allows you to apply operations to capture the target dimension.</span>
               </div>
               <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
                 <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>

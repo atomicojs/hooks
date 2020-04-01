@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@atomico/kit - use-lazy</title>
-    <meta name="description" content="Allows you to apply operations to capture the target dimension.">
+    <meta name="description" content="Hook that allows the import of dynamic modules or promise resolution">
     <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
     <style>
       :root {
@@ -13,6 +13,7 @@
         --theme-font-color-light: #f1f1f9;
         --theme-font-color-dark: black;
         --theme-font-color-selection: #7afee1;
+        --theme-font-color-code: deeppink;
         --theme-box-radius: 7px;
         --theme-box-padding: 2rem;
         --theme-box-border-color: rgba(0, 0, 0, 0.15);
@@ -44,6 +45,20 @@
               </ul>
             </li>
             <li>
+              <strong class="theme-aside -list-root-title">Hooks</strong>
+              <ul class="theme-aside -list-child">
+                <li class="theme-aside -list-child-item --active-true">
+                  <a href="use-lazy.html">use-lazy</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-event-move.html">use-event-move</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-media-resize.html">use-media-resize</a>
+                </li>
+              </ul>
+            </li>
+            <li>
               <strong class="theme-aside -list-root-title">Components</strong>
               <ul class="theme-aside -list-child">
                 <li class="theme-aside -list-child-item --active-false">
@@ -51,20 +66,6 @@
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
                   <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong class="theme-aside -list-root-title">Hooks</strong>
-              <ul class="theme-aside -list-child">
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-event-move.html">use-event-move</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-true">
-                  <a href="use-lazy.html">use-lazy</a>
-                </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-media-resize.html">use-media-resize</a>
                 </li>
               </ul>
             </li>
@@ -79,15 +80,29 @@
         <article>
           <h1 id="pagetitle">use-lazy</h1>
 <blockquote>
-<p>Allows you to apply operations to capture the target dimension.</p>
+<p>Hook that allows the import of dynamic modules or promise resolution</p>
 </blockquote>
-<h3 id="sintax">Sintax</h3>
-<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token string">"my-module.js"</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">callback</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">import</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> optionalArguments <span class="token operator">=</span> <span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token punctuation">[</span>lazyState<span class="token punctuation">,</span> lazyResult<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useLazy</span><span class="token punctuation">(</span>callback<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> optionalArguments<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p><strong>Donde :</strong></p>
-<p><code>callback</code> : Funcion que retona una promesa, esta no condiciona la regeneracion de useLazy, si se busca hacer esta regeneracion condicional al cambio del modulo, se debe usar un tercer algumento que agrupe los parametros a observar para regenerar la importacion.</p>
-<p><code>lazyState</code>:String, Es el estado actual de la importacion siendo :</p>
+<h2 id="installation">Installation</h2>
+<pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit"</span></code></pre><h2 id="usage">Usage</h2>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> useLazy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-lazy"</span><span class="token punctuation">;</span></code></pre><h2 id="sintax">Sintax</h2>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">let</span> <span class="token punctuation">[</span>lazyState<span class="token punctuation">,</span> lazyResult<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useLazy</span><span class="token punctuation">(</span>
+  importCallback<span class="token punctuation">,</span>
+  runImport<span class="token punctuation">,</span>
+  optionalArguments
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p><strong>Where :</strong></p>
+<ol>
+<li><p><code>importCallback</code>: Function, executed if <code>runImport</code> is true.</p>
+</li>
+<li><p><code>runImport</code>: Boolean, si es verdadero, comienza la resolución de la promesa obtenida de <code>importCallback</code>.</p>
+</li>
+<li><p><code>optionalArguments</code>: Array, the execution of <code>importCallback</code> is not regenerated before if<code>runImport</code> is constant, if you look for a dynamic behavior, you can observe certain arguments that force the regeneration of the hook state.</p>
+</li>
+<li><p><code>lazyResult</code> : String, shows the status of the promise resolution.</p>
+</li>
+<li><p><code>lazyResult</code> : Any, return of the promise resolution.</p>
+</li>
+</ol>
+<h3 id="import-states">Import states</h3>
 <div class="markdown -table-container"><table><tbody><tr>
 <th>String value</th>
 <th>Constants</th>
@@ -96,25 +111,24 @@
 <tr>
 <td>unimport</td>
 <td>USE_LAZY_UNIMPORT</td>
-<td>El modulo no se ha importado</td>
+<td>The module has not been imported</td>
 </tr>
 <tr>
 <td>loading</td>
 <td>USE_LAZY_LOADING</td>
-<td>El modulo se esta cargando</td>
+<td>The module is loading</td>
 </tr>
 <tr>
 <td>error</td>
 <td>USE_LAZY_ERROR</td>
-<td>El modulo a importar ha generado un error de carga</td>
+<td>The module to import has generated a loading error</td>
 </tr>
 <tr>
 <td>done</td>
 <td>USE_LAZY_DONE</td>
-<td>El modulo se ha cargado</td>
+<td>The module has been loaded</td>
 </tr>
-</tbody></table></div><p><code>optionalArguments</code>: Array opcional, permite regenerar el llamado del callback si un argumento cambia, esto es util si el modulo a importar se define de forma dinamica.</p>
-<h3 id="example">Example</h3>
+</tbody></table></div><h3 id="example">Example</h3>
 <pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useLazy <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-lazy"</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">Example</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -144,18 +158,10 @@
           <br>
           <hr>
           <footer class="theme-layout -cards">
+ 
             <a class="theme-layout -card" href="use-event-move.html">
-              <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492 492">
-                <path style="fill:var(--theme-second)" d="M464.344 207.418l.768.168H135.888l103.496-103.724c5.068-5.064 7.848-11.924 7.848-19.124 0-7.2-2.78-14.012-7.848-19.088L223.28 49.538c-5.064-5.064-11.812-7.864-19.008-7.864-7.2 0-13.952 2.78-19.016 7.844L7.844 226.914C2.76 231.998-.02 238.77 0 245.974c-.02 7.244 2.76 14.02 7.844 19.096l177.412 177.412c5.064 5.06 11.812 7.844 19.016 7.844 7.196 0 13.944-2.788 19.008-7.844l16.104-16.112c5.068-5.056 7.848-11.808 7.848-19.008 0-7.196-2.78-13.592-7.848-18.652L134.72 284.406h329.992c14.828 0 27.288-12.78 27.288-27.6v-22.788c0-14.82-12.828-26.6-27.656-26.6z"></path>
-              </svg>
               <strong>
                 use-event-move
-              </strong>
-            </a>
-             
-            <a class="theme-layout -card" href="use-media-resize.html">
-              <strong>
-                use-media-resize
               </strong>
               <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492.004 492.004">
                 <path style="fill:var(--theme-second)" d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
