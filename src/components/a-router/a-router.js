@@ -18,13 +18,14 @@ const ARouterProxy = ({ path }) => {
   return (
     <host
       onclick={event => {
-        event.preventDefault();
         let { target } = event;
         let href;
         while (target) {
           href = target.getAttribute("href");
+          if (target.hasAttribute("ignore")) return;
           target = href ? 0 : target.parentElement;
         }
+        event.preventDefault();
         if (href) {
           redirect(join(path, href));
         }
@@ -53,41 +54,46 @@ const ARouterCase = ({ src, path }) => {
   return <host></host>;
 };
 
+const notFound = { src: () => Promise.resolve(() => <slot name="404"></slot>) };
+
 const ARouterSwitch = () => {
   let [pathname] = useHistory();
   let ref = useRef({});
-  let [route, setRoute] = useState({});
+  let [routeState, setRouteState] = useState(notFound);
+
   let [lazyState, LazyResult] = useLazy(
-    () => (typeof route.src == "string" ? import(route.src) : route.src()),
-    route.src,
-    [route.src]
+    () =>
+      typeof routeState.src == "string"
+        ? import(routeState.src)
+        : routeState.src(),
+    routeState.src,
+    [routeState.src]
   );
+
   let chunkUpdate;
   let chunkRemove;
 
   let define = () => {
-    let select;
+    let select = notFound;
     for (let path in ref.current) {
-      let src = ref.current[path];
+      let { src, default: isDefault } = ref.current[path];
       let [state, params] = match(path, pathname);
-      if (state) {
+      if (state || isDefault) {
         select = { state, params, path, src, pathname };
-        break;
+        if (!isDefault) break;
       }
     }
-    if (select) {
-      setRoute(state => (state.pathname == select.pathname ? state : select));
-    }
+    setRouteState(state =>
+      state.pathname == select.pathname ? state : select
+    );
   };
-
   useEffect(define, [pathname]);
-
   return (
     <host
       shadowDom
       onUpdatedARouterCase={({ target, detail }) => {
-        let { src, path } = target;
-        ref.current[path] = src;
+        let { path } = target;
+        ref.current[path] = target;
         detail(() => {
           delete ref.current[path];
           if (!chunkRemove) {
@@ -102,11 +108,11 @@ const ARouterSwitch = () => {
       }}
     >
       {lazyState == "loading" ? (
-        <slot name="loading">loading...</slot>
+        <slot name="loading">{lazyState}</slot>
       ) : lazyState == "error" ? (
-        <slot name="error">Error</slot>
+        <slot name="error">{lazyState}</slot>
       ) : lazyState == "done" ? (
-        <LazyResult {...route.params}>...</LazyResult>
+        <LazyResult {...routeState.params}></LazyResult>
       ) : (
         ""
       )}
@@ -121,6 +127,9 @@ ARouterCase.props = {
   },
   src: {
     type: Any
+  },
+  default: {
+    type: Boolean
   }
 };
 

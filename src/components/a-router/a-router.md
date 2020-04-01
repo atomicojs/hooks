@@ -1,6 +1,6 @@
 ---
 title: <a-router/>
-description: Component that allows rendering different views based on a selector and resizing the container
+description: Group of components to work with dynamic import based on the browser path
 group: Components
 ---
 
@@ -20,36 +20,86 @@ npm install "{{pkg.name}}"
 import "{{pkg.name}}/a-router";
 ```
 
-this component import the module defined by the `src` property, the module must require the following exports:
+This module includes the components [a-router-proxy](#a-router-proxy), [a-router-switch](#a-router-switch) and [a-router-case](#a-router-case).
 
-**HTML**
+### Example in html
 
 ```html
 <a-router-proxy>
     <a href="/">home</a>
-    <a-router-switch/>
-        <a-router-case path="/" src="./page-home.js" default></a-router-case>
-        <a-router-case path="/users/:id?" src="./page-users.js"></a-router-case>
+    <a-router-switch>
+        <a-router-case path="/" src="./page-home.js" default />
+        <a-router-case path="/users/:id?" src="./page-users.js" />
         <span slot="loading">loading...</span>
         <span slot="loading">error</span>
     </a-router-switch>
 </a-router-proxy>
 ```
 
-**Where :**
-
-1. `<a-router-proxy>` : Prevent click redirect event, to move effect to history popstate.
-2. `<a-router-switch>` : Define the route case to use
-3. `<a-router-case>` : Declare the route to listen to and define the resource to extract.
-
-**JSX** :Do not forget to buy milk today
+### Example in jsx
 
 ```jsx
-let immutableImport = () => import("./page-home.js");
-<a-router-case path="/users/:id?" src={immutableImport}></a-router-case>;
+const importPageHome = () => import("./page-home.js");
+const importPageUsers = () => import("./page-users.js");
+
+function Component() {
+  return (
+    <a-router-proxy>
+      <a href="/">home</a>
+      <a-router-switch>
+        <a-router-case path="/" src={importPageHome} default />
+        <a-router-case path="/users/:id?" src={importPageUsers} />
+        <span slot="loading">loading...</span>
+        <span slot="loading">error</span>
+      </a-router-switch>
+    </a-router-proxy>
+  );
+}
 ```
 
-# Demo
+## a-router-proxy
+
+This component captures the click event of nodes that declare the `href` attribute to prevent browser redirection and force the use of history and the popstate event.
+
+| Prop/Attr | Description                                                  | Type   |
+| --------- | ------------------------------------------------------------ | ------ |
+| path      | allows to prefix a route to the one already declared in href | String |
+
+## a-router-switch
+
+This component observe the path to define the component to use from `to-router-case`.
+
+## a-router-case
+
+This component declares the path to be used by `a-router-switch` to match the concurrent path.
+
+| Prop/Attr | Description                                                                                | Type    |
+| --------- | ------------------------------------------------------------------------------------------ | ------- |
+| path      | allows to prefix a route to the one already declared in href                               | String  |
+| default   | allows you to associate this component as default if none of your brothers meets the match | Boolean |
+
+## Export rule
+
+```js
+// Option 1, you can use the atomico
+// pragma to build your component.
+export default(props){
+  return <my-component/>;
+}
+// if you don't use atomico you can
+// export a valid object for the
+// declaration of the component.
+export default(props){
+  return {nodeType : "my-component",children : "...any"}
+}
+// If you are only looking for
+// component invocation, you
+// can export only the component
+// name for your build.
+export default let nodeType = "my-component";
+```
+
+## Demo
 
 <a-showcase src="a-router.showcase.js"></a-showcase>
 
