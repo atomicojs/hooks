@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@atomico/kit - &lt;a-showcase/&gt;</title>
-    <meta name="description" content="Component that allows rendering different views based on a selector and resizing the container">
+    <title>@atomico/kit - use-store-2</title>
+    <meta name="description" content="my description...">
     <link href="https://fonts.googleapis.com/css?family=Sen:700|Fira+Code:500,700&amp;display=swap" rel="stylesheet">
     <style>
       :root {
@@ -51,6 +51,9 @@
                   <a href="use-lazy.html">use-lazy</a>
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-store.html">[object Object]</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
                   <a href="use-delegate-focus.html">use-delegate-focus</a>
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
@@ -59,8 +62,8 @@
                 <li class="theme-aside -list-child-item --active-false">
                   <a href="use-media-resize.html">use-media-resize</a>
                 </li>
-                <li class="theme-aside -list-child-item --active-false">
-                  <a href="use-store.html">use-store</a>
+                <li class="theme-aside -list-child-item --active-true">
+                  <a href="use-store-2.html">use-store-2</a>
                 </li>
               </ul>
             </li>
@@ -70,7 +73,7 @@
                 <li class="theme-aside -list-child-item --active-false">
                   <a href="a-router.html">&lt;a-router/&gt;</a>
                 </li>
-                <li class="theme-aside -list-child-item --active-true">
+                <li class="theme-aside -list-child-item --active-false">
                   <a href="a-showcase.html">&lt;a-showcase/&gt;</a>
                 </li>
               </ul>
@@ -84,75 +87,29 @@
       </aside>
       <section class="theme-layout -content">
         <article>
-          <h1 id="pagetitle">&lt;a-showcase/&gt;</h1>
-<hr>
+          <h1 id="pagetitle">use-store-2</h1>
 <blockquote>
-<p>Component that allows rendering different views based on a selector and resizing the container</p>
+<p>my description...</p>
 </blockquote>
 <h2 id="installation">Installation</h2>
-<pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit"</span></code></pre><h2 id="usage">Usage</h2>
-<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token string">"@atomico/kit/a-showcase"</span><span class="token punctuation">;</span></code></pre><p>this component import the module defined by the <code>src</code> property, the module must require the following exports:</p>
-<pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"atomico"</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"atomico"</span><span class="token punctuation">;</span>
+<pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit/use-store-2"</span></code></pre><h2 id="usage">Usage</h2>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"atomico"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useStore2 <span class="token punctuation">}</span><span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-store-2"</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">[</span>
-  <span class="token punctuation">{</span>
-    label<span class="token operator">:</span> <span class="token string">"Ejemplo 1"</span><span class="token punctuation">,</span>
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span><span class="token number">1</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">{</span>
-    label<span class="token operator">:</span> <span class="token string">"Ejemplo 2"</span><span class="token punctuation">,</span>
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">return</span> <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre><p>Where :</p>
-<ol>
-<li><code>export {render} ...</code> : allows exporting the render engine to be used at the time of selection.</li>
-<li><code>export default [...</code>: options for view selector.</li>
-</ol>
-<h2 id="demo">Demo</h2>
-<p></p><div class="markdown -html-container"><a-showcase src="a-showcase.showcase.js" centered="" resize="" height="50vh"></a-showcase></div><div class="markdown -html-container"></div><p></p>
-<h2 id="properties">Properties</h2>
-<div class="markdown -table-container"><table><tbody><tr>
-<th>Prop/Attr</th>
-<th>Description</th>
-<th>Type</th>
-</tr>
-<tr>
-<td>src</td>
-<td>module to import</td>
-<td>String</td>
-</tr>
-<tr>
-<td>width</td>
-<td>Component width</td>
-<td>String</td>
-</tr>
-<tr>
-<td>height</td>
-<td>Component height</td>
-<td>String</td>
-</tr>
-<tr>
-<td>centered</td>
-<td>Center component content</td>
-<td>String</td>
-</tr>
-</tbody></table></div><div class="markdown -html-container"><script type="module" src="a-showcase.js"><script>
-</div></script></div> 
+<span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">useStore2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre> 
           <br>
           <br>
           <hr>
           <footer class="theme-layout -cards">
-            <a class="theme-layout -card" href="a-router.html">
+            <a class="theme-layout -card" href="use-media-resize.html">
               <svg class="theme-layout -card-icon" width="16px" viewBox="0 0 492 492">
                 <path style="fill: var(--theme-second);" d="M464.344 207.418l.768.168H135.888l103.496-103.724c5.068-5.064 7.848-11.924 7.848-19.124 0-7.2-2.78-14.012-7.848-19.088L223.28 49.538c-5.064-5.064-11.812-7.864-19.008-7.864-7.2 0-13.952 2.78-19.016 7.844L7.844 226.914C2.76 231.998-.02 238.77 0 245.974c-.02 7.244 2.76 14.02 7.844 19.096l177.412 177.412c5.064 5.06 11.812 7.844 19.016 7.844 7.196 0 13.944-2.788 19.008-7.844l16.104-16.112c5.068-5.056 7.848-11.808 7.848-19.008 0-7.196-2.78-13.592-7.848-18.652L134.72 284.406h329.992c14.828 0 27.288-12.78 27.288-27.6v-22.788c0-14.82-12.828-26.6-27.656-26.6z"></path>
               </svg>
               <strong>
-                &lt;a-router/&gt;
+                use-media-resize
               </strong>
             </a>
                        </footer>

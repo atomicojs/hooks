@@ -1,4 +1,4 @@
-import { u as useState, a as useEffect } from './eaceffd6.js';
+import { u as useState, d as useEffect } from './a1349753.js';
 
 const USE_LAZY_UNIMPORT = "unimport";
 const USE_LAZY_LOADING = "loading";
@@ -31,4 +31,4 @@ function useLazy(callbackImport, initImport, reload = []) {
 }
 
 export { useLazy as u };
-//# sourceMappingURL=0e63c91b.js.map
+//# sourceMappingURL=03872280.js.map

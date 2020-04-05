@@ -6,7 +6,7 @@ import {
   useHost,
   useEvent,
   useEffect,
-  useState
+  useState,
 } from "atomico";
 
 import { useHistory } from "../../hooks/use-router/use-router";
@@ -17,7 +17,7 @@ import { useLazy } from "../../hooks/use-lazy/use-lazy";
 const ARouterProxy = ({ path }) => {
   return (
     <host
-      onclick={event => {
+      onclick={(event) => {
         let { target } = event;
         let href;
         while (target) {
@@ -39,13 +39,13 @@ const ARouterCase = ({ src, path }) => {
 
   let dispatchUpdatedARouterCase = useEvent("UpdatedARouterCase", {
     bubbles: true,
-    composed: true
+    composed: true,
   });
 
   useEffect(() => {
     let { current } = refHost;
     let disconect;
-    dispatchUpdatedARouterCase(callback => (disconect = callback));
+    dispatchUpdatedARouterCase((callback) => (disconect = callback));
     return () => {
       !current.isConnected && disconect();
     };
@@ -83,7 +83,7 @@ const ARouterSwitch = () => {
         if (!isDefault) break;
       }
     }
-    setRouteState(state =>
+    setRouteState((state) =>
       state.pathname == select.pathname ? state : select
     );
   };
@@ -123,21 +123,21 @@ const ARouterSwitch = () => {
 ARouterCase.props = {
   path: {
     type: String,
-    reflect: true
+    reflect: true,
   },
   src: {
-    type: Any
+    type: Any,
   },
   default: {
-    type: Boolean
-  }
+    type: Boolean,
+  },
 };
 
 ARouterProxy.props = {
   path: {
     type: String,
-    value: ""
-  }
+    value: "",
+  },
 };
 
 customElement("a-router-switch", ARouterSwitch);

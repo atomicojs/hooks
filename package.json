@@ -2,19 +2,21 @@
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
   "version": "0.0.0",
+  "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "start": "bundle src/**/*.md docs --watch --server --template template/theme/theme.html",
-    "build:docs": "bundle src/**/*.md docs --minify --template template/theme/theme.html",
-    "build:components": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
-    "create:component": "tfolder template/tfolder/component src/components"
+    "build": "bundle src/**/*.md docs --minify --template template/theme/theme.html",
+    "build:all": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
+    "create:component": "tfolder template/tfolder/component src/components",
+    "create:hook": "tfolder template/tfolder/hook src/hooks"
   },
   "dependencies": {
     "atomico": "^0.21.1"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.3",
-    "bundle-cli": "^0.21.4",
+    "bundle-cli": "^0.21.7",
     "jasmine": "^3.5.0",
     "karma": "^4.4.1",
     "karma-chrome-launcher": "^3.1.0",
