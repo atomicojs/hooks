@@ -11,6 +11,9 @@
     "create:component": "tfolder template/tfolder/component src/components",
     "create:hook": "tfolder template/tfolder/hook src/hooks"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "atomico": "^0.21.1"
   },
@@ -26,8 +29,5 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
     "tfolder-cli": "0.0.0"
-  },
-  "exports": {
-    ".": "./dest/"
   }
 }

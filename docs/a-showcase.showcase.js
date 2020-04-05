@@ -1,21 +1,2 @@
-import { c as createElement } from './chunks/c49365a6.js';
-export { r as render } from './chunks/c49365a6.js';
-
-var aShowcase_showcase = [{
-  label: "Ejemplo 1",
-
-  render() {
-    return createElement("h1", null, "1");
-  }
-
-}, {
-  label: "Ejemplo 2",
-
-  render() {
-    return createElement("h1", null, "2");
-  }
-
-}];
-
-export default aShowcase_showcase;
+import{c as e}from"./chunks/1d8d81c9.js";export{r as render}from"./chunks/1d8d81c9.js";var l=[{label:"Ejemplo 1",render:()=>e("h1",null,"1")},{label:"Ejemplo 2",render:()=>e("h1",null,"2")}];export default l;
 //# sourceMappingURL=a-showcase.showcase.js.map
