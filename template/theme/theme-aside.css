@@ -18,7 +18,7 @@
     margin: 0px;
   }
   &.-list-child li {
-    padding-left: 1rem;
+    padding: 0.1rem 0px 0.1rem 1rem;
     box-sizing: border-box;
   }
   &.-list-root {
@@ -43,6 +43,7 @@
       opacity: 0;
     }
     &:before {
+      top: 0px;
       left: 5px;
       width: 2px;
       height: 100%;

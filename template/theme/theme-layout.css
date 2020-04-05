@@ -179,6 +179,7 @@
           & td {
             padding: 0.5rem;
             box-sizing: border-box;
+            vertical-align: baseline;
           }
 
           & td {
