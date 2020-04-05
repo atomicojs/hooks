@@ -19,19 +19,39 @@
     border: 1px solid var(--scope-border-color);
     height: calc(100% - 38px);
     box-sizing: border-box;
+    border-top-left-radius: 0px;
   }
-  &.-select {
+  &.-btn {
+    min-height: 100%;
+    display: flex;
+    padding: 0px 0.8rem;
+    align-items: center;
+    transition: 0.3s ease all;
+    color: currentColor;
+    &:hover {
+      background: var(--scope-border-color);
+    }
+    & svg path {
+      fill: currentColor;
+    }
+  }
+  &.-header {
     border: 1px solid var(--scope-border-color);
     border-bottom: none;
+    border-radius: var(--scope-border-radius) var(--scope-border-radius) 0px 0px;
+    display: inline-flex;
+    & > * + * {
+      border-left: 1px solid var(--scope-border-color);
+    }
+  }
+
+  &.-select {
+    border: none;
     padding: 10px;
     background: transparent;
     color: currentColor;
-    border-radius: var(--scope-border-radius) var(--scope-border-radius) 0px 0px;
     & option {
       color: black;
-    }
-    & ~ .-preview {
-      border-top-left-radius: 0px;
     }
   }
   &.-sandbox {

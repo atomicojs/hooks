@@ -4,17 +4,17 @@ import {
   useHost,
   useState,
   useEffect,
-  customElement
+  customElement,
 } from "atomico";
 import { isUrl } from "../../utils";
 import { useLazy } from "../../hooks/use-lazy/use-lazy";
 import { useEventMove } from "../../hooks/use-event-move/use-event-move";
 import style from "./a-showcase.css";
 
-const AShowcase = ({ src, width, height }) => {
+const AShowcase = ({ src, width, height, origin }) => {
   const refSandbox = useRef();
   const refPreview = useRef();
-  const refSelect = useRef();
+  const refHeader = useRef();
   const refHost = useHost();
 
   let [select, setSelect] = useState();
@@ -28,8 +28,8 @@ const AShowcase = ({ src, width, height }) => {
     if (type == "move") {
       const last = range[range.length - 1];
       const move = last.x - currentZone.x;
-      const minWidth = refSelect.current
-        ? refSelect.current.clientWidth + 22
+      const minWidth = refHeader.current
+        ? refHeader.current.clientWidth + 22
         : 50;
       const width =
         ((move < minWidth ? minWidth : move) / currentZone.width) * 100;
@@ -40,7 +40,8 @@ const AShowcase = ({ src, width, height }) => {
   });
 
   const [lazyState, lazyResult] = useLazy(
-    () => import((isUrl(src) ? "" : "./") + src).then(md => ({ default: md })),
+    () =>
+      import((isUrl(src) ? "" : "./") + src).then((md) => ({ default: md })),
     true
   );
 
@@ -63,15 +64,27 @@ const AShowcase = ({ src, width, height }) => {
       <style>{style}</style>
 
       {lazyStateIsDone && (
-        <select
-          ref={refSelect}
-          class="showcase -select"
-          onchange={({ target: { value } }) => setSelect(value)}
-        >
-          {cases.map(({ label }) => (
-            <option value={label}>{label}</option>
-          ))}
-        </select>
+        <header ref={refHeader} class="showcase -header">
+          <select
+            class="showcase -select"
+            onchange={({ target: { value } }) => setSelect(value)}
+          >
+            {cases.map(({ label }) => (
+              <option value={label}>{label}</option>
+            ))}
+          </select>
+          {origin && (
+            <a class="showcase -btn" href={origin} target="_blank">
+              <svg
+                height="14"
+                viewBox="0 0 467.765 467.765"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M146.175 87.707L0 233.883l146.175 146.175 41.34-41.34L82.681 233.883l104.834-104.836zM321.59 87.707l-41.34 41.34 104.834 104.836L280.25 338.717l41.34 41.34 146.175-146.175z" />
+              </svg>
+            </a>
+          )}
+        </header>
       )}
 
       <section class="showcase -preview" ref={refPreview}>
@@ -84,18 +97,19 @@ const AShowcase = ({ src, width, height }) => {
 
 AShowcase.props = {
   width: {
-    type: String
+    type: String,
   },
   height: {
-    type: String
+    type: String,
   },
   src: {
-    type: String
+    type: String,
   },
   centered: {
     type: Boolean,
-    reflect: true
-  }
+    reflect: true,
+  },
+  origin: String,
 };
 
 export default customElement("a-showcase", AShowcase);
