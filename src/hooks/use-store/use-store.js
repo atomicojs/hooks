@@ -15,49 +15,52 @@ let eventTypeUpdate = "update";
  * @returns {Store}
  */
 export function createStore(initialState) {
-  let store = new EventTarget();
-
-  let state =
-    typeof initialState == "function"
-      ? initialState(store)
-      : { ...initialState };
-
+  let events = {};
   let chunkUpdate;
 
-  store.state = new Proxy(state, {
-    set(target, prop, value) {
-      if (target[prop] != value) {
-        // Group updates into a single event
-        if (!chunkUpdate) {
-          chunkUpdate = {};
-          queueMicrotask(() => {
-            let detail = chunkUpdate;
-            chunkUpdate = false;
-            store.dispatchEvent(new CustomEvent(eventTypeUpdate, { detail }));
-          });
+  let state = new Proxy(
+    typeof initialState == "function"
+      ? initialState(store)
+      : { ...initialState },
+    {
+      set(target, prop, value) {
+        if (target[prop] != value) {
+          // Group updates into a single event
+          if (!chunkUpdate) {
+            chunkUpdate = ["*"];
+            queueMicrotask(() => {
+              chunkUpdate.forEach(
+                (prop) =>
+                  events[prop] &&
+                  events[prop].forEach((callback) =>
+                    callback(state, chunkUpdate)
+                  )
+              );
+
+              chunkUpdate = false;
+            });
+          }
+
+          if (chunkUpdate) chunkUpdate.push(prop);
+
+          target[prop] = value;
         }
-        if (chunkUpdate) {
-          chunkUpdate[prop] = true;
-        }
+        return true;
+      },
+    }
+  );
 
-        target[prop] = value;
-      }
-      return true;
-    },
-  });
+  let onUpdate = (prop, callback) => {
+    events[prop] = events[prop] || [];
 
-  store.onUpdate = (prop, callback) => {
-    let subscribe = ({ detail }) =>
-      (prop == "*" || prop in detail) && callback(store.state);
+    if (!events[prop].includes(callback)) events[prop].push(callback);
 
-    store.addEventListener(eventTypeUpdate, subscribe);
-
-    return () => store.removeEventListener(eventTypeUpdate, subscribe);
+    return () => events[prop].splice(events[prop].indexOf(callback) >>> 0, 1);
   };
 
-  store.update = (props) => Object.assign(store.state, props);
+  let update = (props) => Object.assign(state, props);
 
-  return store;
+  return { onUpdate, update, state };
 }
 
 export function useStore(store, prop = "*") {
@@ -66,6 +69,7 @@ export function useStore(store, prop = "*") {
   useEffect(() => store.onUpdate(prop, () => setState((state) => state + 1)), [
     store,
   ]);
+
   return store.state;
 }
 

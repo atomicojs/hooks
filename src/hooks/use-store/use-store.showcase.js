@@ -35,7 +35,7 @@ export default [
   {
     label: "useStore",
     render() {
-      let removeListener = store.onUpdate((store) => {
+      store.onUpdate("*", (store) => {
         console.log(store);
       });
       return (
