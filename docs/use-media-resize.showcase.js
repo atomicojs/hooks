@@ -1,2 +1,96 @@
-import{u as e,e as s,c as t,a as c}from"./chunks/1d8d81c9.js";export{r as render}from"./chunks/1d8d81c9.js";function a(r){let t=function(e){let s={cases:[]};return e.split(/ *, */).forEach(e=>{let r=e.match(/([^\s]+) +(\d+)px/);if(r){let[,e,t]=r;s.cases.push([e,Number(t)])}else s.default=e}),s.cases.sort(([,e],[,s])=>e>s?1:-1),s}(r),[c,a]=e(()=>[null,{}]);return c[2]=t,s(()=>(new ResizeObserver(([{contentRect:{width:e}}])=>{!function(e){let s=c[2];s.cases.some(([s,r])=>{if(r>=e)return a(([,...e])=>[s,...e]),!0})||a(([e,...r])=>[s.default||e,...r])}(e)}).observe(c[1].current),()=>resizeObserver.unobserve(c.ref.current)),[]),c}const n=({src:e})=>{const[s,r]=a(e);return t("host",{ref:r,shadowDom:!0},t("style",null,":host{display:block;width:100%}img{width:100%}"),t("img",{src:s}))};n.props={src:String},c("use-media-resize-example-1",n);var o=[{label:"Example useMediaResize",render(){const e="https://via.placeholder.com/";return t("use-media-resize-example-1",{src:`${e}1080x150, ${e}720x200 720px, ${e}520x300 520px, ${e}320x500 240px`})}}];export default o;
+import { F, Z, _, M } from './chunks/37634490.js';
+export { T as render } from './chunks/37634490.js';
+
+function useMediaResize(value, ref = {}) {
+  let sizes = getSizes(value); // The computation process is light in cost vs useMemo
+
+  let [state, setState] = F(() => [null, ref]);
+  state[2] = sizes;
+  Z(() => {
+    let [, ref] = state;
+
+    if (!ref.listeners) {
+      let listeners = [];
+      let observer = new ResizeObserver(([{
+        contentRect: {
+          width
+        }
+      }]) => {
+        listeners.forEach(fn => fn(width));
+      });
+      ref.listeners = listeners;
+      observer.observe(ref.current);
+    }
+
+    let listener = width => {
+      let sizes = state[2];
+
+      if (!sizes.cases.some(([value, px]) => {
+        if (px >= width) {
+          setState(updateState(value));
+          return true;
+        }
+      })) {
+        setState(updateState(sizes.default || value));
+      }
+    };
+
+    ref.listeners.push(listener);
+    return () => ref.listeners.splice(ref.listeners.indexOf(listener) >>> 0, 1);
+  }, []);
+  return state;
+}
+
+let updateState = nextValue => currentState => {
+  let [value, ...state] = currentState;
+  return nextValue == value ? currentState : [nextValue, ...state];
+};
+
+function getSizes(value) {
+  let sizes = {
+    cases: []
+  };
+  value.split(/ *, */).forEach(value => {
+    let size = value.match(/([^\s]+) +(\d+)px/);
+
+    if (size) {
+      let [, value, number] = size;
+      sizes.cases.push([value, Number(number)]);
+    } else {
+      sizes.default = value;
+    }
+  });
+  sizes.cases.sort(([, a], [, b]) => a > b ? 1 : -1);
+  return sizes;
+}
+
+const Example1 = ({
+  src
+}) => {
+  const [state, ref] = useMediaResize(src);
+  return _("host", {
+    ref: ref,
+    shadowDom: true
+  }, _("style", null, `:host{display:block;width:100%}img{width:100%}`), _("img", {
+    src: state
+  }));
+};
+
+Example1.props = {
+  src: String
+};
+M("use-media-resize-example-1", Example1);
+var useMediaResize_showcase = [{
+  label: "Example useMediaResize",
+
+  render() {
+    const url = "https://via.placeholder.com/";
+    return _("use-media-resize-example-1", {
+      src: `${url}1080x150, ${url}720x200 720px, ${url}520x300 520px, ${url}320x500 240px`
+    });
+  }
+
+}];
+
+export default useMediaResize_showcase;
 //# sourceMappingURL=use-media-resize.showcase.js.map

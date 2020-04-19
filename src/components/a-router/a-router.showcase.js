@@ -2,14 +2,14 @@ import { h } from "atomico";
 export { render } from "atomico";
 import "./a-router";
 
-const demoResult = result => () =>
-  new Promise(resolve => setTimeout(resolve, 1000, { default: result }));
+const demoResult = (result) => () =>
+  new Promise((resolve) => setTimeout(resolve, 1000, { default: result }));
 
-const result1 = demoResult(props => <h3>Home</h3>);
+const result1 = demoResult((props) => <h3>Home</h3>);
 
-const result2 = demoResult(props => <h3>Config</h3>);
+const result2 = demoResult((props) => <h3>Config</h3>);
 
-const result3 = demoResult(props => <h3>{JSON.stringify(props)}</h3>);
+const result3 = demoResult((props) => <h3>{JSON.stringify(props)}</h3>);
 
 export default [
   {
@@ -41,6 +41,6 @@ export default [
           </a-router-switch>
         </a-router-proxy>
       );
-    }
-  }
+    },
+  },
 ];

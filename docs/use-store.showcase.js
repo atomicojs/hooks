@@ -1,2 +1,112 @@
-import{u as e,e as t,c as n,a as o,A as s}from"./chunks/1d8d81c9.js";export{r as render}from"./chunks/1d8d81c9.js";function u(n,o="*"){let[,r]=e(0);return t(()=>n.onUpdate(o,()=>r(e=>e+1)),[n]),n.state}let a=function(e){let t,n=new EventTarget,o="function"==typeof e?e(n):{...e};return n.state=new Proxy(o,{set:(e,o,r)=>(e[o]!=r&&(t||(t={},queueMicrotask(()=>{let e=t;t=!1,n.dispatchEvent(new CustomEvent("update",{detail:e}))})),t&&(t[o]=!0),e[o]=r),!0)}),n.onUpdate=(e,t)=>{let o=({detail:o})=>("*"==e||e in o)&&t(n.state);return n.addEventListener("update",o),()=>n.removeEventListener("update",o)},n.update=e=>Object.assign(n.state,e),n}({count:0});const l=({store:e})=>{let t=u(e);return n("host",null,"Component A ",n("button",{onclick:()=>t.count+=1},"Increment"),n("strong",null," State : ",JSON.stringify(t)))},c=({store:e})=>{let t=u(e);return n("host",null,"Component B ",n("button",{onclick:()=>t.count-=1},"Decrement"),n("strong",null," State : ",JSON.stringify(t)))};l.props=c.props={store:s},o("use-store-1",l),o("use-store-2",c);var d=[{label:"useStore",render(){a.onUpdate(e=>{console.log(e)});return n("div",null,n("p",null,"The components are synchronized to the store given by the parent"),n("use-store-1",{store:a}),n("br",null),n("use-store-2",{store:a}))}}];export default d;
+import { F, Z, _, M, L } from './chunks/37634490.js';
+export { T as render } from './chunks/37634490.js';
+
+/**
+ * If you use a function you can apply a property
+ * calculation strategy using getter
+ * @property {Function|Object} initialState - defines the initial state.
+ * @example
+ * let createInitialState = (store)=>({
+ *  fullName(){
+ *       return this.fistName + " " + this.lastName;
+ *  }
+ * })
+ * @returns {Store}
+ */
+
+function createStore(initialState) {
+  let events = {};
+  let chunkUpdate;
+  let state = new Proxy(typeof initialState == "function" ? initialState(store) : { ...initialState
+  }, {
+    set(target, prop, value) {
+      if (target[prop] != value) {
+        // Group updates into a single event
+        if (!chunkUpdate) {
+          chunkUpdate = ["*"];
+          queueMicrotask(() => {
+            chunkUpdate.forEach(prop => events[prop] && events[prop].forEach(callback => callback(state, chunkUpdate)));
+            chunkUpdate = false;
+          });
+        }
+
+        if (chunkUpdate) chunkUpdate.push(prop);
+        target[prop] = value;
+      }
+
+      return true;
+    }
+
+  });
+
+  let onUpdate = (prop, callback) => {
+    events[prop] = events[prop] || [];
+    if (!events[prop].includes(callback)) events[prop].push(callback);
+    return () => events[prop].splice(events[prop].indexOf(callback) >>> 0, 1);
+  };
+
+  let update = props => Object.assign(state, props);
+
+  return {
+    onUpdate,
+    update,
+    state
+  };
+}
+function useStore(store, prop = "*") {
+  let [, setState] = F(0);
+  Z(() => store.onUpdate(prop, () => setState(state => state + 1)), [store]);
+  return store.state;
+}
+/**
+ * @typedef Store
+ * @property {Object} state - Concurrent state
+ * @property {(prop:string,callback:Function)=>void} onUpdate - listen for changes associated with a state property
+ * @property {(props:Object)=>Object} update - update one or more properties using an object
+ */
+
+let store$1 = createStore({
+  count: 0
+});
+
+const UseStore1 = ({
+  store
+}) => {
+  let state = useStore(store);
+  return _("host", null, "Component A ", _("button", {
+    onclick: () => state.count += 1
+  }, "Increment"), _("strong", null, " State : ", JSON.stringify(state)));
+};
+
+const UseStore2 = ({
+  store
+}) => {
+  let state = useStore(store);
+  return _("host", null, "Component B ", _("button", {
+    onclick: () => state.count -= 1
+  }, "Decrement"), _("strong", null, " State : ", JSON.stringify(state)));
+};
+
+UseStore1.props = UseStore2.props = {
+  store: L
+};
+M("use-store-1", UseStore1);
+M("use-store-2", UseStore2);
+var useStore_showcase = [{
+  label: "useStore",
+
+  render() {
+    store$1.onUpdate("*", store => {
+      console.log(store);
+    });
+    return _("div", null, _("p", null, "The components are synchronized to the store given by the parent"), _("use-store-1", {
+      store: store$1
+    }), _("br", null), _("use-store-2", {
+      store: store$1
+    }));
+  }
+
+}];
+
+export default useStore_showcase;
 //# sourceMappingURL=use-store.showcase.js.map

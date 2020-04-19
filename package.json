@@ -6,7 +6,7 @@
   "scripts": {
     "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "start": "bundle src/**/*.md docs --watch --server --template template/theme/theme.html",
-    "build": "bundle src/**/*.md docs --minify --template template/theme/theme.html",
+    "build": "bundle src/**/*.md docs --minify --template template/theme/theme.html --sizes",
     "build:all": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
     "create:component": "tfolder template/tfolder/component src/components",
     "create:hook": "tfolder template/tfolder/hook src/hooks"
@@ -15,11 +15,11 @@
     "access": "public"
   },
   "dependencies": {
-    "atomico": "^0.21.1"
+    "atomico": "^0.22.0"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.3",
-    "bundle-cli": "^0.21.7",
+    "bundle-cli": "^0.23.1",
     "jasmine": "^3.5.0",
     "karma": "^4.4.1",
     "karma-chrome-launcher": "^3.1.0",

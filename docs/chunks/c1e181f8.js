@@ -1,4 +1,4 @@
-import { u as useState, e as useEffect } from './1d8d81c9.js';
+import { F, Z } from './37634490.js';
 
 const USE_LAZY_UNIMPORT = "unimport";
 const USE_LAZY_LOADING = "loading";
@@ -15,8 +15,8 @@ const USE_LAZY_DONE = "done";
  */
 
 function useLazy(callbackImport, initImport, reload = []) {
-  const [state, setState] = useState([USE_LAZY_UNIMPORT]);
-  useEffect(() => {
+  const [state, setState] = F([USE_LAZY_UNIMPORT]);
+  Z(() => {
     if (!initImport || !callbackImport) return;
     let cancel;
     let done;
@@ -31,4 +31,4 @@ function useLazy(callbackImport, initImport, reload = []) {
 }
 
 export { useLazy as u };
-//# sourceMappingURL=ffece87a.js.map
+//# sourceMappingURL=c1e181f8.js.map
