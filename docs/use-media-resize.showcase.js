@@ -1,12 +1,12 @@
-import { F, Z, _, M } from './chunks/37634490.js';
-export { T as render } from './chunks/37634490.js';
+import { T, O, p, x } from './chunks/61e0f1f4.js';
+export { d as render } from './chunks/61e0f1f4.js';
 
 function useMediaResize(value, ref = {}) {
   let sizes = getSizes(value); // The computation process is light in cost vs useMemo
 
-  let [state, setState] = F(() => [null, ref]);
+  let [state, setState] = T(() => [null, ref]);
   state[2] = sizes;
-  Z(() => {
+  O(() => {
     let [, ref] = state;
 
     if (!ref.listeners) {
@@ -68,10 +68,10 @@ const Example1 = ({
   src
 }) => {
   const [state, ref] = useMediaResize(src);
-  return _("host", {
+  return p("host", {
     ref: ref,
     shadowDom: true
-  }, _("style", null, `:host{display:block;width:100%}img{width:100%}`), _("img", {
+  }, p("style", null, `:host{display:block;width:100%}img{width:100%}`), p("img", {
     src: state
   }));
 };
@@ -79,15 +79,15 @@ const Example1 = ({
 Example1.props = {
   src: String
 };
-M("use-media-resize-example-1", Example1);
+x("use-media-resize-example-1", Example1);
 var useMediaResize_showcase = [{
   label: "Example useMediaResize",
 
   render() {
     const url = "https://via.placeholder.com/";
-    return _("use-media-resize-example-1", {
+    return p("host", null, p("use-media-resize-example-1", {
       src: `${url}1080x150, ${url}720x200 720px, ${url}520x300 520px, ${url}320x500 240px`
-    });
+    }));
   }
 
 }];

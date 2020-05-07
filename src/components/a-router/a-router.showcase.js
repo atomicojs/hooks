@@ -16,30 +16,32 @@ export default [
     label: "Ejemplo",
     render() {
       return (
-        <a-router-proxy>
-          <p>
-            The import effect is emulated with a delay to show the use of the
-            loading slot
-          </p>
-          <nav>
-            <a style="margin:5px" href="/">
-              home
-            </a>
-            <a style="margin:5px" href="/user">
-              user
-            </a>
-            <a style="margin:5px" href="/config">
-              config
-            </a>
-          </nav>
-          <a-router-switch>
-            <a-router-case path="/" src={result1}></a-router-case>
-            <a-router-case path="/user" src={result2}></a-router-case>
-            <a-router-case path="/:any..." src={result3}></a-router-case>
-            <h1 slot="loading">loading...</h1>
-            <h1 slot="404">404</h1>
-          </a-router-switch>
-        </a-router-proxy>
+        <host>
+          <a-router-proxy>
+            <p>
+              The import effect is emulated with a delay to show the use of the
+              loading slot
+            </p>
+            <nav>
+              <a style="margin:5px" href="/">
+                home
+              </a>
+              <a style="margin:5px" href="/user">
+                user
+              </a>
+              <a style="margin:5px" href="/config">
+                config
+              </a>
+            </nav>
+            <a-router-switch>
+              <a-router-case path="/" src={result1}></a-router-case>
+              <a-router-case path="/user" src={result2}></a-router-case>
+              <a-router-case path="/:any..." src={result3}></a-router-case>
+              <h1 slot="loading">loading...</h1>
+              <h1 slot="404">404</h1>
+            </a-router-switch>
+          </a-router-proxy>
+        </host>
       );
     },
   },

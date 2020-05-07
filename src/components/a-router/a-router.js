@@ -112,7 +112,7 @@ const ARouterSwitch = () => {
       ) : lazyState == "error" ? (
         <slot name="error">{lazyState}</slot>
       ) : lazyState == "done" ? (
-        <LazyResult {...routeState.params}></LazyResult>
+        LazyResult(routeState.params)
       ) : (
         ""
       )}

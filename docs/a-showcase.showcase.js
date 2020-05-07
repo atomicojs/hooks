@@ -1,18 +1,20 @@
-import { _ } from './chunks/37634490.js';
-export { T as render } from './chunks/37634490.js';
+import { p } from './chunks/61e0f1f4.js';
+export { d as render } from './chunks/61e0f1f4.js';
 
 var aShowcase_showcase = [{
   label: "Ejemplo 1",
 
   render() {
-    return _("h1", null, "1");
+    return p("host", null, p("h1", null, "1"));
   }
 
 }, {
   label: "Ejemplo 2",
 
   render() {
-    return _("h1", null, "2");
+    return p("host", {
+      style: "background:black"
+    }, p("h1", null, "2"));
   }
 
 }];

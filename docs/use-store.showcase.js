@@ -1,5 +1,5 @@
-import { F, Z, _, M, L } from './chunks/37634490.js';
-export { T as render } from './chunks/37634490.js';
+import { T, O, p, x, w } from './chunks/61e0f1f4.js';
+export { d as render } from './chunks/61e0f1f4.js';
 
 /**
  * If you use a function you can apply a property
@@ -54,8 +54,8 @@ function createStore(initialState) {
   };
 }
 function useStore(store, prop = "*") {
-  let [, setState] = F(0);
-  Z(() => store.onUpdate(prop, () => setState(state => state + 1)), [store]);
+  let [, setState] = T(0);
+  O(() => store.onUpdate(prop, () => setState(state => state + 1)), [store]);
   return store.state;
 }
 /**
@@ -73,25 +73,25 @@ const UseStore1 = ({
   store
 }) => {
   let state = useStore(store);
-  return _("host", null, "Component A ", _("button", {
+  return p("host", null, "Component A ", p("button", {
     onclick: () => state.count += 1
-  }, "Increment"), _("strong", null, " State : ", JSON.stringify(state)));
+  }, "Increment"), p("strong", null, " State : ", JSON.stringify(state)));
 };
 
 const UseStore2 = ({
   store
 }) => {
   let state = useStore(store);
-  return _("host", null, "Component B ", _("button", {
+  return p("host", null, "Component B ", p("button", {
     onclick: () => state.count -= 1
-  }, "Decrement"), _("strong", null, " State : ", JSON.stringify(state)));
+  }, "Decrement"), p("strong", null, " State : ", JSON.stringify(state)));
 };
 
 UseStore1.props = UseStore2.props = {
-  store: L
+  store: w
 };
-M("use-store-1", UseStore1);
-M("use-store-2", UseStore2);
+x("use-store-1", UseStore1);
+x("use-store-2", UseStore2);
 var useStore_showcase = [{
   label: "useStore",
 
@@ -99,9 +99,9 @@ var useStore_showcase = [{
     store$1.onUpdate("*", store => {
       console.log(store);
     });
-    return _("div", null, _("p", null, "The components are synchronized to the store given by the parent"), _("use-store-1", {
+    return p("div", null, p("p", null, "The components are synchronized to the store given by the parent"), p("use-store-1", {
       store: store$1
-    }), _("br", null), _("use-store-2", {
+    }), p("br", null), p("use-store-2", {
       store: store$1
     }));
   }

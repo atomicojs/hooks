@@ -54,7 +54,6 @@ const AShowcase = ({ src, width, height, origin }) => {
   useEffect(() => {
     const { render, rendered } =
       cases.find(({ label }) => label == select) || {};
-
     render && lazyResult.render(render(), refSandbox.current);
     rendered && rendered(refSandbox.current);
   }, [lazyStateIsDone, select]);
