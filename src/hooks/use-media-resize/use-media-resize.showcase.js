@@ -13,7 +13,7 @@ const Example1 = ({ src }) => {
 };
 
 Example1.props = {
-  src: String
+  src: String,
 };
 
 customElement("use-media-resize-example-1", Example1);
@@ -24,10 +24,12 @@ export default [
     render() {
       const url = "https://via.placeholder.com/";
       return (
-        <use-media-resize-example-1
-          src={`${url}1080x150, ${url}720x200 720px, ${url}520x300 520px, ${url}320x500 240px`}
-        ></use-media-resize-example-1>
+        <host>
+          <use-media-resize-example-1
+            src={`${url}1080x150, ${url}720x200 720px, ${url}520x300 520px, ${url}320x500 240px`}
+          ></use-media-resize-example-1>
+        </host>
       );
-    }
-  }
+    },
+  },
 ];
