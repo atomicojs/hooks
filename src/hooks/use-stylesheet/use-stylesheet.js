@@ -14,7 +14,11 @@ export function useStylesheet(...stylesheet) {
   useEffect(() => {
     let { current } = ref;
     if (current.shadowRoot && current.shadowRoot.adoptedStyleSheets) {
-      current.shadowRoot.adoptedStyleSheets = stylesheet.map((css) => {
+      ref.prev = ref.prev || [];
+      let shadowRootPrev = current.shadowRoot.adoptedStyleSheets.filter(
+        (styleSheet) => !ref.prev.includes(styleSheet)
+      );
+      ref.prev = stylesheet.map((css) => {
         if (typeof css == "string" && !cache[css]) {
           let sheet = new CSSStyleSheet();
           sheet.replace(css);
@@ -22,6 +26,7 @@ export function useStylesheet(...stylesheet) {
         }
         return cache[css] || css;
       });
+      current.shadowRoot.adoptedStyleSheets = [...shadowRootPrev, ...ref.prev];
     }
   }, stylesheet);
 }

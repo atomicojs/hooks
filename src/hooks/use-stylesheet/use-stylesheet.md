@@ -30,7 +30,23 @@ sheet.replace(`:host{color:red}`);
 
 function Component() {
   useStylesheet(styleText, styleSheet);
-  return <host></host>;
+  return <host shadowDom></host>;
+}
+```
+
+## What is the benefit of this hook?
+
+Componetize as Hooks stylesheets, eg:
+
+```js
+function useButton() {
+  useCustomProperty("color", "red");
+  useStylesheet(styleButton);
+  return {
+    onclick() {
+      /**any**/
+    },
+  };
 }
 ```
 
