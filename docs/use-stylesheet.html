@@ -51,6 +51,9 @@
                   <a href="use-lazy.html">use-lazy</a>
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
+                  <a href="use-custom-property.html">use-custom-property</a>
+                </li>
+                <li class="theme-aside -list-child-item --active-false">
                   <a href="use-delegate-focus.html">use-delegate-focus</a>
                 </li>
                 <li class="theme-aside -list-child-item --active-false">
@@ -108,7 +111,17 @@ sheet<span class="token punctuation">.</span><span class="token function">replac
 
 <span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token function">useStylesheet</span><span class="token punctuation">(</span>styleText<span class="token punctuation">,</span> styleSheet<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="what-is-the-benefit-of-this-hook">What is the benefit of this hook?</h2>
+<p>Componetize as Hooks stylesheets, eg:</p>
+<pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">useButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">useCustomProperty</span><span class="token punctuation">(</span><span class="token string">"color"</span><span class="token punctuation">,</span> <span class="token string">"red"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">useStylesheet</span><span class="token punctuation">(</span>styleButton<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token function">onclick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/**any**/</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre><h2 id="demo">Demo</h2>
 <p></p><div class="markdown -html-container"><a-showcase src="use-stylesheet.showcase.js"></a-showcase></div><div class="markdown -html-container"></div><p></p>
 <div class="markdown -html-container"><script type="module" src="a-showcase.js"></script>
