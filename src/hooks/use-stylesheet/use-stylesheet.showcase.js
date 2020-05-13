@@ -4,10 +4,13 @@ export { render } from "atomico";
 
 const Example1 = ({ src }) => {
   let [state, setState] = useState(0);
-  useStylesheet(`:host{color:red}`, `:host{background:rgba(0,0,0,.${state})}`);
-
+  let stylesText = useStylesheet(
+    `:host{color:red}`,
+    `:host{background:rgba(0,0,0,.${state})}`
+  );
   return (
     <host shadowDom>
+      <style>{stylesText}</style>
       <h1>Is the text red?</h1>
       <button onclick={() => setState(state + 1 > 10 ? 0 : state + 1)}>
         update : {state}

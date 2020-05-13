@@ -1,6 +1,7 @@
 import { useHost, useEffect } from "atomico";
 
 let cache = {};
+let support = document.adoptedStyleSheets;
 
 /**
  * Add support to styleSheet, only in browsers that
@@ -11,9 +12,10 @@ let cache = {};
  */
 export function useStylesheet(...stylesheet) {
   let ref = useHost();
+  let { current } = ref;
+
   useEffect(() => {
-    let { current } = ref;
-    if (current.shadowRoot && current.shadowRoot.adoptedStyleSheets) {
+    if (support) {
       ref.prev = ref.prev || [];
       let shadowRootPrev = current.shadowRoot.adoptedStyleSheets.filter(
         (styleSheet) => !ref.prev.includes(styleSheet)
@@ -26,7 +28,10 @@ export function useStylesheet(...stylesheet) {
         }
         return cache[css] || css;
       });
+
       current.shadowRoot.adoptedStyleSheets = [...shadowRootPrev, ...ref.prev];
     }
   }, stylesheet);
+
+  return support ? "" : stylesheet.join("");
 }

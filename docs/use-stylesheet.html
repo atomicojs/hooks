@@ -97,7 +97,7 @@
 <blockquote>
 <p>add support to adoptedStyleSheets</p>
 </blockquote>
-<p>Constructable Stylesheets make it possible to define and prepare shared CSS styles, and then apply those styles to multiple Shadow Roots without duplication. Updates to a shared CSSStyleSheet are applied to all roots into which it has been adopted, and adopting a stylesheet is fast</p>
+<p><a href="https://developers.google.com/web/updates/2019/02/constructable-stylesheets">Constructable Stylesheets</a> make it possible to define and prepare shared CSS styles, and then apply those styles to multiple Shadow Roots without duplication. Updates to a shared CSSStyleSheet are applied to all roots into which it has been adopted, and adopting a stylesheet is fast</p>
 <h2 id="installation">Installation</h2>
 <pre class="markdown -code-container" data-code="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token string">"@atomico/kit/use-stylesheet"</span></code></pre><h2 id="usage">Usage</h2>
 <pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"atomico"</span><span class="token punctuation">;</span>
@@ -112,6 +112,17 @@ sheet<span class="token punctuation">.</span><span class="token function">replac
 <span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token function">useStylesheet</span><span class="token punctuation">(</span>styleText<span class="token punctuation">,</span> styleSheet<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre><h2 id="support-coverage">Support coverage</h2>
+<p><code>CSSStyleSheet</code> is not supported in all browsers, although it does have a <a href="https://www.npmjs.com/package/construct-style-sheets-polyfill">polyfill</a>, better performance is achieved without the need for polyfill building the virtual-dom for this case, eg:</p>
+<pre class="markdown -code-container" data-code="jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// stylesText will be empty if the browser supports constructable-stylesheets</span>
+  <span class="token keyword">let</span> stylesText <span class="token operator">=</span> <span class="token function">useStylesheet</span><span class="token punctuation">(</span>styleText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">{stylesText}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre><h2 id="what-is-the-benefit-of-this-hook">What is the benefit of this hook?</h2>
 <p>Componetize as Hooks stylesheets, eg:</p>
 <pre class="markdown -code-container" data-code="js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">useButton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>

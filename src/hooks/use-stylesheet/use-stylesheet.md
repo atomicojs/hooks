@@ -8,7 +8,7 @@ group: Hooks
 
 > {{page.description}}
 
-Constructable Stylesheets make it possible to define and prepare shared CSS styles, and then apply those styles to multiple Shadow Roots without duplication. Updates to a shared CSSStyleSheet are applied to all roots into which it has been adopted, and adopting a stylesheet is fast
+[Constructable Stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets) make it possible to define and prepare shared CSS styles, and then apply those styles to multiple Shadow Roots without duplication. Updates to a shared CSSStyleSheet are applied to all roots into which it has been adopted, and adopting a stylesheet is fast
 
 ## Installation
 
@@ -31,6 +31,23 @@ sheet.replace(`:host{color:red}`);
 function Component() {
   useStylesheet(styleText, styleSheet);
   return <host shadowDom></host>;
+}
+```
+
+## Support coverage
+
+`CSSStyleSheet` is not supported in all browsers, although it does have a [polyfill](https://www.npmjs.com/package/construct-style-sheets-polyfill), better performance is achieved without the need for polyfill building the virtual-dom for this case, eg:
+
+```jsx
+function Component() {
+  // stylesText will be empty if the browser supports constructable-stylesheets
+  let stylesText = useStylesheet(styleText);
+
+  return (
+    <host shadowDom>
+      <style>{stylesText}</style>
+    </host>
+  );
 }
 ```
 
