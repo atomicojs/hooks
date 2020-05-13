@@ -1,7 +1,7 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",
@@ -10,7 +10,7 @@
     "build:npm": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
     "create:component": "tfolder template/tfolder/component src/components",
     "create:hook": "tfolder template/tfolder/hook src/hooks",
-    "prepare": "build:npm"
+    "prepare": "npm run build:npm"
   },
   "publishConfig": {
     "access": "public"
