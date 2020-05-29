@@ -1,2 +1,297 @@
-import{T as e,O as t,x as r,p as a,C as n,R as o,P as s,w as l}from"./chunks/61e0f1f4.js";export{d as render}from"./chunks/61e0f1f4.js";import{u}from"./chunks/e8be573d.js";function p(){return location.pathname}function c(e){e!=p()&&(history.pushState({},"history",e),window.dispatchEvent(new PopStateEvent("popstate")))}const i=/([^\/]+)/g,h=/^(:)(\w+)(\?|(\.){3}){0,1}/,m={},f={};function g(e){return e.replace(/(\/){2,}/g,"/").replace(/([^\/]+)\/$/,"$1")}function w(e,t){e=g(e),t=g(t),f[e]||(f[e]=function(e){let t=e.match(i)||[""],r=[];return{regexp:new RegExp("^"+t.map(e=>{let[t,a,n,o]=e.match(h)||[];return a?(r.push(n),"..."===o?"(.*)":"?"===o?"(?:\\/){0,1}([^\\/]*)":"\\/([^\\/]+)"):`\\/(?:${e.replace(/(\.|\-)/g,"\\$1").replace(/\*/g,"[^\\/]+").replace(/\((?!\?\:)/g,"(?:")})`}).join("")+"$","i"),params:r,logs:{}}}(e));let{regexp:r,params:a,logs:n}=f[e];if(n[t])return n[t];let o=t.match(r);return n[t]=[!!o,o?o.slice(1).reduce((e,t,r)=>(e[a[r]||r]=t,e),{}):m]}function y(){let r=p(),[,a]=e({pathname:r});return t(()=>function(e){return window.addEventListener("popstate",e),()=>window.removeEventListener("popstate",e)}((function(){let e=p();a(t=>t.pathname!=e?{pathname:e}:t)})),[]),[r,c]}const v=({path:e})=>a("host",{onclick:t=>{let r,{target:a}=t;for(;a;){if(r=a.getAttribute("href"),a.hasAttribute("ignore"))return;a=r?0:a.parentElement}t.preventDefault(),r&&c(g((e||"/")+"/"+(r||"/")))}}),x=({src:e,path:r})=>{let s=n(),l=o("UpdatedARouterCase",{bubbles:!0,composed:!0});return t(()=>{let e,{current:t}=s;return l(t=>e=t),()=>{!t.isConnected&&e()}},[e,r]),a("host",null)},b={src:()=>Promise.resolve(()=>a("slot",{name:"404"}))};x.props={path:{type:String,reflect:!0},src:{type:l},default:{type:Boolean}},v.props={path:{type:String,value:""}},r("a-router-switch",()=>{let r,n,[o]=y(),l=s({}),[p,c]=e(b),[i,h]=u(()=>"string"==typeof p.src?import(p.src):p.src(),p.src,[p.src]),m=()=>{let e=b;for(let t in l.current){let{src:r,default:a}=l.current[t],[n,s]=w(t,o);if((n||a)&&(e={state:n,params:s,path:t,src:r,pathname:o},!a))break}c(t=>t.pathname==e.pathname?t:e)};return t(m,[o]),a("host",{shadowDom:!0,onUpdatedARouterCase:({target:e,detail:t})=>{let{path:a}=e;l.current[a]=e,t(()=>{delete l.current[a],n||(n=!0,queueMicrotask(m))}),r||(r=!0,queueMicrotask(m))}},"loading"==i?a("slot",{name:"loading"},i):"error"==i?a("slot",{name:"error"},i):"done"==i?h(p.params):"")}),r("a-router-case",x),r("a-router-proxy",v);const k=e=>()=>new Promise(t=>setTimeout(t,1e3,{default:e})),E=k(e=>a("h3",null,"Home")),j=k(e=>a("h3",null,"Config")),S=k(e=>a("h3",null,JSON.stringify(e)));var $=[{label:"Ejemplo",render:()=>a("host",null,a("a-router-proxy",null,a("p",null,"The import effect is emulated with a delay to show the use of the loading slot"),a("nav",null,a("a",{style:"margin:5px",href:"/"},"home"),a("a",{style:"margin:5px",href:"/user"},"user"),a("a",{style:"margin:5px",href:"/config"},"config")),a("a-router-switch",null,a("a-router-case",{path:"/",src:E}),a("a-router-case",{path:"/user",src:j}),a("a-router-case",{path:"/:any...",src:S}),a("h1",{slot:"loading"},"loading..."),a("h1",{slot:"404"},"404"))))}];export default $;
+import { P, B, T, d, O, R, j, g } from './chunks/7af3821d.js';
+export { y as render } from './chunks/7af3821d.js';
+import { u as useLazy } from './chunks/4fc5287b.js';
+
+/**
+ * @return {string} pathname
+ */
+function getPathname() {
+  return location.pathname;
+}
+/**
+ * Dispatch history a new pathname
+ * @type {Redirect}
+ */
+
+function redirect(pathname) {
+  if (pathname == getPathname()) return;
+  history.pushState({}, "history", pathname);
+  window.dispatchEvent(new PopStateEvent("popstate"));
+}
+function subscribe(handler) {
+  window.addEventListener("popstate", handler);
+  return () => window.removeEventListener("popstate", handler);
+}
+
+const FOLDERS = /([^\/]+)/g;
+const FOLDER = "[^\\/]";
+const SPLIT = "(?:\\/){0,1}";
+const PARAM = /^(:)(\w+)(\?|(\.){3}){0,1}/;
+const PARAMS_EMPTY = {};
+const MEMO = {};
+function format(path) {
+  return path.replace(/(\/){2,}/g, "/").replace(/([^\/]+)\/$/, "$1");
+}
+function join(a, b) {
+  let split = "/";
+  return format((a || split) + split + (b || split));
+}
+function parse(string) {
+  let folders = string.match(FOLDERS) || [""];
+  let params = [];
+  let regexp = new RegExp("^" + folders.map(folder => {
+    let [string, param, field, type] = folder.match(PARAM) || [];
+
+    if (param) {
+      params.push(field);
+
+      if (type === "...") {
+        return `(.*)`;
+      } else if (type === "?") {
+        return `${SPLIT}(${FOLDER}*)`;
+      } else {
+        return `\\/(${FOLDER}+)`;
+      }
+    } else {
+      return `\\/(?:${folder.replace(/(\.|\-)/g, "\\$1").replace(/\*/g, FOLDER + "+").replace(/\((?!\?\:)/g, "(?:")})`;
+    }
+  }).join("") + "$", "i");
+  return {
+    regexp,
+    params,
+    logs: {}
+  };
+}
+/**
+ * permite comparar un patron de captura vs un ruta de entrada
+ * @param {string} path - ruta de patron de captura
+ * @param {string} value  - ruta de comparacion a patron
+ * @return {array} - [ inRoute:boolean, params:object ];
+ */
+
+function match(path, value) {
+  path = format(path);
+  value = format(value);
+
+  if (!MEMO[path]) {
+    MEMO[path] = parse(path);
+  }
+
+  let {
+    regexp,
+    params,
+    logs
+  } = MEMO[path];
+
+  if (logs[value]) {
+    return logs[value];
+  }
+
+  let vs = value.match(regexp);
+  return logs[value] = [vs ? true : false, vs ? vs.slice(1).reduce((next, value, index) => {
+    next[params[index] || index] = value;
+    return next;
+  }, {}) : PARAMS_EMPTY];
+}
+
+function useHistory() {
+  let pathname = getPathname();
+  let [, setState] = P({
+    pathname
+  });
+  B(() => {
+    function handler() {
+      let pathname = getPathname();
+      setState(state => state.pathname != pathname ? {
+        pathname
+      } : state);
+    }
+
+    return subscribe(handler);
+  }, []);
+  return [pathname, redirect];
+}
+
+const ARouterProxy = ({
+  path
+}) => {
+  return d("host", {
+    onclick: event => {
+      let {
+        target
+      } = event;
+      let href;
+
+      while (target) {
+        href = target.getAttribute("href");
+        if (target.hasAttribute("ignore")) return;
+        target = href ? 0 : target.parentElement;
+      }
+
+      if (href) {
+        event.preventDefault();
+        redirect(join(path, href));
+      }
+    }
+  });
+};
+
+const ARouterCase = ({
+  src,
+  path
+}) => {
+  let refHost = O();
+  let dispatchUpdatedARouterCase = R("UpdatedARouterCase", {
+    bubbles: true,
+    composed: true
+  });
+  B(() => {
+    let {
+      current
+    } = refHost;
+    let disconect;
+    dispatchUpdatedARouterCase(callback => disconect = callback);
+    return () => {
+      !current.isConnected && disconect();
+    };
+  }, [src, path]);
+  return d("host", null);
+};
+
+const notFound = {
+  src: () => Promise.resolve(() => d("slot", {
+    name: "404"
+  }))
+};
+
+const ARouterSwitch = () => {
+  let [pathname] = useHistory();
+  let ref = j({});
+  let [routeState, setRouteState] = P(notFound);
+  let [lazyState, LazyResult] = useLazy(() => typeof routeState.src == "string" ? import(routeState.src) : routeState.src(), routeState.src, [routeState.src]);
+  let chunkUpdate;
+  let chunkRemove;
+
+  let define = () => {
+    let select = notFound;
+
+    for (let path in ref.current) {
+      let {
+        src,
+        default: isDefault
+      } = ref.current[path];
+      let [state, params] = match(path, pathname);
+
+      if (state || isDefault) {
+        select = {
+          state,
+          params,
+          path,
+          src,
+          pathname
+        };
+        if (!isDefault) break;
+      }
+    }
+
+    setRouteState(state => state.pathname == select.pathname ? state : select);
+  };
+
+  B(define, [pathname]);
+  return d("host", {
+    shadowDom: true,
+    onUpdatedARouterCase: ({
+      target,
+      detail
+    }) => {
+      let {
+        path
+      } = target;
+      ref.current[path] = target;
+      detail(() => {
+        delete ref.current[path];
+
+        if (!chunkRemove) {
+          chunkRemove = true;
+          queueMicrotask(define);
+        }
+      });
+
+      if (!chunkUpdate) {
+        chunkUpdate = true;
+        queueMicrotask(define);
+      }
+    }
+  }, lazyState == "loading" ? d("slot", {
+    name: "loading"
+  }, lazyState) : lazyState == "error" ? d("slot", {
+    name: "error"
+  }, lazyState) : lazyState == "done" ? LazyResult(routeState.params) : "");
+};
+
+ARouterCase.props = {
+  path: {
+    type: String,
+    reflect: true
+  },
+  src: {
+    type: g
+  },
+  default: {
+    type: Boolean
+  }
+};
+ARouterProxy.props = {
+  path: {
+    type: String,
+    value: ""
+  }
+};
+T("a-router-switch", ARouterSwitch);
+T("a-router-case", ARouterCase);
+T("a-router-proxy", ARouterProxy);
+
+const demoResult = result => () => new Promise(resolve => setTimeout(resolve, 1000, {
+  default: result
+}));
+
+const result1 = demoResult(props => d("form", null, d("input", {
+  type: "file",
+  name: "ddd",
+  value: ""
+}), "Home"));
+const result2 = demoResult(props => d("h3", null, "Config"));
+const result3 = demoResult(props => d("h3", null, JSON.stringify(props)));
+var aRouter_showcase = [{
+  label: "Ejemplo",
+
+  render() {
+    return d("host", null, d("a-router-proxy", null, d("p", null, "The import effect is emulated with a delay to show the use of the loading slot"), d("nav", null, d("a", {
+      style: "margin:5px",
+      href: "/"
+    }, "home"), d("a", {
+      style: "margin:5px",
+      href: "/user"
+    }, "user"), d("a", {
+      style: "margin:5px",
+      href: "/config"
+    }, "config")), d("a-router-switch", null, d("a-router-case", {
+      path: "/",
+      src: result1
+    }), d("a-router-case", {
+      path: "/user",
+      src: result2
+    }), d("a-router-case", {
+      path: "/:any...",
+      src: result3
+    }), d("h1", {
+      slot: "loading"
+    }, "loading..."), d("h1", {
+      slot: "404"
+    }, "404"))));
+  }
+
+}];
+
+export default aRouter_showcase;
 //# sourceMappingURL=a-router.showcase.js.map

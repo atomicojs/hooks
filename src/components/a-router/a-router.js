@@ -25,8 +25,8 @@ const ARouterProxy = ({ path }) => {
           if (target.hasAttribute("ignore")) return;
           target = href ? 0 : target.parentElement;
         }
-        event.preventDefault();
         if (href) {
+          event.preventDefault();
           redirect(join(path, href));
         }
       }}

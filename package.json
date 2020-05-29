@@ -1,7 +1,7 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",

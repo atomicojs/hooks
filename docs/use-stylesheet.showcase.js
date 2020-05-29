@@ -1,2 +1,64 @@
-import{C as e,O as t,p as r,x as l,T as o}from"./chunks/61e0f1f4.js";export{d as render}from"./chunks/61e0f1f4.js";let s={},n=document.adoptedStyleSheets;const p=({src:l})=>{let[p,u]=o(0),d=function(...r){let l=e(),{current:o}=l;return t(()=>{if(n){l.prev=l.prev||[];let e=o.shadowRoot.adoptedStyleSheets.filter(e=>!l.prev.includes(e));l.prev=r.map(e=>{if("string"==typeof e&&!s[e]){let t=new CSSStyleSheet;t.replace(e),s[e]=t}return s[e]||e}),o.shadowRoot.adoptedStyleSheets=[...e,...l.prev]}},r),n?"":r.join("")}(":host{color:red}",`:host{background:rgba(0,0,0,.${p})}`);return r("host",{shadowDom:!0},r("style",null,d),r("h1",null,"Is the text red?"),r("button",{onclick:()=>u(p+1>10?0:p+1)},"update : ",p))};p.props={src:String},l("use-stylesheet-example-1",p);var u=[{label:"Example useStylesheet",render:()=>r("host",null,r("use-stylesheet-example-1",null))}];export default u;
+import { O, B, d, T, P } from './chunks/7af3821d.js';
+export { y as render } from './chunks/7af3821d.js';
+
+let cache = {};
+let support = document.adoptedStyleSheets;
+/**
+ * Add support to styleSheet, only in browsers that
+ * implement it, it is remembered that adoptedStyleSheets
+ * (05/13/2020) is not standard of the w3 is just a
+ * valid implementation for google crhome
+ * @param  {...(string|CSSStyleSheet)} stylesheet
+ */
+
+function useStylesheet(...stylesheet) {
+  let ref = O();
+  let {
+    current
+  } = ref;
+  B(() => {
+    if (support) {
+      ref.prev = ref.prev || [];
+      let shadowRootPrev = current.shadowRoot.adoptedStyleSheets.filter(styleSheet => !ref.prev.includes(styleSheet));
+      ref.prev = stylesheet.map(css => {
+        if (typeof css == "string" && !cache[css]) {
+          let sheet = new CSSStyleSheet();
+          sheet.replace(css);
+          cache[css] = sheet;
+        }
+
+        return cache[css] || css;
+      });
+      current.shadowRoot.adoptedStyleSheets = [...shadowRootPrev, ...ref.prev];
+    }
+  }, stylesheet);
+  return support ? "" : stylesheet.join("");
+}
+
+const Example1 = ({
+  src
+}) => {
+  let [state, setState] = P(0);
+  let stylesText = useStylesheet(`:host{color:red}`, `:host{background:rgba(0,0,0,.${state})}`);
+  return d("host", {
+    shadowDom: true
+  }, d("style", null, stylesText), d("h1", null, "Is the text red?"), d("button", {
+    onclick: () => setState(state + 1 > 10 ? 0 : state + 1)
+  }, "update : ", state));
+};
+
+Example1.props = {
+  src: String
+};
+T("use-stylesheet-example-1", Example1);
+var useStylesheet_showcase = [{
+  label: "Example useStylesheet",
+
+  render() {
+    return d("host", null, d("use-stylesheet-example-1", null));
+  }
+
+}];
+
+export default useStylesheet_showcase;
 //# sourceMappingURL=use-stylesheet.showcase.js.map

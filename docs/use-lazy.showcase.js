@@ -1,2 +1,33 @@
-import{p as e,x as t,T as l}from"./chunks/61e0f1f4.js";export{d as render}from"./chunks/61e0f1f4.js";import{u as o}from"./chunks/e8be573d.js";t("use-lazy-example-1",()=>{const[t,r]=l(!1),[s,a]=o(()=>{return t=({children:t})=>e("h1",null,"Done! ",t),new Promise(e=>setTimeout(e,1e3,t));var t},t);return e("host",{shadowDom:!0},e("style",null,":host{display:block;width:100%}img{width:100%}"),e("button",{onclick:()=>r(!0)},"load module?"),"unimport"==s?"✋":"loading"==s?"⏳":"error"==s?"😞":e(a,null,"🥂"))});var r=[{label:"Example useLazy",render(){const t="https://via.placeholder.com/";return e("section",null,e("p",null,"This would be an example of useLazy, first generate the request of the I modulate the one that takes 1000 ms, to later show the lazyResult"),e("use-lazy-example-1",{src:`${t}1080x150, ${t}720x200 720px, ${t}520x300 520px, ${t}320x500 240px`}))}}];export default r;
+import { d, T, P } from './chunks/7af3821d.js';
+export { y as render } from './chunks/7af3821d.js';
+import { u as useLazy } from './chunks/4fc5287b.js';
+
+const delay = result => new Promise(resolve => setTimeout(resolve, 1000, result));
+
+const Example1 = () => {
+  const [load, setLoad] = P(false);
+  const [lazyState, LazyResult] = useLazy(() => delay(({
+    children
+  }) => d("h1", null, "Done! ", children)), load);
+  return d("host", {
+    shadowDom: true
+  }, d("style", null, `:host{display:block;width:100%}img{width:100%}`), d("button", {
+    onclick: () => setLoad(true)
+  }, "load module?"), lazyState == "unimport" ? "✋" : lazyState == "loading" ? "⏳" : lazyState == "error" ? "😞" : d(LazyResult, null, "\uD83E\uDD42"));
+};
+
+T("use-lazy-example-1", Example1);
+var useLazy_showcase = [{
+  label: "Example useLazy",
+
+  render() {
+    const url = "https://via.placeholder.com/";
+    return d("section", null, d("p", null, "This would be an example of useLazy, first generate the request of the I modulate the one that takes 1000 ms, to later show the lazyResult"), d("use-lazy-example-1", {
+      src: `${url}1080x150, ${url}720x200 720px, ${url}520x300 520px, ${url}320x500 240px`
+    }));
+  }
+
+}];
+
+export default useLazy_showcase;
 //# sourceMappingURL=use-lazy.showcase.js.map
