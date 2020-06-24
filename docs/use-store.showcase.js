@@ -1,5 +1,5 @@
-import { P, B, d, T, g } from './chunks/7af3821d.js';
-export { y as render } from './chunks/7af3821d.js';
+import { u as useState, d as useEffect, h, c as customElement, A as Any } from './chunks/4a85cc95.js';
+export { r as render } from './chunks/4a85cc95.js';
 
 /**
  * If you use a function you can apply a property
@@ -54,8 +54,8 @@ function createStore(initialState) {
   };
 }
 function useStore(store, prop = "*") {
-  let [, setState] = P(0);
-  B(() => store.onUpdate(prop, () => setState(state => state + 1)), [store]);
+  let [, setState] = useState(0);
+  useEffect(() => store.onUpdate(prop, () => setState(state => state + 1)), [store]);
   return store.state;
 }
 /**
@@ -73,25 +73,25 @@ const UseStore1 = ({
   store
 }) => {
   let state = useStore(store);
-  return d("host", null, "Component A ", d("button", {
+  return h("host", null, "Component A ", h("button", {
     onclick: () => state.count += 1
-  }, "Increment"), d("strong", null, " State : ", JSON.stringify(state)));
+  }, "Increment"), h("strong", null, " State : ", JSON.stringify(state)));
 };
 
 const UseStore2 = ({
   store
 }) => {
   let state = useStore(store);
-  return d("host", null, "Component B ", d("button", {
+  return h("host", null, "Component B ", h("button", {
     onclick: () => state.count -= 1
-  }, "Decrement"), d("strong", null, " State : ", JSON.stringify(state)));
+  }, "Decrement"), h("strong", null, " State : ", JSON.stringify(state)));
 };
 
 UseStore1.props = UseStore2.props = {
-  store: g
+  store: Any
 };
-T("use-store-1", UseStore1);
-T("use-store-2", UseStore2);
+customElement("use-store-1", UseStore1);
+customElement("use-store-2", UseStore2);
 var useStore_showcase = [{
   label: "useStore",
 
@@ -99,9 +99,9 @@ var useStore_showcase = [{
     store$1.onUpdate("*", store => {
       console.log(store);
     });
-    return d("div", null, d("p", null, "The components are synchronized to the store given by the parent"), d("use-store-1", {
+    return h("div", null, h("p", null, "The components are synchronized to the store given by the parent"), h("use-store-1", {
       store: store$1
-    }), d("br", null), d("use-store-2", {
+    }), h("br", null), h("use-store-2", {
       store: store$1
     }));
   }

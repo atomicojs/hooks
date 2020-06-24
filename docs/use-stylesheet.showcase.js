@@ -1,5 +1,5 @@
-import { O, B, d, T, P } from './chunks/7af3821d.js';
-export { y as render } from './chunks/7af3821d.js';
+import { b as useHost, d as useEffect, h, c as customElement, u as useState } from './chunks/4a85cc95.js';
+export { r as render } from './chunks/4a85cc95.js';
 
 let cache = {};
 let support = document.adoptedStyleSheets;
@@ -12,11 +12,11 @@ let support = document.adoptedStyleSheets;
  */
 
 function useStylesheet(...stylesheet) {
-  let ref = O();
+  let ref = useHost();
   let {
     current
   } = ref;
-  B(() => {
+  useEffect(() => {
     if (support) {
       ref.prev = ref.prev || [];
       let shadowRootPrev = current.shadowRoot.adoptedStyleSheets.filter(styleSheet => !ref.prev.includes(styleSheet));
@@ -38,11 +38,11 @@ function useStylesheet(...stylesheet) {
 const Example1 = ({
   src
 }) => {
-  let [state, setState] = P(0);
+  let [state, setState] = useState(0);
   let stylesText = useStylesheet(`:host{color:red}`, `:host{background:rgba(0,0,0,.${state})}`);
-  return d("host", {
+  return h("host", {
     shadowDom: true
-  }, d("style", null, stylesText), d("h1", null, "Is the text red?"), d("button", {
+  }, h("style", null, stylesText), h("h1", null, "Is the text red?"), h("button", {
     onclick: () => setState(state + 1 > 10 ? 0 : state + 1)
   }, "update : ", state));
 };
@@ -50,12 +50,12 @@ const Example1 = ({
 Example1.props = {
   src: String
 };
-T("use-stylesheet-example-1", Example1);
+customElement("use-stylesheet-example-1", Example1);
 var useStylesheet_showcase = [{
   label: "Example useStylesheet",
 
   render() {
-    return d("host", null, d("use-stylesheet-example-1", null));
+    return h("host", null, h("use-stylesheet-example-1", null));
   }
 
 }];

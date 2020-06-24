@@ -1,6 +1,6 @@
-import { P, B, T, d, O, R, j, g } from './chunks/7af3821d.js';
-export { y as render } from './chunks/7af3821d.js';
-import { u as useLazy } from './chunks/4fc5287b.js';
+import { u as useState, d as useEffect, c as customElement, h, b as useHost, e as useEvent, a as useRef, A as Any } from './chunks/4a85cc95.js';
+export { r as render } from './chunks/4a85cc95.js';
+import { u as useLazy } from './chunks/110df35f.js';
 
 /**
  * @return {string} pathname
@@ -96,10 +96,10 @@ function match(path, value) {
 
 function useHistory() {
   let pathname = getPathname();
-  let [, setState] = P({
+  let [, setState] = useState({
     pathname
   });
-  B(() => {
+  useEffect(() => {
     function handler() {
       let pathname = getPathname();
       setState(state => state.pathname != pathname ? {
@@ -115,7 +115,7 @@ function useHistory() {
 const ARouterProxy = ({
   path
 }) => {
-  return d("host", {
+  return h("host", {
     onclick: event => {
       let {
         target
@@ -140,12 +140,12 @@ const ARouterCase = ({
   src,
   path
 }) => {
-  let refHost = O();
-  let dispatchUpdatedARouterCase = R("UpdatedARouterCase", {
+  let refHost = useHost();
+  let dispatchUpdatedARouterCase = useEvent("UpdatedARouterCase", {
     bubbles: true,
     composed: true
   });
-  B(() => {
+  useEffect(() => {
     let {
       current
     } = refHost;
@@ -155,19 +155,19 @@ const ARouterCase = ({
       !current.isConnected && disconect();
     };
   }, [src, path]);
-  return d("host", null);
+  return h("host", null);
 };
 
 const notFound = {
-  src: () => Promise.resolve(() => d("slot", {
+  src: () => Promise.resolve(() => h("slot", {
     name: "404"
   }))
 };
 
 const ARouterSwitch = () => {
   let [pathname] = useHistory();
-  let ref = j({});
-  let [routeState, setRouteState] = P(notFound);
+  let ref = useRef({});
+  let [routeState, setRouteState] = useState(notFound);
   let [lazyState, LazyResult] = useLazy(() => typeof routeState.src == "string" ? import(routeState.src) : routeState.src(), routeState.src, [routeState.src]);
   let chunkUpdate;
   let chunkRemove;
@@ -197,8 +197,8 @@ const ARouterSwitch = () => {
     setRouteState(state => state.pathname == select.pathname ? state : select);
   };
 
-  B(define, [pathname]);
-  return d("host", {
+  useEffect(define, [pathname]);
+  return h("host", {
     shadowDom: true,
     onUpdatedARouterCase: ({
       target,
@@ -222,9 +222,9 @@ const ARouterSwitch = () => {
         queueMicrotask(define);
       }
     }
-  }, lazyState == "loading" ? d("slot", {
+  }, lazyState == "loading" ? h("slot", {
     name: "loading"
-  }, lazyState) : lazyState == "error" ? d("slot", {
+  }, lazyState) : lazyState == "error" ? h("slot", {
     name: "error"
   }, lazyState) : lazyState == "done" ? LazyResult(routeState.params) : "");
 };
@@ -235,7 +235,7 @@ ARouterCase.props = {
     reflect: true
   },
   src: {
-    type: g
+    type: Any
   },
   default: {
     type: Boolean
@@ -247,46 +247,46 @@ ARouterProxy.props = {
     value: ""
   }
 };
-T("a-router-switch", ARouterSwitch);
-T("a-router-case", ARouterCase);
-T("a-router-proxy", ARouterProxy);
+customElement("a-router-switch", ARouterSwitch);
+customElement("a-router-case", ARouterCase);
+customElement("a-router-proxy", ARouterProxy);
 
 const demoResult = result => () => new Promise(resolve => setTimeout(resolve, 1000, {
   default: result
 }));
 
-const result1 = demoResult(props => d("form", null, d("input", {
+const result1 = demoResult(props => h("form", null, h("input", {
   type: "file",
   name: "ddd",
   value: ""
 }), "Home"));
-const result2 = demoResult(props => d("h3", null, "Config"));
-const result3 = demoResult(props => d("h3", null, JSON.stringify(props)));
+const result2 = demoResult(props => h("h3", null, "Config"));
+const result3 = demoResult(props => h("h3", null, JSON.stringify(props)));
 var aRouter_showcase = [{
   label: "Ejemplo",
 
   render() {
-    return d("host", null, d("a-router-proxy", null, d("p", null, "The import effect is emulated with a delay to show the use of the loading slot"), d("nav", null, d("a", {
+    return h("host", null, h("a-router-proxy", null, h("p", null, "The import effect is emulated with a delay to show the use of the loading slot"), h("nav", null, h("a", {
       style: "margin:5px",
       href: "/"
-    }, "home"), d("a", {
+    }, "home"), h("a", {
       style: "margin:5px",
       href: "/user"
-    }, "user"), d("a", {
+    }, "user"), h("a", {
       style: "margin:5px",
       href: "/config"
-    }, "config")), d("a-router-switch", null, d("a-router-case", {
+    }, "config")), h("a-router-switch", null, h("a-router-case", {
       path: "/",
       src: result1
-    }), d("a-router-case", {
+    }), h("a-router-case", {
       path: "/user",
       src: result2
-    }), d("a-router-case", {
+    }), h("a-router-case", {
       path: "/:any...",
       src: result3
-    }), d("h1", {
+    }), h("h1", {
       slot: "loading"
-    }, "loading..."), d("h1", {
+    }, "loading..."), h("h1", {
       slot: "404"
     }, "404"))));
   }

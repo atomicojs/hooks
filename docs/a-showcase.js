@@ -1,5 +1,5 @@
-import { P, T, j, O, B, d } from './chunks/7af3821d.js';
-import { u as useLazy } from './chunks/4fc5287b.js';
+import { u as useState, c as customElement, a as useRef, b as useHost, d as useEffect, h } from './chunks/4a85cc95.js';
+import { u as useLazy } from './chunks/110df35f.js';
 
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -37,7 +37,7 @@ function removeEventListener(type, handler) {
  */
 
 function useEventMove(callback) {
-  let [ref] = P(() => {
+  let [ref] = useState(() => {
     function dispath(...args) {
       return ref.callback(...args);
     }
@@ -114,11 +114,11 @@ const AShowcase = ({
   height,
   origin
 }) => {
-  const refSandbox = j();
-  const refPreview = j();
-  const refHeader = j();
-  const refHost = O();
-  let [select, setSelect] = P();
+  const refSandbox = useRef();
+  const refPreview = useRef();
+  const refHeader = useRef();
+  const refHost = useHost();
+  let [select, setSelect] = useState();
   let currentZone;
   const propsMove = useEventMove((type, range) => {
     if (type == "start") {
@@ -139,7 +139,7 @@ const AShowcase = ({
   const lazyStateIsDone = lazyState == "done";
   const cases = lazyStateIsDone ? [].concat(lazyResult.default) : [];
   select = select || lazyStateIsDone && cases[0].label;
-  B(() => {
+  useEffect(() => {
     const {
       render,
       rendered
@@ -149,16 +149,16 @@ const AShowcase = ({
     render && lazyResult.render(render(), refSandbox.current);
     rendered && rendered(refSandbox.current);
   }, [lazyStateIsDone, select]);
-  return d("host", {
+  return h("host", {
     shadowDom: true,
     style: {
       width,
       height
     }
-  }, d("style", null, style), lazyStateIsDone && d("header", {
+  }, h("style", null, style), lazyStateIsDone && h("header", {
     ref: refHeader,
     class: "showcase -header"
-  }, d("select", {
+  }, h("select", {
     class: "showcase -select",
     onchange: ({
       target: {
@@ -167,25 +167,25 @@ const AShowcase = ({
     }) => setSelect(value)
   }, cases.map(({
     label
-  }) => d("option", {
+  }) => h("option", {
     value: label
-  }, label))), origin && d("a", {
+  }, label))), origin && h("a", {
     class: "showcase -btn",
     href: origin,
     target: "_blank"
-  }, d("svg", {
+  }, h("svg", {
     height: "14",
     viewBox: "0 0 467.765 467.765",
     xmlns: "http://www.w3.org/2000/svg"
-  }, d("path", {
+  }, h("path", {
     d: "M146.175 87.707L0 233.883l146.175 146.175 41.34-41.34L82.681 233.883l104.834-104.836zM321.59 87.707l-41.34 41.34 104.834 104.836L280.25 338.717l41.34 41.34 146.175-146.175z"
-  })))), d("section", {
+  })))), h("section", {
     class: "showcase -preview",
     ref: refPreview
-  }, d("div", {
+  }, h("div", {
     class: "showcase -sandbox",
     ref: refSandbox
-  }), d("button", _extends({
+  }), h("button", _extends({
     class: "showcase -resize"
   }, propsMove))));
 };
@@ -206,7 +206,7 @@ AShowcase.props = {
   },
   origin: String
 };
-var aShowcase = T("a-showcase", AShowcase);
+var aShowcase = customElement("a-showcase", AShowcase);
 
 export default aShowcase;
 //# sourceMappingURL=a-showcase.js.map

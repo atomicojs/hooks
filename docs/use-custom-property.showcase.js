@@ -1,5 +1,5 @@
-import { O, d, T, P } from './chunks/7af3821d.js';
-export { y as render } from './chunks/7af3821d.js';
+import { b as useHost, h, c as customElement, u as useState } from './chunks/4a85cc95.js';
+export { r as render } from './chunks/4a85cc95.js';
 
 /**
  * Define a customProperty on the host that declares this hook
@@ -8,7 +8,7 @@ export { y as render } from './chunks/7af3821d.js';
  */
 
 function useCustomProperty(name, value) {
-  let ref = O();
+  let ref = useHost();
 
   if (ref[name] != value) {
     ref.current.style.setProperty("--" + name, value);
@@ -19,12 +19,12 @@ function useCustomProperty(name, value) {
 const Example1 = ({
   src
 }) => {
-  let [state, setState] = P(0);
+  let [state, setState] = useState(0);
   let value = state ? "red" : "teal";
   useCustomProperty("color", value);
-  return d("host", {
+  return h("host", {
     shadowDom: true
-  }, d("style", null, `:host{color:var(--color)}`), d("h1", null, "Is the text ", value, "?"), d("button", {
+  }, h("style", null, `:host{color:var(--color)}`), h("h1", null, "Is the text ", value, "?"), h("button", {
     onclick: () => setState(!state)
   }, "Toggle color"));
 };
@@ -32,12 +32,12 @@ const Example1 = ({
 Example1.props = {
   src: String
 };
-T("use-custom-property-example-1", Example1);
+customElement("use-custom-property-example-1", Example1);
 var useCustomProperty_showcase = [{
   label: "Example useCustomProperty",
 
   render() {
-    return d("host", null, d("use-custom-property-example-1", null));
+    return h("host", null, h("use-custom-property-example-1", null));
   }
 
 }];
