@@ -7,7 +7,7 @@
     "test": "bundle src/**/*.test.js test && karma start --single-run --browsers ChromeHeadless karma.conf.js",
     "start": "bundle src/**/*.md docs --watch --server --template template/theme/theme.html",
     "build": "bundle src/**/*.md docs --minify --template template/theme/theme.html --sizes",
-    "build:npm": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --minify --external",
+    "build:npm": "bundle src/**/**/*-*.js;!src/**/**/*.{showcase,test}.js ./ --external",
     "create:component": "tfolder template/tfolder/component src/components",
     "create:hook": "tfolder template/tfolder/hook src/hooks",
     "prepare": "npm run build:npm"
