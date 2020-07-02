@@ -131,7 +131,7 @@ function getSizes(value) {
   let sizes = {};
 
   value.split(/ *, */).forEach((value) => {
-    let size = value.match(/([^\s]+)\s+(\d+)(\w)/);
+    let size = value.match(/([^\s]+)\s+(\d+)(w|h)/);
     if (size) {
       let [, value, number, type] = size;
       number = Number(number);

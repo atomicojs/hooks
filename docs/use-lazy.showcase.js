@@ -1,6 +1,6 @@
-import { h, c as customElement, u as useState } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
-import { u as useLazy } from './chunks/110df35f.js';
+import { h, c as customElement, u as useState } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
+import { u as useLazy } from './chunks/aec7f535.js';
 
 const delay = result => new Promise(resolve => setTimeout(resolve, 1000, result));
 

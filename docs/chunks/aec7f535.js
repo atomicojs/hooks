@@ -1,2 +1,34 @@
-import{u as t,a as r}from"./1fcfa7f3.js";function e(e,n,o=[]){const[a,u]=t(["unimport"]);return r(()=>{if(!n||!e)return;let t,r;return setTimeout(()=>!r&&!t&&u(t=>"loading"==t[0]?t:["loading"]),100),e().then(e=>u(n=>(r=!0,t?n:["done",e&&"default"in e?e.default:e]))).catch(r=>u(e=>t?e:["error",r])),()=>t=!0},[n,...o]),a}export{e as u};
+import { u as useState, a as useEffect } from './1fcfa7f3.js';
+
+const USE_LAZY_UNIMPORT = "unimport";
+const USE_LAZY_LOADING = "loading";
+const USE_LAZY_ERROR = "error";
+const USE_LAZY_DONE = "done";
+/**
+ *
+ *
+ * @param {()=>Promise} callbackImport -
+ * @param {boolean} initImport -
+ *
+ * @example
+ * useLazy(()=>import("./any.js"),initRequest);
+ */
+
+function useLazy(callbackImport, initImport, reload = []) {
+  const [state, setState] = useState([USE_LAZY_UNIMPORT]);
+  useEffect(() => {
+    if (!initImport || !callbackImport) return;
+    let cancel;
+    let done;
+    setTimeout(() => !done && !cancel && setState(state => state[0] == USE_LAZY_LOADING ? state : [USE_LAZY_LOADING]), 100);
+    callbackImport().then(md => setState(state => {
+      done = true;
+      return cancel ? state : [USE_LAZY_DONE, md && "default" in md ? md.default : md];
+    })).catch(error => setState(state => cancel ? state : [USE_LAZY_ERROR, error]));
+    return () => cancel = true;
+  }, [initImport, ...reload]);
+  return state;
+}
+
+export { useLazy as u };
 //# sourceMappingURL=aec7f535.js.map

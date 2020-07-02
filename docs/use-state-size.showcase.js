@@ -1,5 +1,5 @@
-import { u as useState, d as useEffect, h, c as customElement, a as useRef } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
+import { u as useState, a as useEffect, h, c as customElement, e as useRef } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
 
 const RESIZE_OBSERVER = [];
 const CACHE_SIZES = {};
@@ -122,7 +122,7 @@ function getSizes(value) {
   if (CACHE_SIZES[value]) return CACHE_SIZES[value];
   let sizes = {};
   value.split(/ *, */).forEach(value => {
-    let size = value.match(/([^\s]+)\s+(\d+)(\w)/);
+    let size = value.match(/([^\s]+)\s+(\d+)(w|h)/);
 
     if (size) {
       let [, value, number, type] = size;
@@ -154,8 +154,7 @@ const Example1 = ({
   src
 }) => {
   let ref = useRef();
-  let state = useStateSize("small 420w, medium 720w, large 1080w, extra-large 1366w, full", ref);
-  console.log(state);
+  let state = useStateSize("1fr 1fr 1fr, 1fr 1fr 720w, 1fr 520w", ref);
   return h("host", {
     shadowDom: true,
     ref: ref

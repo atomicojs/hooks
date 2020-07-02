@@ -1,5 +1,5 @@
-import { u as useState, d as useEffect, h, c as customElement, A as Any } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
+import { u as useState, a as useEffect, h, c as customElement, A as Any } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
 
 /**
  * If you use a function you can apply a property

@@ -1,2 +1,758 @@
-const e={};function t(e,t){e[0]&&(e[1]=e[0](e[1],t))}function n(e,n){for(let r in e)t(e[r],n)}function r(t,n){if(e.ref.hook)return e.ref.hook.use(t,n)[1]}const i=e=>"function"==typeof e,o=e=>"object"==typeof e,l=Symbol(""),s=Symbol(""),u={id:1,className:1,checked:1,value:1,selected:1},a={list:1,type:1,size:1,form:1,width:1,height:1,src:1},c={},f=[],h=document;function d(e,t,...n){return(n=function e(t,n=[]){for(let r=0;r<t.length;r++){let i=t[r];if(i){if(Array.isArray(i)){e(i,n);continue}null!=i.key&&(n._||(n._=new Map),n._.set(i.key))}let o=typeof i;i=null==i||"boolean"==o||"function"==o?"":i,n.push(i)}return n}((t=t||c).children||n)).length||(n=f),{type:e,props:t,children:n,key:t.key,shadow:t.shadowDom,raw:1==e.nodeType}}function p(e,t,n=s){y(n,t,e)}function y(e,t,n,r){let i;if(t&&t[e]&&t[e].vnode==n)return t;if((null!=n||!t)&&(r=r||"svg"==n.type,i="host"!=n.type&&(n.raw?t!=n.type:t?t.localName!=n.type:!t),i)){let e;if(null==n.type)return h.createTextNode(n+"");if(n.type.nodeType)return n.type;e=r?h.createElementNS("http://www.w3.org/2000/svg",n.type):h.createElement(n.type,n.is?{is:n.is}:null),t=e}if(3==t.nodeType)return n+="",t.data!=n&&(t.data=n||""),t;let o=t[e]?t[e].vnode:c,s=o.props||c,u=o.children||f,a=i||!t[e]?{}:t[e].handlers;if(n.shadow&&(t.shadowRoot||t.attachShadow({mode:"open"})),n.props!=s&&function(e,t,n,r,i){for(let o in t)o in n||m(e,o,t[o],null,i,r);for(let o in n)m(e,o,t[o],n[o],i,r)}(t,s,n.props,a,r),n.children!=u){!function(e,t,n,r){let i=n._,o=n.length,s=t.childNodes,u=s.length,a=i?0:u>o?o:u;for(;a<u;a++){let e=s[a];if(i){let t=e[l];if(i.has(t)){i.set(t,e);continue}}a--,u--,e.remove()}for(let l=0;l<o;l++){let o=n[l],u=s[l],a=i?o.key:l,c=i?i.get(a):u;if(i&&c&&c!=u&&t.insertBefore(c,u),i&&!o.key)continue;let f=y(e,c,o,r);c?f!=c&&t.replaceChild(f,c):s[l]?t.insertBefore(f,s[l]):t.appendChild(f)}}(e,n.shadow?t.shadowRoot:t,n.children,r)}return t[e]={vnode:n,handlers:a},t}function m(e,t,n,r,s,c){if(n=null==n?null:n,r=null==r?null:r,(t="class"!=t||s?t:"className")in e&&u[t]&&(n=e[t]),r!==n&&"shadowDom"!=t)if("o"==t[0]&&"n"==t[1]&&(i(r)||i(n)))!function(e,t,n,r){t=t.slice("-"==t[2]?3:2),r.handleEvent||(r.handleEvent=t=>r[t.type].call(e,t));n?(r[t]||e.addEventListener(t,r),r[t]=n):r[t]&&(e.removeEventListener(t,r),delete r[t])}(e,t,r,c);else if("key"==t)e[l]=r;else if("ref"==t)r&&(r.current=e);else if("style"==t){let t=e.style;r=r||"";let i=o(n=n||""),l=o(r);if(i)for(let e in n){if(!l)break;e in r||v(t,e,null)}if(l)for(let e in r){let o=r[e];i&&n[e]===o||v(t,e,o)}else t.cssText=r}else s||a[t]||!(t in e)?null==r?e.removeAttribute(t):e.setAttribute(t,o(r)?JSON.stringify(r):r):e[t]=null==r?"":r}function v(e,t,n){let r="setProperty";null==n&&(r="removeProperty",n=null),~t.indexOf("-")?e[r](t,n):e[t]=n}const b=null;class w extends HTMLElement{constructor(){super(),this._create()}async _update(){if(!this._prevent){let e;this._prevent=!0,this.updated=new Promise(t=>e=t),await this.mounted,this._prevent=!1,this.update(),e()}}static get observedAttributes(){let{props:e={}}=this,t=[],n=[];for(let r in e)A(this.prototype,r,e[r],n,t);return this.prototype._create=function(){this._attrs={},this._props={},t.forEach(e=>e(this)),this.mounted=new Promise(e=>this.mount=e),this.unmounted=new Promise(e=>this.unmount=e),this.create&&this.create(),this._update()},n}attributeChangedCallback(e,t,n){e!==this._ignoreAttr&&t!==n&&(this[this._attrs[e]]=n)}connectedCallback(){this.mount()}disconnectedCallback(){this.unmount()}}const _=(e,t,n)=>e.dispatchEvent(new CustomEvent(t,o(n)?n:null)),g=[!0,1,"","1","true"],k=[Function,null],N=e=>e.replace(/([A-Z])/g,"-$1").toLowerCase();function A(e,t,n,r,l){if(!(t in e)){let{type:s,reflect:u,event:a,value:c,attr:f=N(t)}=o(n)&&null!=n?n:{type:n},h=!k.includes(s);r.push(f),Object.defineProperty(e,t,{set:function(e){let n=this[t],{error:r,value:l}=function(e,t){if(null==e)return{value:t};try{if(e==Boolean?t=g.includes(t):"string"==typeof t&&(t=e==Number?Number(t):e==Object||e==Array?JSON.parse(t):t),{}.toString.call(t)==`[object ${e.name}]`)return{value:t,error:e==Number&&Number.isNaN(t)}}catch(e){}return{value:t,error:!0}}(s,h&&i(e)?e(n):e);if(r&&null!=l)throw`The value defined for prop '${t}' must be of type '${s.name}'`;n!=l&&(this._props[t]=l,this._update(),this.updated.then(()=>{a&&_(this,a),u&&(this._ignoreAttr=f,((e,t,n,r)=>{null==r||t==Boolean&&!r?e.removeAttribute(n):e.setAttribute(n,o(r)?JSON.stringify(r):t==Boolean?"":r)})(this,s,f,this[t]),this._ignoreAttr=null)}))},get(){return this._props[t]}}),l.push(e=>{null!=c&&(e[t]=c),e._attrs[f]=t})}}function E(r){let i=class extends w{async create(){let i=Symbol();this.update=()=>{p(o.load(r,{...this._props}),this,i),o.updated()};let o=function(r,i){let o,l={},s={use:function(n,r){let i,o=e.index++;l[o]||(l[o]=[null,r],i=1);return l[o][0]=n,t(l[o],i?1:3),l[o]},load:function(t,n){e.index=0,e.ref=u;let r=t(n);return e.ref=0,r},updated:function(){let e=o?4:2;o=1,n(l,e)},unmount:function(){n(l,5)}},u={hook:s,host:i,render:r};return s}(()=>this._update(),this);await this.unmounted,o.unmount()}};return i.props=r.props,i}const S=(e,t)=>i(e)?E(e):customElements.define(e,E(t));function x(){return r(0,{current:e.ref.host})}function C(t){let n=e.ref.render;return r((e,r)=>(1==r&&(e[0]=i(t)?t():t,e[1]=t=>{(t=i(t)?t(e[0]):t)!=e[0]&&(e[0]=t,n())}),e),[])}function T(e,t){let n;r((r,i)=>{switch(null==n&&(n=!t||!r[0]||!function(e,t){let n=e.length;if(n!==t.length)return!1;for(let r=0;r<n;r++)if(e[r]!==t[r])return!1;return!0}(t,r[0]),r[0]=t),i){case 3:case 5:(n||5==i)&&r[1]&&(r[1](),r[1]=0),5==i&&(r[0]=null);break;case 2:case 4:(n||2==i)&&(r[1]=e())}return r},[])}function O(e){return r(0,{current:e})}function P(e,t){let n=x();return n[e]||(n[e]=r=>_(n.current,e,r?{...t,detail:r}:t)),n[e]}export{b as A,T as a,x as b,S as c,P as d,O as e,d as h,p as r,C as u};
+const HOOK_MOUNT = 1; //Symbol("mount");
+
+const HOOK_MOUNTED = 2; //Symbol("mounted");
+
+const HOOK_UPDATE = 3; //Symbol("update");
+
+const HOOK_UPDATED = 4; //Symbol("updated");
+
+const HOOK_UNMOUNT = 5; //Symbol("unmount");
+
+const HOOK_CURRENT = {};
+
+function update(hook, type) {
+  hook[0] && (hook[1] = hook[0](hook[1], type));
+}
+
+function updateAll(hooks, type) {
+  for (let i in hooks) update(hooks[i], type);
+}
+
+function useHook(reducer, initialState) {
+  if (HOOK_CURRENT.ref.hook) {
+    return HOOK_CURRENT.ref.hook.use(reducer, initialState)[1];
+  }
+}
+
+function useRender() {
+  return HOOK_CURRENT.ref.render;
+}
+
+function createHooks(render, host) {
+  let hooks = {};
+  let mounted;
+  let hook = {
+    use,
+    load,
+    updated,
+    unmount
+  };
+  let ref = {
+    hook,
+    host,
+    render
+  };
+
+  function load(callback, param) {
+    HOOK_CURRENT.index = 0;
+    HOOK_CURRENT.ref = ref;
+    let resolve = callback(param);
+    HOOK_CURRENT.ref = 0;
+    return resolve;
+  }
+
+  function use(reducer, state) {
+    let index = HOOK_CURRENT.index++;
+    let mount; // record the hook and the initial state of this
+
+    if (!hooks[index]) {
+      hooks[index] = [null, state];
+      mount = 1;
+    } // The hook always receives the last reduce.
+
+
+    hooks[index][0] = reducer;
+    update(hooks[index], mount ? HOOK_MOUNT : HOOK_UPDATE);
+    return hooks[index];
+  }
+
+  function updated() {
+    let type = mounted ? HOOK_UPDATED : HOOK_MOUNTED;
+    mounted = 1;
+    updateAll(hooks, type);
+  }
+
+  function unmount() {
+    updateAll(hooks, HOOK_UNMOUNT);
+  }
+
+  return hook;
+}
+/**
+ * compare 2 array
+ * @param {array} before
+ * @param {array} after
+ * @example
+ * isEqualArray([1,2,3,4],[1,2,3,4]) // true
+ * isEqualArray([1,2,3,4],[1,2,3])   // false
+ * isEqualArray([5,1,2,3],[1,2,3,5]) // false
+ * isEqualArray([],[]) // true
+ * @returns {boolean}
+ */
+
+
+function isEqualArray(before, after) {
+  let length = before.length;
+  if (length !== after.length) return false;
+
+  for (let i = 0; i < length; i++) {
+    if (before[i] !== after[i]) return false;
+  }
+
+  return true;
+}
+
+const isFunction = value => typeof value == "function";
+
+const isObject = value => typeof value == "object";
+
+const KEY = Symbol("");
+const GLOBAL_ID = Symbol("");
+const FROM_PROP = {
+  id: 1,
+  className: 1,
+  checked: 1,
+  value: 1,
+  selected: 1
+};
+const WITH_ATTR = {
+  list: 1,
+  type: 1,
+  size: 1,
+  form: 1,
+  width: 1,
+  height: 1,
+  src: 1
+};
+const EMPTY_PROPS = {};
+const EMPTY_CHILDREN = [];
+const TYPE_TEXT = 3;
+const TYPE_ELEMENT = 1;
+const $ = document;
+
+function h(type, props, ...children) {
+  props = props || EMPTY_PROPS;
+  children = flat(props.children || children);
+
+  if (!children.length) {
+    children = EMPTY_CHILDREN;
+  }
+
+  return {
+    type,
+    props,
+    children,
+    key: props.key,
+    shadow: props.shadowDom,
+    raw: type.nodeType == TYPE_ELEMENT
+  };
+}
+
+function render(vnode, node, id = GLOBAL_ID) {
+  diff(id, node, vnode);
+}
+
+function diff(id, node, vnode, isSvg) {
+  let isNewNode; // If the node maintains the source vnode it escapes from the update tree
+
+  if (node && node[id] && node[id].vnode == vnode) return node; // The process only continues when you may need to create a node
+
+  if (vnode != null || !node) {
+    isSvg = isSvg || vnode.type == "svg";
+    isNewNode = vnode.type != "host" && (vnode.raw ? node != vnode.type : node ? node.localName != vnode.type : !node);
+
+    if (isNewNode) {
+      let nextNode;
+
+      if (vnode.type != null) {
+        if (vnode.type.nodeType) {
+          return vnode.type;
+        }
+
+        nextNode = isSvg ? $.createElementNS("http://www.w3.org/2000/svg", vnode.type) : $.createElement(vnode.type, vnode.is ? {
+          is: vnode.is
+        } : null);
+      } else {
+        return $.createTextNode(vnode + "");
+      }
+
+      node = nextNode;
+    }
+  }
+
+  if (node.nodeType == TYPE_TEXT) {
+    vnode += "";
+
+    if (node.data != vnode) {
+      node.data = vnode || "";
+    }
+
+    return node;
+  }
+
+  let oldVNode = node[id] ? node[id].vnode : EMPTY_PROPS;
+  let oldVnodeProps = oldVNode.props || EMPTY_PROPS;
+  let oldVnodeChildren = oldVNode.children || EMPTY_CHILDREN;
+  let handlers = isNewNode || !node[id] ? {} : node[id].handlers;
+
+  if (vnode.shadow) {
+    if (!node.shadowRoot) {
+      node.attachShadow({
+        mode: "open"
+      });
+    }
+  }
+
+  if (vnode.props != oldVnodeProps) {
+    diffProps(node, oldVnodeProps, vnode.props, handlers, isSvg);
+  }
+
+  if (vnode.children != oldVnodeChildren) {
+    let nextParent = vnode.shadow ? node.shadowRoot : node;
+    diffChildren(id, nextParent, vnode.children, isSvg);
+  }
+
+  node[id] = {
+    vnode,
+    handlers
+  };
+  return node;
+}
+
+function diffChildren(id, parent, children, isSvg) {
+  let keyes = children._;
+  let childrenLenght = children.length;
+  let childNodes = parent.childNodes;
+  let childNodesLength = childNodes.length;
+  let index = keyes ? 0 : childNodesLength > childrenLenght ? childrenLenght : childNodesLength;
+
+  for (; index < childNodesLength; index++) {
+    let childNode = childNodes[index];
+
+    if (keyes) {
+      let key = childNode[KEY];
+
+      if (keyes.has(key)) {
+        keyes.set(key, childNode);
+        continue;
+      }
+    }
+
+    index--;
+    childNodesLength--;
+    childNode.remove();
+  }
+
+  for (let i = 0; i < childrenLenght; i++) {
+    let child = children[i];
+    let indexChildNode = childNodes[i];
+    let key = keyes ? child.key : i;
+    let childNode = keyes ? keyes.get(key) : indexChildNode;
+
+    if (keyes && childNode) {
+      if (childNode != indexChildNode) {
+        parent.insertBefore(childNode, indexChildNode);
+      }
+    }
+
+    if (keyes && !child.key) continue;
+    let nextChildNode = diff(id, childNode, child, isSvg);
+
+    if (!childNode) {
+      if (childNodes[i]) {
+        parent.insertBefore(nextChildNode, childNodes[i]);
+      } else {
+        parent.appendChild(nextChildNode);
+      }
+    } else if (nextChildNode != childNode) {
+      parent.replaceChild(nextChildNode, childNode);
+    }
+  }
+}
+/**
+ *
+ * @param {import("./render").HTMLNode} node
+ * @param {Object} props
+ * @param {Object} nextProps
+ * @param {boolean} isSvg
+ * @param {Object} handlers
+ **/
+
+
+function diffProps(node, props, nextProps, handlers, isSvg) {
+  for (let key in props) {
+    if (!(key in nextProps)) {
+      setProperty(node, key, props[key], null, isSvg, handlers);
+    }
+  }
+
+  for (let key in nextProps) {
+    setProperty(node, key, props[key], nextProps[key], isSvg, handlers);
+  }
+}
+
+function setProperty(node, key, prevValue, nextValue, isSvg, handlers) {
+  key = key == "class" && !isSvg ? "className" : key; // define empty value
+
+  prevValue = prevValue == null ? null : prevValue;
+  nextValue = nextValue == null ? null : nextValue;
+
+  if (key in node && FROM_PROP[key]) {
+    prevValue = node[key];
+  }
+
+  if (nextValue === prevValue || key == "shadowDom") return;
+
+  if (key[0] == "o" && key[1] == "n" && (isFunction(nextValue) || isFunction(prevValue))) {
+    setEvent(node, key, nextValue, handlers);
+  } else if (key == "key") {
+    node[KEY] = nextValue;
+  } else if (key == "ref") {
+    if (nextValue) nextValue.current = node;
+  } else if (key == "style") {
+    let style = node.style;
+    prevValue = prevValue || "";
+    nextValue = nextValue || "";
+    let prevIsObject = isObject(prevValue);
+    let nextIsObject = isObject(nextValue);
+
+    if (prevIsObject) {
+      for (let key in prevValue) {
+        if (nextIsObject) {
+          if (!(key in nextValue)) setPropertyStyle(style, key, null);
+        } else {
+          break;
+        }
+      }
+    }
+
+    if (nextIsObject) {
+      for (let key in nextValue) {
+        let value = nextValue[key];
+        if (prevIsObject && prevValue[key] === value) continue;
+        setPropertyStyle(style, key, value);
+      }
+    } else {
+      style.cssText = nextValue;
+    }
+  } else {
+    if (!isSvg && !WITH_ATTR[key] && key in node) {
+      node[key] = nextValue == null ? "" : nextValue;
+    } else if (nextValue == null) {
+      node.removeAttribute(key);
+    } else {
+      node.setAttribute(key, isObject(nextValue) ? JSON.stringify(nextValue) : nextValue);
+    }
+  }
+}
+/**
+ *
+ * @param {import("./render").HTMLNode} node
+ * @param {string} type
+ * @param {function} [nextHandler]
+ * @param {object} handlers
+ */
+
+
+function setEvent(node, type, nextHandler, handlers) {
+  // get the name of the event to use
+  type = type.slice(type[2] == "-" ? 3 : 2); // add handleEvent to handlers
+
+  if (!handlers.handleEvent) {
+    /**
+     * {@link https://developer.mozilla.org/es/docs/Web/API/EventTarget/addEventListener#The_value_of_this_within_the_handler}
+     **/
+    handlers.handleEvent = event => handlers[event.type].call(node, event);
+  }
+
+  if (nextHandler) {
+    // create the subscriber if it does not exist
+    if (!handlers[type]) {
+      node.addEventListener(type, handlers);
+    } // update the associated event
+
+
+    handlers[type] = nextHandler;
+  } else {
+    // 	delete the associated event
+    if (handlers[type]) {
+      node.removeEventListener(type, handlers);
+      delete handlers[type];
+    }
+  }
+}
+
+function setPropertyStyle(style, key, value) {
+  let method = "setProperty";
+
+  if (value == null) {
+    method = "removeProperty";
+    value = null;
+  }
+
+  if (~key.indexOf("-")) {
+    style[method](key, value);
+  } else {
+    style[key] = value;
+  }
+}
+
+function flat(children, map = []) {
+  for (let i = 0; i < children.length; i++) {
+    let child = children[i];
+
+    if (child) {
+      if (Array.isArray(child)) {
+        flat(child, map);
+        continue;
+      }
+
+      if (child.key != null) {
+        if (!map._) map._ = new Map();
+
+        map._.set(child.key);
+      }
+    }
+
+    let type = typeof child;
+    child = child == null || type == "boolean" || type == "function" ? "" : child;
+    map.push(child);
+  }
+
+  return map;
+}
+/**
+ * Alias for null
+ */
+
+
+const Any = null;
+/**
+ * This class allows to keep the prop system associated with
+ * Atomico indifferent to the rest of the core, with the
+ * intention of its abstraction for other libraries
+ */
+
+class BaseElement extends HTMLElement {
+  constructor() {
+    super();
+
+    this._create();
+  }
+  /**
+   * starts the queue to execute the update method,
+   * This method defines the property this.prevent
+   * and this.updated
+   */
+
+
+  async _update() {
+    if (!this._prevent) {
+      this._prevent = true;
+      let resolveUpdate;
+      this.updated = new Promise(resolve => resolveUpdate = resolve);
+      await this.mounted;
+      this._prevent = false;
+      this.update();
+      resolveUpdate();
+    }
+  }
+
+  static get observedAttributes() {
+    let {
+      props = {}
+    } = this;
+    let init = [];
+    let attrs = [];
+
+    for (let prop in props) setProxy(this.prototype, prop, props[prop], attrs, init);
+    /**
+     * method in charge of starting the class and then calling this.create
+     * and after this._update
+     */
+
+
+    this.prototype._create = function () {
+      this._attrs = {}; // index associating attribute to a component property
+
+      this._props = {}; // groups the real values of the properties worked by the component
+
+      init.forEach(fn => fn(this)); // Allows external access to the component instance
+
+      this.mounted = new Promise(resolve => this.mount = resolve); // it is solved when connectedCallback is called
+
+      this.unmounted = new Promise(resolve => this.unmount = resolve); // it is solved when disconnectedCallback is called
+
+      if (this.create) this.create();
+
+      this._update();
+    };
+
+    return attrs;
+  }
+
+  attributeChangedCallback(attr, oldValue, value) {
+    if (attr === this._ignoreAttr || oldValue === value) return; // Choose the property name to send the update
+
+    this[this._attrs[attr]] = value;
+  }
+
+  connectedCallback() {
+    this.mount();
+  }
+
+  disconnectedCallback() {
+    this.unmount();
+  }
+
+}
+
+const dispatchEvent = (node, type, customEventInit) => node.dispatchEvent(new CustomEvent(type, isObject(customEventInit) ? customEventInit : null));
+
+const TRUE_VALUES = [true, 1, "", "1", "true"]; // values considered as valid booleans
+
+const NOT_CALLABLE = [Function, Any]; // values that are not executable when defining the property
+
+/**
+ * Transform a Camel Case string to a Kebab case
+ * @param {string} prop
+ * @returns {string}
+ */
+
+const getAttr = prop => prop.replace(/([A-Z])/g, "-$1").toLowerCase();
+/**
+ * reflects an attribute value of the given element as context
+ * @param {Element} context
+ * @param {*} type
+ * @param {string} attr
+ * @param {*} value
+ */
+
+
+const reflectValue = (context, type, attr, value) => value == null || type == Boolean && !value ? context.removeAttribute(attr) : context.setAttribute(attr, isObject(value) ? JSON.stringify(value) : type == Boolean ? "" : value);
+/**
+ * Constructs the setter and getter of the associated property
+ * only if it is not defined in the prototype
+ * @param {*} proto
+ * @param {string} prop
+ * @param {*} schema
+ * @param {string[]} attrs
+ * @param {Function[]} init
+ */
+
+
+function setProxy(proto, prop, schema, attrs, init) {
+  if (!(prop in proto)) {
+    let {
+      type,
+      reflect,
+      event,
+      value,
+      attr = getAttr(prop)
+    } = isObject(schema) && schema != Any ? schema : {
+      type: schema
+    };
+    let isCallable = !NOT_CALLABLE.includes(type);
+    attrs.push(attr);
+
+    function set(newValue) {
+      let oldValue = this[prop];
+      let {
+        error,
+        value
+      } = filterValue(type, isCallable && isFunction(newValue) ? newValue(oldValue) : newValue);
+
+      if (error && value != null) {
+        throw `The value defined for prop '${prop}' must be of type '${type.name}'`;
+      }
+
+      if (oldValue == value) return;
+      this._props[prop] = value;
+
+      this._update();
+
+      this.updated.then(() => {
+        if (event) dispatchEvent(this, event);
+
+        if (reflect) {
+          this._ignoreAttr = attr;
+          reflectValue(this, type, attr, this[prop]);
+          this._ignoreAttr = null;
+        }
+      });
+    }
+
+    Object.defineProperty(proto, prop, {
+      set,
+
+      get() {
+        return this._props[prop];
+      }
+
+    });
+    init.push(context => {
+      if (value != null) context[prop] = value;
+      context._attrs[attr] = prop;
+    });
+  }
+}
+/**
+ * Filter the values based on their type
+ * @param {*} type
+ * @param {*} value
+ * @returns {{error?:boolean,value:*}}
+ */
+
+
+function filterValue(type, value) {
+  if (type == Any) return {
+    value
+  };
+
+  try {
+    if (type == Boolean) {
+      value = TRUE_VALUES.includes(value);
+    } else if (typeof value == "string") {
+      value = type == Number ? Number(value) : type == Object || type == Array ? JSON.parse(value) : value;
+    }
+
+    if ({}.toString.call(value) == `[object ${type.name}]`) {
+      return {
+        value,
+        error: type == Number && Number.isNaN(value)
+      };
+    }
+  } catch (e) {}
+
+  return {
+    value,
+    error: true
+  };
+}
+/**
+ * Wrap the configuration that unites base-element and Atomico
+ * @param {Function} component
+ * @returns {HTMLElement}
+ */
+
+
+function createCustomElement(component) {
+  let Element = class extends BaseElement {
+    async create() {
+      let id = Symbol();
+
+      this.update = () => {
+        render(hooks.load(component, { ...this._props
+        }), this, id);
+        hooks.updated();
+      };
+
+      let hooks = createHooks(() => this._update(), this);
+      await this.unmounted;
+      hooks.unmount();
+    }
+
+  };
+  Element.props = component.props;
+  return Element;
+}
+/**
+ * Create and register an Atomico component as a Webcomponent
+ * @param {string|Function} nodeType
+ * @param {function} [component]
+ */
+
+
+const customElement = (nodeType, component) => isFunction(nodeType) ? createCustomElement(nodeType) : customElements.define(nodeType, createCustomElement(component));
+
+function useHost() {
+  return useHook(0, {
+    current: HOOK_CURRENT.ref.host
+  });
+}
+
+function useState(initialState) {
+  let render = useRender();
+  return useHook((state, type) => {
+    if (HOOK_MOUNT == type) {
+      state[0] = isFunction(initialState) ? initialState() : initialState;
+
+      state[1] = nextState => {
+        nextState = isFunction(nextState) ? nextState(state[0]) : nextState;
+
+        if (nextState != state[0]) {
+          state[0] = nextState;
+          render();
+        }
+      };
+    }
+
+    return state;
+  }, []);
+}
+
+function useEffect(callback, args) {
+  // define whether the effect in the render cycle should be regenerated
+  let executeEffect;
+  useHook((state, type) => {
+    if (executeEffect == null) {
+      executeEffect = args && state[0] ? !isEqualArray(args, state[0]) : true;
+      state[0] = args;
+    }
+
+    switch (type) {
+      case HOOK_UPDATE:
+      case HOOK_UNMOUNT:
+        // save the current args, for comparison
+        if ((executeEffect || type == HOOK_UNMOUNT) && state[1]) {
+          // compare the previous snapshot with the generated state
+          state[1](); // clean the effect collector
+
+          state[1] = 0;
+        } // delete the previous argument for a hook
+        // run if the hook is inserted in a new node
+        // Why? ... to perform again dom operations associated with the parent
+
+
+        if (type == HOOK_UNMOUNT) {
+          state[0] = null;
+        }
+
+        break;
+
+      case HOOK_MOUNTED:
+      case HOOK_UPDATED:
+        // save the current args, for comparison, repeats due to additional type HOOK_MOUNTED
+        if (executeEffect || type == HOOK_MOUNTED) {
+          // save the effect collector
+          state[1] = callback();
+        } // save the comparison argument
+
+
+        break;
+    }
+
+    return state;
+  }, []);
+}
+
+function useRef(current) {
+  return useHook(0, {
+    current
+  });
+}
+
+function useEvent(type, customEventInit) {
+  let ref = useHost();
+
+  if (!ref[type]) {
+    ref[type] = detail => dispatchEvent(ref.current, type, detail ? { ...customEventInit,
+      detail
+    } : customEventInit);
+  }
+
+  return ref[type];
+}
+
+export { Any as A, useEffect as a, useHost as b, customElement as c, useEvent as d, useRef as e, h, render as r, useState as u };
 //# sourceMappingURL=1fcfa7f3.js.map

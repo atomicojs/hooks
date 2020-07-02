@@ -1,5 +1,5 @@
-import { b as useHost, d as useEffect, h, c as customElement, u as useState } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
+import { b as useHost, a as useEffect, h, c as customElement, u as useState } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
 
 let cache = {};
 let support = document.adoptedStyleSheets;

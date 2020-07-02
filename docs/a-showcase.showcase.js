@@ -1,5 +1,5 @@
-import { h } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
+import { h } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
 
 var aShowcase_showcase = [{
   label: "Ejemplo 1",

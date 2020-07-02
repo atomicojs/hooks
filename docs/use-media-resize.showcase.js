@@ -1,5 +1,5 @@
-import { u as useState, d as useEffect, h, c as customElement } from './chunks/4a85cc95.js';
-export { r as render } from './chunks/4a85cc95.js';
+import { u as useState, a as useEffect, h, c as customElement } from './chunks/1fcfa7f3.js';
+export { r as render } from './chunks/1fcfa7f3.js';
 
 function useMediaResize(value, ref = {}) {
   let sizes = getSizes(value); // The computation process is light in cost vs useMemo

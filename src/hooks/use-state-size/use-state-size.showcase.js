@@ -5,11 +5,7 @@ export { render } from "atomico";
 const Example1 = ({ src }) => {
   let ref = useRef();
 
-  let state = useStateSize(
-    "small 420w, medium 720w, large 1080w, extra-large 1366w, full",
-    ref
-  );
-  console.log(state);
+  let state = useStateSize("1fr 1fr 1fr, 1fr 1fr 720w, 1fr 520w", ref);
   return (
     <host shadowDom ref={ref}>
       <style>{`:host{display:block;width:100%}img{width:100%}`}</style>
