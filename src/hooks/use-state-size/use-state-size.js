@@ -1,10 +1,14 @@
 import { useEffect, useState } from "atomico";
-
-const RESIZE_OBSERVER = [];
+// Create a private index on the node,
+// avoiding overloading the browser with multiple instances of ResizeObserver
+const RESIZE_OBSERVER = Symbol("ResizeObserver");
+// Caches the result of the object returned by getSize
 const CACHE_SIZES = {};
 
 /**
+ * Subscribe to the reference to all size changes
  * @param {Ref} ref
+ * @param {(entry:object)=>void} [proxyObserver] - Replace status update with a handler
  * @return {ResizeObserverEntry}
  */
 export function useResizeObserver(ref, proxyObserver) {
@@ -14,9 +18,16 @@ export function useResizeObserver(ref, proxyObserver) {
     // Create or reuse the listener associated with the resizeObserver event
     if (!current[RESIZE_OBSERVER]) {
       let handlers = [];
+      let prevent;
       let observer = new ResizeObserver(([entry]) => {
         observer.entry = entry;
-        handlers.forEach((handler) => handler(entry));
+        // Skip to next fps to ensure styles resize box before eventLoop
+        if (prevent) return;
+        prevent = true;
+        requestAnimationFrame(() => {
+          handlers.forEach((handler) => handler(entry));
+          prevent = false;
+        });
       });
       observer.handlers = handlers;
 
@@ -76,7 +87,6 @@ export function useStateSize(value, ref) {
   let sizes = getSizes(value);
   let valueIsArray = sizes.w && sizes.h;
   let [state, setState] = useState(valueIsArray ? [] : null);
-
   useSize(ref, ([width, height]) =>
     setState((currentState) => {
       let state;
@@ -131,7 +141,7 @@ function getSizes(value) {
   let sizes = {};
 
   value.split(/ *, */).forEach((value) => {
-    let size = value.match(/([^\s]+)\s+(\d+)(w|h)/);
+    let size = value.match(/(.+)\s+(\d+)(w|h)$/);
     if (size) {
       let [, value, number, type] = size;
       number = Number(number);

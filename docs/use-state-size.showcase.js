@@ -1,10 +1,15 @@
 import { u as useState, a as useEffect, h, c as customElement, e as useRef } from './chunks/1fcfa7f3.js';
 export { r as render } from './chunks/1fcfa7f3.js';
 
-const RESIZE_OBSERVER = [];
+// avoiding overloading the browser with multiple instances of ResizeObserver
+
+const RESIZE_OBSERVER = Symbol("ResizeObserver"); // Caches the result of the object returned by getSize
+
 const CACHE_SIZES = {};
 /**
+ * Subscribe to the reference to all size changes
  * @param {Ref} ref
+ * @param {(entry:object)=>void} [proxyObserver] - Replace status update with a handler
  * @return {ResizeObserverEntry}
  */
 
@@ -17,9 +22,16 @@ function useResizeObserver(ref, proxyObserver) {
 
     if (!current[RESIZE_OBSERVER]) {
       let handlers = [];
+      let prevent;
       let observer = new ResizeObserver(([entry]) => {
-        observer.entry = entry;
-        handlers.forEach(handler => handler(entry));
+        observer.entry = entry; // Skip to next fps to ensure styles resize box before eventLoop
+
+        if (prevent) return;
+        prevent = true;
+        requestAnimationFrame(() => {
+          handlers.forEach(handler => handler(entry));
+          prevent = false;
+        });
       });
       observer.handlers = handlers;
       observer.observe(current);
