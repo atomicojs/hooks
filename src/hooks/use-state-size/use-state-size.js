@@ -13,6 +13,7 @@ const CACHE_SIZES = {};
  */
 export function useResizeObserver(ref, proxyObserver) {
   let [state, setState] = useState();
+
   useEffect(() => {
     let { current } = ref;
     // Create or reuse the listener associated with the resizeObserver event
@@ -87,49 +88,36 @@ export function useStateSize(value, ref) {
   let sizes = getSizes(value);
   let valueIsArray = sizes.w && sizes.h;
   let [state, setState] = useState(valueIsArray ? [] : null);
+
   useSize(ref, ([width, height]) =>
-    setState((currentState) => {
-      let state;
-      let addValue = (value, isDefault) => {
-        if (valueIsArray) {
-          state = state || [];
-          state.push(value);
-        } else {
-          state = value;
-        }
+    setState((state) => {
+      let getValue = ([cases, currentSize]) => {
+        let media = cases.find(([, size]) => size >= currentSize);
+        return media ? media[0] : sizes.default;
       };
 
-      if (
-        sizes.w &&
-        !sizes.w.some(([value, w]) => {
-          if (w >= width) {
-            addValue(value);
-            return true;
-          }
-        })
-      ) {
-        addValue(sizes.default, true);
-      }
+      let w = [sizes.w, width];
+      let h = [sizes.h, height];
 
-      if (
-        sizes.h &&
-        !sizes.h.some(([value, h]) => {
-          if (h >= height) {
-            addValue(value);
-            return true;
-          }
-        })
-      ) {
-        addValue(sizes.default, true);
-      }
-      if (
-        valueIsArray &&
-        !state.every((value, index) => currentState[index] == value)
-      ) {
-        return state;
+      if (valueIsArray) {
+        let nextState = [w, h].map(getValue);
+
+        let newState = Array.isArray(state)
+          ? nextState.some((value, index) => state[index] !== value)
+          : true;
+        if (newState) {
+          return nextState;
+        }
       } else {
-        return state != currentState ? state : currentState;
+        if (sizes.w) {
+          return [w].map(getValue).find((value) => value);
+        } else if (sizes.h) {
+          return [h].map(getValue).find((value) => value);
+        } else {
+          return sizes.default;
+        }
       }
+      return state;
     })
   );
   return state;
