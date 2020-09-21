@@ -1,23 +1,15 @@
 ---
-title: <a-router/>
+title: a-router
 description: Group of components to work with dynamic import based on the browser path
-group: Components
+category: components
+linkTitle:
+  $ref: ~title
 ---
-
-# {{page.title}}
-
-> {{page.description}}
-
-## Installation
-
-```bash
-npm install "{{pkg.name}}"
-```
 
 ## Usage
 
 ```jsx
-import "{{pkg.name}}/a-router";
+import "@atomico/kit/a-router";
 ```
 
 This module includes the components [a-router-proxy](#a-router-proxy), [a-router-switch](#a-router-switch) and [a-router-case](#a-router-case).
@@ -26,13 +18,13 @@ This module includes the components [a-router-proxy](#a-router-proxy), [a-router
 
 ```html
 <a-router-proxy>
-    <a href="/">home</a>
-    <a-router-switch>
-        <a-router-case path="/" src="./page-home.js" default />
-        <a-router-case path="/users/:id?" src="./page-users.js" />
-        <span slot="loading">loading...</span>
-        <span slot="loading">error</span>
-    </a-router-switch>
+  <a href="/">home</a>
+  <a-router-switch>
+    <a-router-case path="/" src="./page-home.js" default />
+    <a-router-case path="/users/:id?" src="./page-users.js" />
+    <span slot="loading">loading...</span>
+    <span slot="loading">error</span>
+  </a-router-switch>
 </a-router-proxy>
 ```
 
@@ -98,9 +90,3 @@ export default(props){
 // name for your build.
 export default let nodeType = "my-component";
 ```
-
-## Demo
-
-<a-showcase src="a-router.showcase.js"></a-showcase>
-
-<script type="module" src="../a-showcase/a-showcase.js"></script>

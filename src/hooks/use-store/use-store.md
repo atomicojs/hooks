@@ -1,18 +1,10 @@
 ---
 title: "use-store"
 description: create a mutable, reactive and agnostic global store for application development
-group: Hooks
+category: hooks
+linkTitle:
+  $ref: ~title
 ---
-
-# {{page.title}}
-
-> {{page.description}}
-
-## Installation
-
-```bash
-npm install "{{pkg.name}}/{{page.title}}"
-```
 
 ## Store
 
@@ -60,7 +52,7 @@ let state = useStore(store, optionalProp);
 
 ```jsx
 import { h, customElement } from "atomico";
-import { createStore } from "{{pkg.name}}/{{page.title}}";
+import { createStore } from "@atomico/kit/use-store";
 import "../my-component",
 
 export let store = createStore(() => {
@@ -83,7 +75,7 @@ customElement("my-app",MyApp)
 
 ```jsx
 import { h, Any, customElement } from "atomico";
-import { useStore } from "{{pkg.name}}/{{page.title}}";
+import { useStore } from "@atomico/kit/use-store";
 
 function MyComponent({ store }) {
   let state = useStore(store);
@@ -123,9 +115,3 @@ let removeListener = store.onUpdate("*", (state) => {
   removeListener();
 });
 ```
-
-## Demo
-
-<a-showcase src="./use-store.showcase.js" origin="{{pkg.editable}}/{{page.dir}}/use-store.showcase.js"></a-showcase>
-
-<script type="module" src="../../components/a-showcase/a-showcase.js"></script>

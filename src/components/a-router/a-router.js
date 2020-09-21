@@ -1,6 +1,6 @@
 import {
   h,
-  customElement,
+  c,
   Any,
   useRef,
   useHost,
@@ -14,7 +14,7 @@ import { match, join } from "../../hooks/use-router/src/parse";
 import { redirect } from "../../hooks/use-router/src/location";
 import { useLazy } from "../../hooks/use-lazy/use-lazy";
 
-const ARouterProxy = ({ path }) => {
+const aRouterProxy = ({ path }) => {
   return (
     <host
       onclick={(event) => {
@@ -34,7 +34,7 @@ const ARouterProxy = ({ path }) => {
   );
 };
 
-const ARouterCase = ({ src, path }) => {
+const aRouterCase = ({ src, path }) => {
   let refHost = useHost();
 
   let dispatchUpdatedARouterCase = useEvent("UpdatedARouterCase", {
@@ -56,7 +56,7 @@ const ARouterCase = ({ src, path }) => {
 
 const notFound = { src: () => Promise.resolve(() => <slot name="404"></slot>) };
 
-const ARouterSwitch = () => {
+const aRouterSwitch = () => {
   let [pathname] = useHistory();
   let ref = useRef({});
   let [routeState, setRouteState] = useState(notFound);
@@ -120,7 +120,7 @@ const ARouterSwitch = () => {
   );
 };
 
-ARouterCase.props = {
+aRouterCase.props = {
   path: {
     type: String,
     reflect: true,
@@ -133,13 +133,13 @@ ARouterCase.props = {
   },
 };
 
-ARouterProxy.props = {
+aRouterProxy.props = {
   path: {
     type: String,
     value: "",
   },
 };
 
-customElement("a-router-switch", ARouterSwitch);
-customElement("a-router-case", ARouterCase);
-customElement("a-router-proxy", ARouterProxy);
+customElements.define("a-router-switch", c(aRouterSwitch));
+customElements.define("a-router-case", c(aRouterCase));
+customElements.define("a-router-proxy", c(aRouterProxy));

@@ -1,19 +1,17 @@
 ---
 title: use-delegate-focus
 description: These hooks allow to redirect the focus effect associated to the component a reference
-group: Hooks
+linkTitle:
+  $ref: ~title
+category: hooks
 ---
-
-# {{page.title}}
-
-> {{page.description}}
 
 ```jsx
 import { h, useRef } from "atomico";
-import { useDelegateFocus } from "{{pkg.name}}/{{page.title}}";
+import { useDelegateFocus } from "@atomico/kit/use-delegate-focus";
 
 function Component() {
-  let ref = useRef();
+  const ref = useRef();
   useDelegateFocus(ref);
 
   return (

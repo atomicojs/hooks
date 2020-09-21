@@ -9,7 +9,7 @@ export function useHistory() {
   useEffect(() => {
     function handler() {
       let pathname = getPathname();
-      setState(state => (state.pathname != pathname ? { pathname } : state));
+      setState((state) => (state.pathname != pathname ? { pathname } : state));
     }
     return subscribe(handler);
   }, []);
@@ -27,7 +27,7 @@ export function useRoute(path, parentPath) {
 
 export function useRedirect(parentPath) {
   return useCallback(
-    subPath =>
+    (subPath) =>
       redirect(join(parentPath, typeof subPath == "string" ? subPath : "")),
     [parentPath]
   );

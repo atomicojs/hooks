@@ -1,24 +1,10 @@
 ---
 title: use-lazy
 description: Hook that allows the import of dynamic modules or promise resolution
-group: Hooks
+category: hooks
+linkTitle:
+  $ref: ~title
 ---
-
-# {{page.title}}
-
-> {{page.description}}
-
-## Installation
-
-```bash
-npm install "{{pkg.name}}"
-```
-
-## Usage
-
-```jsx
-import { useLazy } from "{{pkg.name}}/use-lazy";
-```
 
 ## Sintax
 
@@ -51,7 +37,7 @@ let [lazyState, lazyResult] = useLazy(
 ### Example
 
 ```js
-import { useLazy } from "{{pkg.name}}/use-lazy";
+import { useLazy } from "@atomico/kit/use-lazy";
 
 const Example = () => {
   const [load, setLoad] = useState(false);
@@ -75,7 +61,3 @@ const Example = () => {
   );
 };
 ```
-
-<a-showcase src="./use-lazy.showcase.js"></a-showcase>
-
-<script type="module" src="../../components/a-showcase/a-showcase.js"></script>
