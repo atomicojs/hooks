@@ -6,7 +6,7 @@
   "scripts": {
     "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml --js estack.js",
     "build": "estack dev {src,template}/**/*.{html,md} docs --js estack.js",
-    "build:npm": "estack build src/{hooks,components}/*/*.js dist --js estack.js",
+    "build:npm": "estack build src/{hooks,components}/*/*.js esm --js estack.js",
     "prepare": "npm run build:npm"
   },
   "publishConfig": {
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-sucrase": "^3.1.0",
-    "estack": "^0.17.9"
+    "estack": "^0.17.12"
   },
   "estack": {
     "js": {
@@ -38,5 +38,8 @@
         }
       }
     }
+  },
+  "exports": {
+    "import": "./esm/"
   }
 }
