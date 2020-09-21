@@ -1,7 +1,7 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml --js estack.js",
