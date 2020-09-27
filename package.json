@@ -1,12 +1,14 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml --js estack.js",
     "build": "estack dev {src,template}/**/*.{html,md} docs --js estack.js",
-    "build:npm": "estack build src/{hooks,components}/*/*.js esm --js estack.js",
+    "build:npm": "estack build src/{hooks,components}/*/*.{js,ts};!**/*.test.{js,ts} ./ --js estack.js",
+    "test": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve --puppeteer",
+    "test:w": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve --puppeteer --watch",
     "prepare": "npm run build:npm"
   },
   "publishConfig": {
@@ -19,7 +21,11 @@
     "atomico": "^1.2.1"
   },
   "devDependencies": {
+    "@esm-bundle/chai": "^4.1.5",
     "@rollup/plugin-sucrase": "^3.1.0",
+    "@web/dev-server-esbuild": "^0.2.4",
+    "@web/test-runner": "^0.7.27",
+    "@web/test-runner-puppeteer": "^0.6.3",
     "estack": "^0.17.12"
   },
   "estack": {
@@ -40,6 +46,6 @@
     }
   },
   "exports": {
-    "import": "./esm/"
+    "import": "./"
   }
 }

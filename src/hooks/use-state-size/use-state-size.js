@@ -8,7 +8,7 @@ const CACHE_SIZES = {};
 /**
  * Subscribe to the reference to all size changes
  * @param {Ref} ref
- * @param {(entry:object)=>void} [proxyObserver] - Replace status update with a handler
+ * @param {(entry:any)=>void} [proxyObserver] - Replace status update with a handler
  * @return {ResizeObserverEntry}
  */
 export function useResizeObserver(ref, proxyObserver) {
@@ -58,6 +58,7 @@ export function useResizeObserver(ref, proxyObserver) {
 }
 /**
  * @param {Ref} ref
+ * @param {(entry:any)=>void} [proxyObserver]
  */
 export function useSize(ref, proxyObserver) {
   let getState = (resizeObserverEntry) => {
@@ -84,7 +85,7 @@ export function useSize(ref, proxyObserver) {
  * @param {*} value
  * @param {Ref} ref
  */
-export function useStateSize(value, ref) {
+export function useStateSize(ref, value) {
   let sizes = getSizes(value);
   let valueIsArray = sizes.w && sizes.h;
   let [state, setState] = useState(valueIsArray ? [] : null);
