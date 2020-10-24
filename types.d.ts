@@ -34,3 +34,20 @@ declare module "@atomico/kit/use-router" {
 declare module "@atomico/kit/use-delegate-focus" {
   export function useDelegateFocus(ref: Ref): void;
 }
+
+declare module "@atomico/kit/use-slots" {
+  export interface SlotElements {
+    [slot: string]: any[] | Element;
+  }
+
+  export interface Slots extends SlotElements {
+    children: any[];
+  }
+
+  export function useSlots<T = Slots>(): T;
+}
+
+declare module "@atomico/kit/use-render" {
+  type Callback = () => any;
+  export function useRender(callback: Callback, args?: any[]): void;
+}

@@ -1,15 +1,15 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml",
     "build": "estack dev {src,template}/**/*.{html,md} docs",
     "build:npm": "estack build src/hooks/**/use-*.{js,ts};!**/*.test.{js,ts} ./ --external atomico --sourcemap",
-    "test": "web-test-runner src/**/*.test.js --node-resolve --puppeteer",
+    "test": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve",
     "test:w": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve  --watch",
-    "prepare": "npm run build:npm"
+    "prepare": "npm run build:npm && npm run test"
   },
   "publishConfig": {
     "access": "public"
