@@ -1,73 +1,45 @@
-const mark = /<(\d+)>/;
-const markG = /<(\d+)>/g;
+import { cssToObject, CSSObjectFill } from "@uppercod/css-to-object";
 
-export interface Rule {
-  id: number;
-  children: Rule[];
-  toString(): string;
-  content?: string;
-  selector?: string;
-  before?: string;
-}
+const addRule = (
+  list: string[],
+  selector: string,
+  decl: string,
+  unshift?: boolean
+) => list[unshift ? "unshift" : "push"](selector + `{${decl}}`);
 
-export interface Rules {
-  [id: string]: Rule;
-}
+function stringify(
+  rules: CSSObjectFill,
+  parent: string = "",
+  rootRules: string[] = []
+): [string[], string] {
+  let decl = "";
+  for (const prop in rules) {
+    const content = rules[prop];
+    const selector = prop.trim();
+    if (typeof content == "object") {
+      if (selector[0] == "@") {
+        const [childRules, decl] = stringify(content, parent || selector);
+        addRule(childRules, parent, decl);
+        addRule(rootRules, selector, childRules.join(""));
+      } else {
+        const nextSelector =
+          (parent || "") +
+          (selector[0] == "&"
+            ? selector.slice(1)
+            : (parent ? " " : "") + selector);
 
-export function parse(css: string) {
-  const rules: Rules = {};
-  let item: RegExpMatchArray;
-  let index = 0;
+        const [, decl] = stringify(content, nextSelector, rootRules);
 
-  css = css
-    .replace(/\n/g, "")
-    .replace(/@import *("[^"]+"|'[^']+');/, "@import $1{}");
-
-  while ((item = css.match(/([^{};]+){([^{}]*)}/))) {
-    const [capture, selector, content] = item;
-    const id = index++;
-    const node: Rule = {
-      id,
-      children: [],
-      toString() {
-        const { selector, children, content } = this;
-        const delc = content
-          ? content
-          : children.map((node) => node + "").join("");
-        return selector + (delc ? `{${delc}}` : ";");
-      },
-    };
-    node.content = content
-      .replace(markG, (_, id: string) => {
-        let child: Rule = rules[id];
-        while (child) {
-          delete rules[child.id];
-          node.children.unshift(child);
-          if (child.before) {
-            child = rules[child.before];
-          } else {
-            break;
-          }
-        }
-        return "";
-      })
-      .trim();
-
-    node.selector = selector
-      .replace(markG, (_, id) => {
-        node.before = id;
-        return "";
-      })
-      .trim();
-
-    rules[id] = node;
-
-    css =
-      css.slice(0, item.index) +
-      "<" +
-      id +
-      ">" +
-      css.slice(item.index + capture.length);
+        addRule(rootRules, nextSelector, decl, true);
+      }
+    } else {
+      decl += selector + ":" + content + ";";
+    }
   }
+  return [rootRules, decl];
+}
+
+export function parse(css: string): string[] {
+  const [rules] = stringify(cssToObject(css));
   return rules;
 }

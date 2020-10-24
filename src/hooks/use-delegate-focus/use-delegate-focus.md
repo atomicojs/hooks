@@ -6,6 +6,20 @@ linkTitle:
 category: hooks
 ---
 
+## Install
+
+```bash
+npm install @atomico/kit
+```
+
+## Module
+
+```js
+import { useDelegateFocus } from "@atomico/kit/use-delegate-focus";
+```
+
+## Example
+
 ```jsx
 import { h, useRef } from "atomico";
 import { useDelegateFocus } from "@atomico/kit/use-delegate-focus";

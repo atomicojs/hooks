@@ -1,61 +1,68 @@
-import { useEffect } from "atomico";
-import { hash } from "./src/hash";
+import { useState, useEffect, Ref } from "atomico";
+import hash from "@uppercod/hash";
 import { parse } from "./src/parse";
 
-interface Scope {
-  [id: string]: string[];
-}
-
-interface Style extends HTMLStyleElement {
-  scopes: { [scope: string]: boolean };
-}
-
-interface Css {
-  (template: string[], ...vars: any[]): string;
-  ref?: {
-    current: Style;
+interface Log {
+  [css: string]: {
+    id: string;
+    rules: string[];
+    print?: boolean;
   };
 }
 
-const cache: Scope = {};
+interface State {
+  id: number;
+  ref: Ref<HTMLStyleElement>;
+  task: Log;
+}
 
-const createCss = (task: Scope): Css => (template, ...vars) => {
-  const css = template
-    .map((item, index) => item + (vars[index] || ""))
-    .join("");
-  const scope = "c" + hash(css);
+let id = 0;
 
-  if (!cache[scope]) {
-    cache[scope] = [];
-    const nodes = parse(css);
-    for (const id in nodes) {
-      const rule = nodes[id];
-      const atRule = /@/.test(rule.selector);
-      const block: string = `${rule}`.replace(/\&/g, "." + scope);
-      cache[scope].push(block);
+const cache: Log = {};
+
+const initialState = (): State => ({ id: id++, task: {}, ref: {} });
+
+const transform = (css) =>
+  (cache[css] = cache[css] || {
+    id: hash(css),
+    rules: parse(css),
+  });
+
+export function useCss() {
+  const [state] = useState<State>(initialState);
+
+  const css = (template: TemplateStringsArray | string, ...args: any[]) => {
+    const { task, id } = state;
+    const str =
+      typeof template == "string"
+        ? template
+        : template.map((part, index) => part + (args[index] || "")).join("");
+
+    if (!task[str]) {
+      task[str] = { ...transform(str) };
+      task[str].id = "c" + id + task[str].id;
     }
-  }
+    return task[str].id;
+  };
 
-  task[scope] = cache[scope];
-
-  return scope;
-};
-
-export function useCss(): Css {
-  const task: Scope = {};
-  const css = createCss(task);
   useEffect(() => {
-    const { current } = css.ref;
-    if (!current.scopes) current.scopes = {};
-    const { sheet, scopes } = current;
-    for (const scope in task) {
-      if (!scopes[scope]) {
-        scopes[scope] = true;
-        task[scope].forEach((rule) => {
-          sheet.insertRule(rule, sheet.rules.length);
+    const { ref, task } = state;
+    const { current } = ref;
+    for (const str in task) {
+      const { id, rules, print } = task[str];
+      if (!print) {
+        task[str].print = true;
+        rules.map((rule) => {
+          const cssText = rule
+            .replace(/:host/g, "." + id)
+            .replace(/host_/g, id);
+          current.sheet.insertRule(cssText, current.sheet.rules.length);
         });
       }
     }
   });
+
+  css.ref = state.ref;
+
   return css;
 }
