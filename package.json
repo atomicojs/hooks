@@ -5,7 +5,7 @@
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
     "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml",
-    "build": "estack dev {src,template}/**/*.{html,md} docs",
+    "build": "estack build {src,template}/**/*.{html,md} docs --href atomico-kit",
     "build:npm": "estack build src/hooks/**/use-*.{js,ts};!**/*.test.{js,ts} ./ --external atomico --sourcemap",
     "test": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve",
     "test:w": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve  --watch",
