@@ -1,8 +1,4 @@
 ---
 title: Introduction
-description: " is a kit of solutions created to enhance the use of Atomico"
+description: A toolkit like hooks for creating webcomponents
 ---
-
-# {{page.title}}
-
-> {{page.description}}
