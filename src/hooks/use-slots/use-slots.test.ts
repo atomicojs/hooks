@@ -12,11 +12,13 @@ it("useSlots", () => {
   const hooks = createHooks(null, div);
 
   function load() {
-    const slots = useSlots();
-    expect(slots).to.deep.equal({
+    const [Slots, childNodes] = useSlots();
+
+    expect(Slots).to.deep.equal({
       Header: header,
-      children: [h(header)],
     });
+
+    expect(childNodes).to.deep.equal([header]);
   }
 
   hooks.load(load);

@@ -37,14 +37,12 @@ declare module "@atomico/kit/use-delegate-focus" {
 
 declare module "@atomico/kit/use-slots" {
   export interface SlotElements {
-    [slot: string]: any[] | Element;
+    [slot: string]: Element;
   }
 
-  export interface Slots extends SlotElements {
-    children: any[];
-  }
+  export type SlotsChildren = ChildNode[];
 
-  export function useSlots<T = Slots>(): T;
+  export function useSlots(): [SlotElements, SlotsChildren, () => void];
 }
 
 declare module "@atomico/kit/use-render" {

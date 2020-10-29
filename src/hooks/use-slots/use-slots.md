@@ -30,19 +30,23 @@ This hook only captures the childrens of the webcomponent and groups them in the
 
 ```jsx
 function component() {
-  const { Header } = useSlots();
+  const [Slots, childNodes, update] = useSlots();
   return (
     <host>
-      <Header />
+      <Slots.Header />
     </host>
   );
 }
 ```
 
 ```jsx
+import { h } from "atomico";
 function component() {
-  const { children } = useSlots();
-  return <host>{children}</host>;
+  const [childNodes] = useSlots();
+  /**
+   * You will need to use h to transform the vnode into node
+   **/
+  return <host>{childNodes.map(h)}</host>;
 }
 ```
 

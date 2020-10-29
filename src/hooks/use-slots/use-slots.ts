@@ -1,27 +1,39 @@
-import { h, useHost } from "atomico";
+import { HostContext, h, useHost, useState } from "atomico";
 
 interface SlotElements {
-  [slot: string]: any[] | Element;
+  [slot: string]: Element;
 }
 
-interface Slots extends SlotElements {
-  children: any[];
-}
+type SlotsChildren = ChildNode[];
 
-export function useSlots<T = Slots>(): T {
-  const host = useHost();
-  if (!host.slots) {
-    const children: any[] = [];
-    const slots: Slots = { children };
-    const { current } = host;
-    current.childNodes.forEach((childNode) => {
-      if (childNode instanceof HTMLElement) {
-        const slot = childNode.getAttribute("slot");
-        if (slot) slots[slot] = childNode;
+const slotsId = Symbol();
+
+function loadSlots(
+  current: HTMLElement & HostContext
+): [SlotElements, SlotsChildren] {
+  const { symbolId } = current;
+  const currentSlots = {};
+  const currentChildren = [];
+
+  current.childNodes.forEach((node) => {
+    if (!node[symbolId]) {
+      if (node instanceof HTMLElement) {
+        const slot = node.getAttribute("slot");
+        currentSlots[slot] = node;
       }
-      children.push(h(childNode));
-    });
-    host.slots = slots;
-  }
-  return host.slots;
+      if (!node[symbolId] || node[slotsId]) {
+        node[slotsId] = true;
+        currentChildren.push(node);
+      }
+    }
+  });
+  return [currentSlots, currentChildren];
+}
+
+export function useSlots(): [SlotElements, SlotsChildren, () => void] {
+  const { current } = useHost();
+  const update = () => loadSlots(current);
+  const [slots, setSlots] = useState(update);
+
+  return [...slots, () => setSlots(update)];
 }
