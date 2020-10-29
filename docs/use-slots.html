@@ -98,16 +98,20 @@
 <doc-tabs auto-height tabs="Alias, Children">
 
 <pre><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> Header <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useSlots</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>Slots<span class="token punctuation">,</span> childNodes<span class="token punctuation">,</span> update<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useSlots</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Header</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Slots.Header</span></span> <span class="token punctuation">/></span></span><span class="token plain-text">
     </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<pre><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token punctuation">{</span> children <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useSlots</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
+<pre><code class="language-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"atomico"</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>childNodes<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useSlots</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/**
+   * You will need to use h to transform the vnode into node
+   **/</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>childNodes<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 </doc-tabs>
 
