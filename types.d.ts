@@ -49,3 +49,10 @@ declare module "@atomico/kit/use-render" {
   type Callback = () => any;
   export function useRender(callback: Callback, args?: any[]): void;
 }
+
+declare module "@atomico/kit/use-queue" {
+  export function useQueue<E = any, R = E>(
+    colector: (entries: E[]) => any,
+    reduce?: (param: R) => E
+  ): (param: R) => R | E;
+}
