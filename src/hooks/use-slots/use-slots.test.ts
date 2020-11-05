@@ -1,5 +1,4 @@
 import { expect } from "@esm-bundle/chai";
-import { h } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { useSlots } from "./use-slots";
 
