@@ -22,7 +22,7 @@ const cache: Log = {};
 
 const initialState = (): State => ({ id: id++, task: {}, ref: {} });
 
-const transform = (css) =>
+const transform = (css: string) =>
   (cache[css] = cache[css] || {
     id: hash(css),
     rules: parse(css),

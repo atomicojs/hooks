@@ -13,9 +13,9 @@ function loadSlots(
 ): [SlotElements, SlotsChildren] {
   const { symbolId } = current;
   const currentSlots = {};
-  const currentChildren = [];
+  const currentChildren: ChildNode[] = [];
 
-  current.childNodes.forEach((node) => {
+  current.childNodes.forEach((node: ChildNode) => {
     if (!node[symbolId]) {
       if (node instanceof HTMLElement) {
         const slot = node.getAttribute("slot");
