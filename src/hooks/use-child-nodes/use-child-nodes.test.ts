@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { useSlots } from "./use-slots";
+import { useChildNodes } from "./use-child-nodes";
 
 it("useSlots", () => {
   const div = document.createElement("div");
@@ -11,11 +11,7 @@ it("useSlots", () => {
   const hooks = createHooks(null, div);
 
   function load() {
-    const [Slots, childNodes] = useSlots();
-
-    expect(Slots).to.deep.equal({
-      Header: header,
-    });
+    const [childNodes] = useChildNodes();
 
     expect(childNodes).to.deep.equal([header]);
   }
