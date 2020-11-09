@@ -1,5 +1,7 @@
 import { Ref, useState, useRef, useEffect } from "atomico";
-
+/**
+ * @todo test
+ **/
 export function useSlot(ref: Ref<HTMLSlotElement>) {
   const [childNodes, setChildNodes] = useState<ChildNode[]>([]);
 
