@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>use-css</title>
-    <meta name="description" content="encapsulated css for lightDOM"/>
+    <title>use-listener</title>
+    <meta name="description" content="Hook to isolate the capture of DOM events from a custom hook."/>
     <link rel="stylesheet" href="/atomico-kit/assets/6ed-760-6ec.css">
     <script src="/atomico-kit/assets/668-6db-667.js" type="module"></script>
 </head>
@@ -30,7 +30,7 @@
                             </ul>
                         
                             <ul class="aside_list">
-                                <li class=" aside_listActive "><a href="/atomico-kit/use-css">use-css</a></li>
+                                <li class=" reset "><a href="/atomico-kit/use-css">use-css</a></li>
                             </ul>
                         
                             <ul class="aside_list">
@@ -42,7 +42,7 @@
                             </ul>
                         
                             <ul class="aside_list">
-                                <li class=" reset "><a href="/atomico-kit/use-listener">use-listener</a></li>
+                                <li class=" aside_listActive "><a href="/atomico-kit/use-listener">use-listener</a></li>
                             </ul>
                         
                             <ul class="aside_list">
@@ -91,7 +91,7 @@
                     <div class="body_contentPadding">
                         <header class="body_contentHeader">
                             <div>
-                                <a href="https://github.com/atomicojs/atomicojs.github.io/tree/master/src/hooks/use-css/use-css.md">
+                                <a href="https://github.com/atomicojs/atomicojs.github.io/tree/master/src/hooks/use-listener/use-listener.md">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 348.882 348.882">
                                         <path style="fill:var(--doc_iconColor)" d="M333.988 11.758l-.42-.383A43.363 43.363 0 00304.258 0a43.579 43.579 0 00-32.104 14.153L116.803 184.231a14.993 14.993 0 00-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 005.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"/>
                                         <path style="fill:var(--doc_iconColor)" d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"/>
@@ -102,47 +102,31 @@
                         </header>
                         <article class="article">
                             <header class="article_header">
-                                <h1 class="article_title">use-css</h1>
+                                <h1 class="article_title">use-listener</h1>
                                 
-                                <p class="article_description">encapsulated css for lightDOM</p>
+                                <p class="article_description">Hook to isolate the capture of DOM events from a custom hook.</p>
                                 
                             </header>
                             <div class="article_content">
-                                <p>This hook is designed to be used in lightDOM situations, it allows to hold an encapsulated CSS inside and outside the shadowDom, thanks to the style tag it generates a css scope inside the webcomponent.</p>
+                                <p>Designed to capture events through the use of references, the association of events is thanks to <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a>.</p>
 <h2 id="install">Install</h2>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> @atomico/kit</code></pre>
 <h2 id="module">Module</h2>
-<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useCss <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-css"</span><span class="token punctuation">;</span></code></pre>
-<h2 id="example">Example</h2>
-<pre><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">lightDOMComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> css <span class="token operator">=</span> <span class="token function">useCss</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span>
-      <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
-        width: 200px;
-        height: 200px;
-        &amp;:hover {
-          background: teal;
-        }
-        &amp;:focus {
-          background: red;
-        }
-      </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
-    <span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>css<span class="token punctuation">.</span>ref<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span class="token plain-text">
-    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useListener<span class="token punctuation">,</span> useListenerRef <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-listener"</span><span class="token punctuation">;</span></code></pre>
+<h3 id="uselistener">useListener</h3>
+<p>Associate the host reference by default, thanks to the useHost hook, example:</p>
+<pre><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">useCustomHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">useListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Webcomponent Click!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p><code>css.ref</code> it must point to as a reference to a style tag.</p>
-<h2 id="limitations">Limitations</h2>
-<ol>
-<li>The nested is not multiple, example <code>h1, h2, h2</code> will not be valid.</li>
-<li>to encapsulate the keyframe you must prepend the prefix <code>host_</code> to the name of the keyframe.</li>
-</ol>
-<!--
-<example-use-css></example-use-css>
-<script src="/atomico-kit/assets/e34-eac-e39.js" type="module"></script>
--->
+<h3 id="uselistenerref">useListenerRef</h3>
+<p>Allows you to use an external reference to the hook.</p>
+<pre><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">useCustomHook</span><span class="token punctuation">(</span><span class="token parameter">ref</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">useListenerRef</span><span class="token punctuation">(</span>ref<span class="token punctuation">,</span> <span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Ref Click!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
                             </div>
                         </article>

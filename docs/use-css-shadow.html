@@ -42,6 +42,10 @@
                             </ul>
                         
                             <ul class="aside_list">
+                                <li class=" reset "><a href="/atomico-kit/use-listener">use-listener</a></li>
+                            </ul>
+                        
+                            <ul class="aside_list">
                                 <li class=" reset "><a href="/atomico-kit/use-queue">use-queue</a></li>
                             </ul>
                         
@@ -55,6 +59,10 @@
                         
                             <ul class="aside_list">
                                 <li class=" reset "><a href="/atomico-kit/use-slot">use-slot</a></li>
+                            </ul>
+                        
+                            <ul class="aside_list">
+                                <li class=" reset "><a href="/atomico-kit/use-sync-event">use-sync-event</a></li>
                             </ul>
                         
                     
@@ -100,12 +108,13 @@
                                 
                             </header>
                             <div class="article_content">
-                                <h2 id="install">Install</h2>
+                                <p>Designed to safely use CSS, thanks to the use of template-string or a string declare the associated CSS, this hook will insert it for you, if the browser supports ʻadoptedStyleSheets` it will associate the css that way, otherwise it will create a tag style in the shadowDom to group the CSS.</p>
+<h2 id="install">Install</h2>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> @atomico/kit</code></pre>
 <h2 id="module">Module</h2>
 <pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> css <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-css-shadow"</span><span class="token punctuation">;</span></code></pre>
 <h2 id="usage">Usage</h2>
-<doc-tabs tabs="Template String, Function">
+<doc-tabs tabs="Template String, Function, CSSStyleSheet">
 
 <pre><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   css<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
@@ -125,6 +134,19 @@
       font-size: 50px;
     }
   </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">content...</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre><code class="language-tsx"><span class="token keyword">const</span> sheet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CSSStyleSheet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+sheet<span class="token punctuation">.</span><span class="token function">replaceSync</span><span class="token punctuation">(</span><span class="token string">"a { color: red; }"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">css</span><span class="token punctuation">(</span>sheet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">></span></span><span class="token plain-text">
       </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">content...</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">
