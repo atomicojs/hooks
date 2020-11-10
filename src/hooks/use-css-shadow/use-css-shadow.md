@@ -5,6 +5,8 @@ linkTitle: use-css-shadow
 category: hooks
 ---
 
+Designed to safely use CSS, thanks to the use of template-string or a string declare the associated CSS, this hook will insert it for you, if the browser supports ʻadoptedStyleSheets` it will associate the css that way, otherwise it will create a tag style in the shadowDom to group the CSS.
+
 ## Install
 
 ```bash
@@ -19,7 +21,7 @@ import { css } from "@atomico/kit/use-css-shadow";
 
 ## Usage
 
-<doc-tabs tabs="Template String, Function">
+<doc-tabs tabs="Template String, Function, CSSStyleSheet">
 
 ```tsx
 function component() {
@@ -43,6 +45,22 @@ function component() {
       font-size: 50px;
     }
   `);
+  return (
+    <host shadowDom>
+      <h1>content...</h1>
+    </host>
+  );
+}
+```
+
+```tsx
+const sheet = new CSSStyleSheet();
+
+sheet.replaceSync("a { color: red; }");
+
+function component() {
+  css(sheet);
+
   return (
     <host shadowDom>
       <h1>content...</h1>
