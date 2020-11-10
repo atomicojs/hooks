@@ -20,7 +20,7 @@ export function useQueue<E = any, R = E>(
       });
     }
     const value = reduce ? reduce(param) : param;
-    ref.pipe.push(value);
+    if (value != null) ref.pipe.push(value);
     return value;
   };
 }
