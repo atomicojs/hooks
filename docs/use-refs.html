@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>use-sync-event</title>
-    <meta name="description" content="Synchronize parent and child components thanks to the emission of mounted  and dismounted events"/>
+    <title>use-refs</title>
+    <meta name="description" content="create a list of nodes based on a reference"/>
     <link rel="stylesheet" href="/atomico-kit/assets/6ed-760-6ec.css">
     <script src="/atomico-kit/assets/668-6db-667.js" type="module"></script>
 </head>
@@ -54,7 +54,7 @@
                             </ul>
                         
                             <ul class="aside_list">
-                                <li class=" reset "><a href="/atomico-kit/use-refs">use-refs</a></li>
+                                <li class=" aside_listActive "><a href="/atomico-kit/use-refs">use-refs</a></li>
                             </ul>
                         
                             <ul class="aside_list">
@@ -70,7 +70,7 @@
                             </ul>
                         
                             <ul class="aside_list">
-                                <li class=" aside_listActive "><a href="/atomico-kit/use-sync-event">use-sync-event</a></li>
+                                <li class=" reset "><a href="/atomico-kit/use-sync-event">use-sync-event</a></li>
                             </ul>
                         
                     
@@ -99,7 +99,7 @@
                     <div class="body_contentPadding">
                         <header class="body_contentHeader">
                             <div>
-                                <a href="https://github.com/atomicojs/atomicojs.github.io/tree/master/src/hooks/use-sync-event/use-sync-event.md">
+                                <a href="https://github.com/atomicojs/atomicojs.github.io/tree/master/src/hooks/use-refs/use-refs.md">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" viewBox="0 0 348.882 348.882">
                                         <path style="fill:var(--doc_iconColor)" d="M333.988 11.758l-.42-.383A43.363 43.363 0 00304.258 0a43.579 43.579 0 00-32.104 14.153L116.803 184.231a14.993 14.993 0 00-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 005.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"/>
                                         <path style="fill:var(--doc_iconColor)" d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"/>
@@ -110,37 +110,33 @@
                         </header>
                         <article class="article">
                             <header class="article_header">
-                                <h1 class="article_title">use-sync-event</h1>
+                                <h1 class="article_title">use-refs</h1>
                                 
-                                <p class="article_description">Synchronize parent and child components thanks to the emission of mounted  and dismounted events</p>
+                                <p class="article_description">create a list of nodes based on a reference</p>
                                 
                             </header>
                             <div class="article_content">
-                                <p>Designed for component synchronization through the use of events and microtask.</p>
-<h2 id="install">Install</h2>
+                                <h2 id="install">Install</h2>
 <pre><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> @atomico/kit</code></pre>
 <h2 id="module">Module</h2>
-<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>
-  useSyncEventListener<span class="token punctuation">,</span>
-  useSyncEventDispatch<span class="token punctuation">,</span>
-<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-sync-event"</span><span class="token punctuation">;</span></code></pre>
-<h3 id="usesynceventlistener">useSyncEventListener</h3>
-<p>Listen to the event emitted by the hook ʻuseSyncEventDispatch` from a child, example:</p>
-<pre><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">useSyncEventListener</span><span class="token punctuation">(</span><span class="token string">"MySyncEvent"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">entries<span class="token operator">:</span> HTMLElement<span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>entries<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">child</span><span class="token punctuation">)</span> <span class="token operator">=></span> child<span class="token punctuation">.</span>isConnected<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> useRefs <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@atomico/kit/use-refs"</span><span class="token punctuation">;</span></code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> ref <span class="token operator">=</span> <span class="token function">useRefs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ref<span class="token punctuation">.</span>currents<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [p,p,p];</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span> <span class="token attr-name">shadowDom</span><span class="token punctuation">></span></span><span class="token plain-text">
-      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span> <span class="token punctuation">/></span></span><span class="token plain-text">
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">1</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">2</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">3</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token plain-text">
     </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<h3 id="usesynceventdispatch">useSyncEventDispatch</h3>
-<p>It allows to emit a synchronization event, the event is emitted in mounted and dismounted of the webcomponent.</p>
-<pre><code class="language-tsx"><span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">useSyncEventDispatch</span><span class="token punctuation">(</span><span class="token string">"MySyncEvent"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<p><strong>References are not cleaned between renders, so if you want to keep only the active list use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected">isConnected</a> property of the node</strong></p>
 
                             </div>
                         </article>
