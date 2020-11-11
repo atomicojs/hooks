@@ -6,4 +6,4 @@ export function useSyncEventListener(
   reduce?: Reduce<Event, HTMLElement>
 ): void;
 
-export function useSyncEventDispatch(type: string): void;
+export function useSyncEventDispatch(type: string): () => void;

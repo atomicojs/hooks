@@ -1,16 +1,16 @@
-import { useEffect, useEvent } from "atomico";
+import { useEffect, useEvent, useHost } from "atomico";
 import { useQueue } from "../use-queue/use-queue";
 import { useListener } from "../use-listener/use-listener";
 
 type Consumer = (entries: any[]) => void;
 
 interface SyncEvent extends Event {
-  target: HTMLElement;
+  detail: HTMLElement;
 }
 
 const reducerDefault = (event: SyncEvent): HTMLElement => {
   event.stopPropagation();
-  return event.target;
+  return event.detail;
 };
 
 export function useSyncEventListener(
@@ -23,10 +23,17 @@ export function useSyncEventListener(
 }
 
 export function useSyncEventDispatch(type: string) {
-  const dispatchSync = useEvent(type, { bubbles: true, composed: true });
+  const { current } = useHost();
+  const dispatchSync = useEvent(type, {
+    bubbles: true,
+    composed: true,
+    detail: current,
+  });
 
   useEffect(() => {
     dispatchSync();
     return dispatchSync;
   }, []);
+
+  return () => dispatchSync();
 }
