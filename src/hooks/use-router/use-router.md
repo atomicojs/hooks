@@ -44,6 +44,14 @@ useRoute("/contact", () => <h1>contact</h1>);
 
 ## Route expressions
 
+@todo
+
+### hash route
+
+```
+/folder/#{name}/[id]
+```
+
 ### fixed route
 
 ```
