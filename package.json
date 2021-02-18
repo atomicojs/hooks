@@ -13,7 +13,8 @@
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
-    "test": "web-test-runner src/**/*.test.js --node-resolve"
+    "test": "web-test-runner src/**/*.test.js --node-resolve",
+    "prepare": "npm run test"
   },
   "publishConfig": {
     "access": "public"
