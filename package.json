@@ -1,34 +1,30 @@
 {
   "name": "@atomico/kit",
   "description": "a repo to start with atomico",
-  "version": "1.8.1",
+  "version": "2.0.0",
+  "exports": {
+    "./use-child-nodes": "./src/use-child-nodes/use-child-nodes.js",
+    "./use-delegate-focus": "./src/use-delegate-focus/use-delegate-focus.js",
+    "./use-force-render": "./src/use-force-render/use-force-render.js",
+    "./use-listener": "./src/use-listener/use-listener.js",
+    "./use-render": "./src/use-render/use-render.js",
+    "./use-slot": "./src/use-slot/use-slot.js"
+  },
+  "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
   "scripts": {
-    "start": "estack dev {src,template}/**/*.{html,md};src/*.yaml",
-    "build": "estack build {src,template}/**/*.{html,md};src/*.yaml docs --href atomico-kit",
-    "build:npm": "estack build src/hooks/**/use-*.{js,ts};!**/*.test.{js,ts} ./ --external atomico --sourcemap",
-    "test": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve",
-    "test:w": "web-test-runner src/**/*.test.{tsx,js,ts} --node-resolve  --watch",
-    "prepare": "npm run build:npm && npm run test"
+    "test": "web-test-runner src/**/*.test.js --node-resolve"
   },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {},
-  "peerDependencies": {},
+  "dependencies": {
+    "@uppercod/exp-route": "^1.1.1",
+    "atomico": "^1.12.3"
+  },
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",
-    "@uppercod/css-to-object": "^1.0.1",
-    "@uppercod/exp-route": "^1.1.1",
-    "@uppercod/hash": "^1.0.0",
-    "@web/dev-server-esbuild": "^0.2.4",
-    "@web/test-runner": "^0.7.42",
-    "@web/test-runner-puppeteer": "^0.6.3",
-    "atomico": "^1.7.0",
-    "estack": "^0.19.2"
-  },
-  "exports": {
-    "import": "./"
-  },
-  "typings": "*.d.ts"
+    "@web/dev-server": "^0.1.8",
+    "@web/test-runner": "^0.12.15"
+  }
 }

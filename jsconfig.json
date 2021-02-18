@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "esnext",
+        "checkJs": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "atomico",
+    },
+}
