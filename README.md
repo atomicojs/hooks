@@ -1,3 +1,1 @@
-# @atomico/kit
-
-[Documentacion](https://atomicojs.github.io/atomico-kit/)
+# Documentation in [👉 atomico.gitbook.io/doc](https://atomico.gitbook.io/doc/v/es/atomico/kit)
