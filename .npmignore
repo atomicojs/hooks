@@ -1,3 +1,4 @@
+/.github
 /node_modules
 /jsconfig.json
 /src/**/*.test.js
