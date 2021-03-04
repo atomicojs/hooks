@@ -1,3 +1,1 @@
-type Callback = () => any;
-
-export function useRender(callback: Callback, args?: any[]): void;
+export { useRender } from "./src/use-render/use-render.js";

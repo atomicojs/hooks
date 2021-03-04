@@ -1,3 +1,1 @@
-import { Ref } from "atomico";
-
-export function useSlot(ref: Ref<HTMLSlotElement>): ChildNode[];
+export { useSlot } from "./src/use-slot/use-slot.js";
