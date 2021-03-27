@@ -1,1 +1,6 @@
-export { redirect, useRouter, useRoute } from "./src/use-router/use-router.js";
+export {
+  getPath,
+  redirect,
+  useRoute,
+  useRouter,
+} from "./src/use-router/use-router.js";

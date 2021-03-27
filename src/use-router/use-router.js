@@ -1,7 +1,7 @@
 import { useState, useEffect } from "atomico";
 import { getPath, listener } from "./src/history.js";
 import { matches } from "./src/matches.js";
-export { redirect } from "./src/history.js";
+export { redirect, getPath } from "./src/history.js";
 
 /**@type {InternalState} */
 const DefaultState = {};
