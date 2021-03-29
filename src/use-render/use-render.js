@@ -6,13 +6,13 @@ const host = h("host");
  * receives a tree that starts from the host tag
  * @param {any} vdom
  */
-const fillHost = (vdom) => {
+function fillHost(vdom) {
   if (vdom && typeof vdom == "object") {
     vdom = vdom.type == "host" ? vdom : h("host", null, vdom);
     return vdom;
   }
   return host;
-};
+}
 /**
  * Generate a second render, this render escapes the current
  * one and is useful for collaborative work between LightDOM and shadowDOM

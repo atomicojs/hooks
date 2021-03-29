@@ -49,7 +49,7 @@ const rule = (selector, content) => `${selector}{${content}}`;
  * @param {any} json
  * @returns {string[]}
  */
-const serialize = (json, rules = [], parent = "") => {
+function serialize(json, rules = [], parent = "") {
   const decl = [];
   for (const prop in json) {
     if (typeof json[prop] == "object") {
@@ -77,4 +77,4 @@ const serialize = (json, rules = [], parent = "") => {
   }
 
   return rules;
-};
+}
