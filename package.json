@@ -11,7 +11,8 @@
     "./use-router": "./src/use-router/use-router.js",
     "./use-slot": "./src/use-slot/use-slot.js",
     "./use-parent": "./src/use-parent/use-parent.js",
-    "./use-async-effect": "./src/use-async-effect/use-async-effect.js"
+    "./use-async-effect": "./src/use-async-effect/use-async-effect.js",
+    "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",
     "@web/dev-server": "^0.1.8",
-    "@web/test-runner": "^0.12.15"
+    "@web/test-runner": "^0.12.15",
+    "@web/test-runner-commands": "^0.4.1"
   }
 }
