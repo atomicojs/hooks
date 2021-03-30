@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "type": "module",
   "exports": {
     "./use-child-nodes": "./src/use-child-nodes/use-child-nodes.js",
