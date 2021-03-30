@@ -12,7 +12,8 @@
     "./use-slot": "./src/use-slot/use-slot.js",
     "./use-parent": "./src/use-parent/use-parent.js",
     "./use-async-effect": "./src/use-async-effect/use-async-effect.js",
-    "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js"
+    "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js",
+    "./use-resize-observer": "./src/use-resize-observer/use-resize-observer.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/atomico-kit/tree/master",
