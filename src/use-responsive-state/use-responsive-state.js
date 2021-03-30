@@ -1,6 +1,6 @@
 import { useEffect, useState } from "atomico";
 
-const regExp = /,\s*([^,]+)\s+(?:(\d+)(?:x(\d+)){0,1}(px|x|em|rem))/;
+const regExp = /,\s*([^,]+)\s+(?:(\d+)(?:x(\d+)){0,1}(px|em|rem))/;
 
 /**
  * @type {Object<string,[string,Match[]]>}
