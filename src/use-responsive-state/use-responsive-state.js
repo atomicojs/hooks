@@ -62,21 +62,26 @@ export function getSizes(sizes) {
 
     values.push({
       value,
-      width,
-      height,
+      width: Number(width),
+      height: Number(height || ""),
       type,
       query,
       match: matchMedia[query],
     });
   }
-  return [sizes.replace(/\s*,(.*)/, "").trim(), values];
+  return [
+    sizes.replace(/\s*,(.*)/, "").trim(),
+    values
+      .sort((a, b) => (a.height > b.height ? -1 : 1))
+      .sort((a, b) => (a.width > b.width ? -1 : a.width == b.height ? 0 : 1)),
+  ];
 }
 
 /**
  * @typedef {Object} Match
  * @property {string} value
- * @property {string} width
- * @property {string} height
+ * @property {number} width
+ * @property {number} height
  * @property {string} type
  * @property {string} query
  * @property {MediaQueryList} match
