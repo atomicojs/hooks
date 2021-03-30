@@ -10,12 +10,12 @@ it("getSize", () => {
 
   const cases = [
     {
-      value: "hd",
-      media: "(min-width: 1080px)",
-    },
-    {
       value: "fullhd",
       media: "(min-width: 1980px)",
+    },
+    {
+      value: "hd",
+      media: "(min-width: 1080px)",
     },
   ];
 
