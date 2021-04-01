@@ -66,11 +66,12 @@ export function useResizeObserverState(ref) {
 
 /***
  * @typedef {Object} Rect
- * @property {number} bottom
- * @property {number} height
- * @property {number} left
- * @property {number} top
  * @property {number} width
+ * @property {number} height
  * @property {number} x
  * @property {number} y
+ * @property {number} top
+ * @property {number} right
+ * @property {number} bottom
+ * @property {number} left
  */
