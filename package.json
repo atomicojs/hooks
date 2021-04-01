@@ -13,7 +13,8 @@
     "./use-parent": "./src/use-parent/use-parent.js",
     "./use-async-effect": "./src/use-async-effect/use-async-effect.js",
     "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js",
-    "./use-resize-observer": "./src/use-resize-observer/use-resize-observer.js"
+    "./use-resize-observer": "./src/use-resize-observer/use-resize-observer.js",
+    "./use-promise": "./src/use-promise/use-promise.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/hooks/tree/master",
