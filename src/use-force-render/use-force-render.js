@@ -3,6 +3,8 @@ import { useState } from "atomico";
  * Force rendering
  */
 export function useForceRender() {
-  const [count, setCount] = useState(0);
-  return () => void setCount(count + 1);
+  const [, setCount] = useState(0);
+  return () => {
+    setCount((count) => count + 1);
+  };
 }

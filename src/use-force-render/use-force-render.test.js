@@ -1,4 +1,5 @@
 import { expect } from "@esm-bundle/chai";
+import { useEffect } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { useForceRender } from "./use-force-render.js";
 
