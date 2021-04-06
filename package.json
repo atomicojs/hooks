@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "type": "module",
   "exports": {
     "./use-child-nodes": "./src/use-child-nodes/use-child-nodes.js",
@@ -14,7 +14,8 @@
     "./use-async-effect": "./src/use-async-effect/use-async-effect.js",
     "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js",
     "./use-resize-observer": "./src/use-resize-observer/use-resize-observer.js",
-    "./use-promise": "./src/use-promise/use-promise.js"
+    "./use-promise": "./src/use-promise/use-promise.js",
+    "./use-mutation-observer": "./src/use-mutation-observer/use-mutation-observer.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/hooks/tree/master",
