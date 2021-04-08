@@ -15,6 +15,8 @@ export function useRouter(routes) {
 
   useEffect(() => {
     if (!routes) return;
+    // Returns to the default state to recycle the routes object
+    setState(DefaultState);
 
     const reduce = () => {
       setState((current) => {
