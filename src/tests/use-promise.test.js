@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { usePromise } from "./use-promise.js";
+import { usePromise } from "../use-promise.js";
 
 it("usePromise run = true", (done) => {
   let cycle = 0;

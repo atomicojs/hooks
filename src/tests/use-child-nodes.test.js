@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { useChildNodes } from "./use-child-nodes.js";
+import { useChildNodes } from "../use-child-nodes.js";
 
 it("useSlots", () => {
   const div = document.createElement("div");

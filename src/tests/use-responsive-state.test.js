@@ -1,7 +1,7 @@
 import { expect } from "@esm-bundle/chai";
 import { setViewport } from "@web/test-runner-commands";
 import { createHooks } from "atomico/test-hooks";
-import { getSizes, useResponsiveState } from "./use-responsive-state.js";
+import { getSizes, useResponsiveState } from "../use-responsive-state.js";
 
 it("getSize", () => {
   const [sizeDefault, sizes] = getSizes("default, hd 1080px, fullhd 1980px");

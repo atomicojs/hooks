@@ -1,28 +1,29 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.3.1",
+  "version": "3.4.0",
   "type": "module",
   "exports": {
-    "./use-child-nodes": "./src/use-child-nodes/use-child-nodes.js",
-    "./use-css-light-dom": "./src/use-css-light-dom/use-css-light-dom.js",
-    "./use-force-render": "./src/use-force-render/use-force-render.js",
-    "./use-render": "./src/use-render/use-render.js",
-    "./use-router": "./src/use-router/use-router.js",
-    "./use-slot": "./src/use-slot/use-slot.js",
-    "./use-parent": "./src/use-parent/use-parent.js",
-    "./use-async-effect": "./src/use-async-effect/use-async-effect.js",
-    "./use-responsive-state": "./src/use-responsive-state/use-responsive-state.js",
-    "./use-resize-observer": "./src/use-resize-observer/use-resize-observer.js",
-    "./use-promise": "./src/use-promise/use-promise.js",
-    "./use-mutation-observer": "./src/use-mutation-observer/use-mutation-observer.js",
-    "./use-channel": "./src/use-channel/use-channel.js"
+    "./use-child-nodes": "./src/use-child-nodes.js",
+    "./use-css-light-dom": "./src/use-css-light-dom.js",
+    "./use-force-render": "./src/use-force-render.js",
+    "./use-render": "./src/use-render.js",
+    "./use-router": "./src/use-router.js",
+    "./use-slot": "./src/use-slot.js",
+    "./use-parent": "./src/use-parent.js",
+    "./use-async-effect": "./src/use-async-effect.js",
+    "./use-responsive-state": "./src/use-responsive-state.js",
+    "./use-resize-observer": "./src/use-resize-observer.js",
+    "./use-promise": "./src/use-promise.js",
+    "./use-mutation-observer": "./src/use-mutation-observer.js",
+    "./use-channel": "./src/use-channel.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
+    "types": "tsc",
     "test": "web-test-runner src/**/*.test.js --node-resolve",
-    "prepare": "npm run test"
+    "prepare": "npm run types && npm run test"
   },
   "publishConfig": {
     "access": "public"
@@ -36,6 +37,7 @@
     "@esm-bundle/chai": "^4.1.5",
     "@web/dev-server": "^0.1.8",
     "@web/test-runner": "^0.12.15",
-    "@web/test-runner-commands": "^0.4.1"
+    "@web/test-runner-commands": "^0.4.1",
+    "typescript": "^4.2.4"
   }
 }

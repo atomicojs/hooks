@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { useParent } from "./use-parent.js";
+import { useParent } from "../use-parent.js";
 
 it("useParent", () => {
   const host = document.createElement("div");

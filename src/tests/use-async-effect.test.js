@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { useAsyncEffect } from "./use-async-effect.js";
+import { useAsyncEffect } from "../use-async-effect.js";
 
 it("useAsyncEffect", (done) => {
   const hooks = createHooks();
