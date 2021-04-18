@@ -21,5 +21,6 @@ function fillHost(vdom) {
  */
 export function useRender(callback, args) {
   const host = useHost();
-  useMemo(() => render(fillHost(callback()), host.current), args);
+  host.id = host.id || Symbol();
+  useMemo(() => render(fillHost(callback()), host.current, host.id), args);
 }
