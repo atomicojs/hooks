@@ -1,6 +1,6 @@
 import { expect } from "@esm-bundle/chai";
 import { createHooks } from "atomico/test-hooks";
-import { useRoute } from "../use-router.js";
+import { useRoute, useRouteMatch } from "../use-router.js";
 
 it("useRouter", () => {
   const hooks = createHooks(() => {});
@@ -18,4 +18,16 @@ it("useRouter", () => {
   hooks.load(load);
 
   hooks.cleanEffects()();
+});
+
+it("useRouteMatch", () => {
+  const hooks = createHooks();
+
+  function load() {
+    const match = useRouteMatch();
+
+    expect(match("/[id]")).to.deep.equal({ id: "" });
+  }
+
+  hooks.load(load);
 });

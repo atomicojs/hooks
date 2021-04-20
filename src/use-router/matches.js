@@ -9,7 +9,8 @@ const cache = {};
  *
  * @param {string} path
  */
-const getMatch = (path) => (cache[path] = cache[path] || createMatch(path));
+export const getMatch = (path) =>
+  (cache[path] = cache[path] || createMatch(path));
 /**
  *
  * @param {Routes} routes
