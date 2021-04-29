@@ -1,11 +1,14 @@
 import { expect } from "@esm-bundle/chai";
 import { setViewport } from "@web/test-runner-commands";
 import { createHooks } from "atomico/test-hooks";
-import { getSizes, useResponsiveState } from "../use-responsive-state.js";
+import {
+  getSizes,
+  getQuery,
+  useResponsiveState,
+} from "../use-responsive-state.js";
 
 it("getSize", () => {
   const [sizeDefault, sizes] = getSizes("default, hd 1080px, fullhd 1980px");
-
   expect(sizeDefault).to.equal("default");
 
   const cases = [
@@ -19,10 +22,12 @@ it("getSize", () => {
     },
   ];
 
-  sizes.map(({ match, value }, index) => {
-    expect(value).to.equal(cases[index].value);
-    expect(match.media).to.equal(cases[index].media);
-  });
+  sizes
+    .map((match) => ({ ...match, query: getQuery(match) }))
+    .map(({ query, value }, index) => {
+      expect(value).to.equal(cases[index].value);
+      expect(query.media).to.equal(cases[index].media);
+    });
 });
 
 it("useResponsiveState <= 320px", async () => {
