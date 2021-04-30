@@ -16,7 +16,8 @@
     "./use-resize-observer": "./src/use-resize-observer.js",
     "./use-promise": "./src/use-promise.js",
     "./use-mutation-observer": "./src/use-mutation-observer.js",
-    "./use-channel": "./src/use-channel.js"
+    "./use-resize-state": "./src/use-resize-state.js",
+    "./use-debounce-state": "./src/use-debounce-state.js"
   },
   "typings": "*.d.ts",
   "editable": "https://github.com/atomicojs/hooks/tree/master",
