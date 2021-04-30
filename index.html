@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <my-wc></my-wc>
+    <script type="module">
+      import { c, useRef } from "atomico";
+      import html from "atomico/html";
+      import { useResizeState } from "./src/use-resize-state.js";
+
+      function component() {
+        const ref = useRef();
+        const state = useResizeState(ref, "default, large 320px");
+
+        return html`<host shadowDom>
+          <style></style>
+          <div ref=${ref}></div>
+        </host>`;
+      }
+
+      customElements.define("my-wc", c(component));
+    </script>
+  </body>
+</html>

@@ -22,6 +22,7 @@
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "types": "tsc",
+    "start": "vite",
     "test": "web-test-runner src/**/*.test.js --node-resolve",
     "prepare": "npm run types && npm run test"
   },
@@ -31,7 +32,8 @@
   "dependencies": {
     "@uppercod/css-to-object": "latest",
     "@uppercod/exp-route": "latest",
-    "atomico": "latest"
+    "atomico": "latest",
+    "vite": "^2.2.3"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",

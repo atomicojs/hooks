@@ -1,4 +1,4 @@
-import { useState, useHost } from "atomico";
+import { useState } from "atomico";
 import { useResizeObserver } from "./use-resize-observer.js";
 import { getSizes } from "./use-responsive-state.js";
 
@@ -7,8 +7,7 @@ import { getSizes } from "./use-responsive-state.js";
  * @param {import("atomico").Ref<Element>} ref
  * @return {string}
  */
-export function useResizeState(sizes) {
-  const ref = useHost();
+export function useResizeState(ref, sizes) {
   const [sizeDefault, matches] = getSizes(sizes);
   const [state, setState] = useState();
 
