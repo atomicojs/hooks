@@ -32,8 +32,7 @@
   "dependencies": {
     "@uppercod/css-to-object": "latest",
     "@uppercod/exp-route": "latest",
-    "atomico": "latest",
-    "vite": "^2.2.3"
+    "atomico": "latest"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",
