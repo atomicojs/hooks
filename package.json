@@ -22,7 +22,6 @@
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "types": "tsc",
-    "start": "vite",
     "test": "web-test-runner src/**/*.test.js --node-resolve",
     "prepare": "npm run types && npm run test"
   },
