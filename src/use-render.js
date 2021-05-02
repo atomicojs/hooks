@@ -1,4 +1,4 @@
-import { h, render, useHost, useMemo } from "atomico";
+import { h, render, useHost, useMemo, useEffect } from "atomico";
 
 const host = h("host");
 /**
@@ -23,4 +23,6 @@ export function useRender(callback, args) {
   const host = useHost();
   host.id = host.id || Symbol();
   useMemo(() => render(fillHost(callback()), host.current, host.id), args);
+  // Clean nodes in case of recycling
+  useEffect(() => () => render(fillHost(), host.current, host.id), []);
 }
