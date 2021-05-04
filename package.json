@@ -9,6 +9,7 @@
     "./use-child-nodes": "./src/use-child-nodes.js",
     "./use-css-light-dom": "./src/use-css-light-dom.js",
     "./use-debounce-state": "./src/use-debounce-state.js",
+    "./use-drag": "./src/use-drag.js",
     "./use-force-render": "./src/use-force-render.js",
     "./use-mutation-observer": "./src/use-mutation-observer.js",
     "./use-parent": "./src/use-parent.js",
