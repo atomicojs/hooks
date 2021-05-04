@@ -7,7 +7,7 @@ export { redirect, getPath } from "./use-router/history.js";
 const DefaultState = {};
 
 /**
- *
+ * allows you to listen to only one route
  * @param {import("./use-router/matches").Routes} routes
  */
 export function useRouter(routes) {
@@ -39,7 +39,7 @@ export function useRouter(routes) {
 }
 
 /**
- *
+ * allows you to listen to only one route
  * @param {string} path
  * @param {import("./use-router/matches").RouterCallback} callback
  */
@@ -66,6 +66,36 @@ export function useRouteMatch() {
   const [state, setState] = useState(getPath);
   useEffect(() => listener(() => setState(getPath)), []);
   return (path) => getMatch(path)(state);
+}
+
+/**
+ * Capture the click events of a reference to find
+ * if a node declares href to associate redirection
+ * @param {import("atomico").Ref<Element>} ref
+ * @param {(path:string)=>string} [proxy] allows to change the redirect url
+ */
+export function useRedirect(ref, proxy) {
+  useEffect(() => {
+    const { current } = ref;
+    const handler = (ev) => {
+      let { target } = ev;
+      do {
+        if (
+          target.hasAttribute &&
+          target.hasAttribute("href") &&
+          !target.hasAttribute("ignore")
+        ) {
+          ev.preventDefault();
+          const href = target.getAttribute("href");
+          if (!/^(http(s){0,1}:){0,1}\/\//.test(href))
+            redirect(proxy ? proxy(href) : href);
+          break;
+        }
+      } while ((target = target.parentNode));
+    };
+    current.addEventListener("click", handler);
+    return () => current.removeEventListener("click", handler);
+  }, [ref]);
 }
 
 /**
