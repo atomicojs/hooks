@@ -1,12 +1,13 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.7.1",
+  "version": "3.8.0",
   "type": "module",
   "exports": {
     "./use-async-effect": "./src/use-async-effect.js",
     "./use-channel": "./src/use-channel.js",
     "./use-child-nodes": "./src/use-child-nodes.js",
+    "./use-copy": "./src/use-copy.js",
     "./use-css-light-dom": "./src/use-css-light-dom.js",
     "./use-debounce-state": "./src/use-debounce-state.js",
     "./use-drag": "./src/use-drag.js",
