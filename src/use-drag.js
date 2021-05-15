@@ -67,7 +67,6 @@ export function useDrag(ref, callback) {
     };
 
     const onStart = (event) => {
-      console.log(event);
       target.capture = [];
 
       listeners = HandlerCapture.map((type) =>
