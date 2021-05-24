@@ -1,0 +1,8 @@
+{
+  "name": "@atomico/use-router",
+  "private": true,
+  "dependencies": {
+    "@uppercod/css-to-object": "latest",
+    "@uppercod/exp-route": "latest"
+  }
+}

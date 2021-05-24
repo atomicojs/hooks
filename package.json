@@ -1,47 +1,29 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.8.0",
+  "version": "3.9.0",
   "type": "module",
-  "exports": {
-    "./use-async-effect": "./src/use-async-effect.js",
-    "./use-channel": "./src/use-channel.js",
-    "./use-child-nodes": "./src/use-child-nodes.js",
-    "./use-copy": "./src/use-copy.js",
-    "./use-css-light-dom": "./src/use-css-light-dom.js",
-    "./use-debounce-state": "./src/use-debounce-state.js",
-    "./use-drag": "./src/use-drag.js",
-    "./use-force-render": "./src/use-force-render.js",
-    "./use-mutation-observer": "./src/use-mutation-observer.js",
-    "./use-parent": "./src/use-parent.js",
-    "./use-promise": "./src/use-promise.js",
-    "./use-render": "./src/use-render.js",
-    "./use-resize-observer": "./src/use-resize-observer.js",
-    "./use-resize-state": "./src/use-resize-state.js",
-    "./use-responsive-state": "./src/use-responsive-state.js",
-    "./use-router": "./src/use-router.js",
-    "./use-slot": "./src/use-slot.js"
-  },
-  "typings": "*.d.ts",
+  "workspaces": [
+    "src/**/*"
+  ],
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "types": "tsc",
-    "test": "web-test-runner src/**/*.test.js --node-resolve",
-    "prepare": "npm run types && npm run test"
+    "exports": "exports src/*/*.js --types --exports --workspace src/**/package.json",
+    "test": "wtr src/**/*.test.js --node-resolve",
+    "prepare": "npm run test && npm run exports"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@uppercod/css-to-object": "latest",
-    "@uppercod/exp-route": "latest",
     "atomico": "latest"
   },
   "devDependencies": {
-    "@esm-bundle/chai": "^4.1.5",
-    "@web/dev-server": "^0.1.8",
-    "@web/test-runner": "^0.12.15",
-    "@web/test-runner-commands": "^0.4.1",
-    "typescript": "^4.2.4"
+    "@atomico/exports": "^0.9.1",
+    "@esm-bundle/chai": "latest",
+    "@web/test-runner": "^0.13.4",
+    "@web/test-runner-commands": "^0.4.5",
+    "typescript": "latest"
   }
 }
