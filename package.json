@@ -9,7 +9,7 @@
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "types": "tsc",
-    "exports": "exports src/*/*.js --types --exports --workspace src/**/package.json",
+    "exports": "exports src/*/*.js --ignore-build --types --exports --workspace src/**/package.json",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepare": "npm run test && npm run exports"
   },
@@ -20,7 +20,7 @@
     "atomico": "latest"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.9.1",
+    "@atomico/exports": "^0.10.0",
     "@esm-bundle/chai": "latest",
     "@web/test-runner": "^0.13.4",
     "@web/test-runner-commands": "^0.4.5",
