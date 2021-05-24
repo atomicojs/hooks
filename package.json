@@ -9,7 +9,7 @@
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "types": "tsc",
-    "exports": "exports src/*/*.js --workspace src/**/package.json",
+    "exports": "exports src/*/*.js --types --exports --workspace src/**/package.json",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepare": "npm run test && npm run exports"
   },
