@@ -17,7 +17,8 @@
     "access": "public"
   },
   "dependencies": {
-    "atomico": "latest"
+    "@atomico/channel": "*",
+    "atomico": "*"
   },
   "devDependencies": {
     "@atomico/exports": "latest",
