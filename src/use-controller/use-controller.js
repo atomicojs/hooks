@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useUpdate } from 'atomico';
+import { useLayoutEffect, useState, useUpdate } from "atomico";
 
 const microtask = Promise.resolve();
 
@@ -27,7 +27,7 @@ class AtomicoControllerHost {
    * @type {Promise<boolean>}
    * @private
    */
-  _updateCompletePromise = new Promise(r => {
+  _updateCompletePromise = new Promise((r) => {
     this._resolveUpdate = r;
   });
 
@@ -39,7 +39,7 @@ class AtomicoControllerHost {
 
   constructor(force) {
     this.force = force;
-    this._updateCompletePromise = new Promise(res => {
+    this._updateCompletePromise = new Promise((res) => {
       this._resolveUpdate = res;
     });
     this._resolveUpdate(true);
@@ -58,7 +58,8 @@ class AtomicoControllerHost {
   removeController(controller) {
     // Note, if the indexOf is -1, the >>> will flip the sign which makes the
     // splice do nothing.
-    this._controllers && this._controllers.splice(this._controllers.indexOf(controller) >>> 0, 1);
+    this._controllers &&
+      this._controllers.splice(this._controllers.indexOf(controller) >>> 0, 1);
   }
 
   requestUpdate() {
@@ -76,15 +77,17 @@ class AtomicoControllerHost {
   }
 
   connected() {
-    this._controllers.forEach(c => c.hostConnected && c.hostConnected());
+    this._controllers.forEach((c) => c.hostConnected && c.hostConnected());
   }
 
   disconnected() {
-    this._controllers.forEach(c => c.hostDisconnected && c.hostDisconnected());
+    this._controllers.forEach(
+      (c) => c.hostDisconnected && c.hostDisconnected()
+    );
   }
 
   update() {
-    this._controllers.forEach(c => c.hostUpdate && c.hostUpdate());
+    this._controllers.forEach((c) => c.hostUpdate && c.hostUpdate());
   }
 
   updated() {
@@ -92,10 +95,10 @@ class AtomicoControllerHost {
     const resolve = this._resolveUpdate;
     // Create a new updateComplete Promise for the next update,
     // before resolving the current one.
-    this._updateCompletePromise = new Promise(res => {
+    this._updateCompletePromise = new Promise((res) => {
       this._resolveUpdate = res;
     });
-    this._controllers.forEach(c => c.hostUpdated && c.hostUpdated());
+    this._controllers.forEach((c) => c.hostUpdated && c.hostUpdated());
     resolve(this._updatePending);
   }
 }
@@ -110,8 +113,8 @@ class AtomicoControllerHost {
  * function is given a AtomicoControllerHost to pass to the controller. The
  * create function is only called once per component.
  *
- * @template {ReactiveController} C
- * @param {(host: ReactiveControllerHost) => C} createController
+ * @template {import("@lit/reactive-element").ReactiveController} C
+ * @param {(host: import("@lit/reactive-element").ReactiveControllerHost) => C} createController
  * @return {C}
  */
 export function useController(createController) {
