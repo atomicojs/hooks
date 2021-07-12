@@ -1,0 +1,7 @@
+{
+  "name": "@atomico/use-css-light-dom",
+  "private": true,
+  "dependencies": {
+    "@uppercod/css-to-object": "latest"
+  }
+}
