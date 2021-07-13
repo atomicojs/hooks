@@ -11,7 +11,7 @@
     "types": "tsc",
     "exports": "exports src/*/*.js --ignore-build --types --exports --workspace src/**",
     "test": "wtr src/**/*.test.js --node-resolve",
-    "prepublishOnly": "npm run test && npm run exports"
+    "prepare": "npm run test && npm run exports"
   },
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,7 @@
     "atomico": "latest"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.18.1",
+    "@atomico/exports": "^0.18.2",
     "@esm-bundle/chai": "latest",
     "@web/test-runner": "^0.13.4",
     "@web/test-runner-commands": "^0.4.5",
