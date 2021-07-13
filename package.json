@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.10.4",
+  "version": "3.10.5",
   "type": "module",
   "workspaces": [
     "src/**/*"
@@ -17,7 +17,11 @@
     "access": "public"
   },
   "dependencies": {
-    "atomico": "latest"
+    "atomico": "latest",
+    "@atomico/channel": "latest",
+    "@lit/reactive-element": "latest",
+    "@uppercod/css-to-object": "latest",
+    "@uppercod/exp-route": "latest"
   },
   "devDependencies": {
     "@atomico/exports": "^0.18.2",
