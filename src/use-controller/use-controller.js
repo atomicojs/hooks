@@ -42,7 +42,6 @@ class AtomicoControllerHost {
     this._updateCompletePromise = new Promise((res) => {
       this._resolveUpdate = res;
     });
-    this._resolveUpdate(true);
   }
 
   /**
@@ -76,21 +75,25 @@ class AtomicoControllerHost {
     return this._updateCompletePromise;
   }
 
-  connected() {
+  /** @internal */
+  _connected() {
     this._controllers.forEach((c) => c.hostConnected && c.hostConnected());
   }
 
-  disconnected() {
+  /** @internal */
+  _disconnected() {
     this._controllers.forEach(
       (c) => c.hostDisconnected && c.hostDisconnected()
     );
   }
 
-  update() {
+  /** @internal */
+  _update() {
     this._controllers.forEach((c) => c.hostUpdate && c.hostUpdate());
   }
 
-  updated() {
+  /** @internal */
+  _updated() {
     this._updatePending = false;
     const resolve = this._resolveUpdate;
     // Create a new updateComplete Promise for the next update,
@@ -123,20 +126,22 @@ export function useController(createController) {
     const host = new AtomicoControllerHost(force);
     const controller = createController(host);
     host.primaryController = controller;
-    host.connected();
+    host._connected();
     return host;
   });
 
+  host._updatePending = true;
+
   // We use useLayoutEffect because we need updated() called synchronously
   // after rendering.
-  useLayoutEffect(() => host.updated());
+  useLayoutEffect(() => host._updated());
 
   // Returning a cleanup function simulates hostDisconnected timing. An empty
   // deps array tells Atomico to only call this once: on mount with the cleanup
   // called on unmount.
-  useLayoutEffect(() => () => host.disconnected(), []);
+  useLayoutEffect(() => () => host._disconnected(), []);
 
-  host.requestUpdate();
+  host._update();
 
   return host.primaryController;
 }
