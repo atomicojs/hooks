@@ -1,0 +1,7 @@
+{
+  "name": "@atomico/use-controller",
+  "private": true,
+  "dependencies": {
+    "@lit/reactive-element": "latest"
+  }
+}
