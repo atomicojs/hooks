@@ -15,6 +15,7 @@ export function useSlot(ref) {
       setChildNodes(
         current.assignedNodes().filter((child) => !(child instanceof Mark))
       );
+    // First load
     handler();
     // listener and unlistener
     current.addEventListener(type, handler);
