@@ -10,9 +10,9 @@ export function useSlot(ref) {
     const { current } = ref;
     const type = "slotchange";
     // Take the existing children
-    setChildNodes(current.assignedElements());
+    setChildNodes(current.assignedNodes());
     // handler subscriber to the event
-    const handler = () => setChildNodes(current.assignedElements());
+    const handler = () => setChildNodes(current.assignedNodes());
     // listener and unlistener
     current.addEventListener(type, handler);
     return () => current.removeEventListener(type, handler);
