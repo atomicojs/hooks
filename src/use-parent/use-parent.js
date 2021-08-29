@@ -1,7 +1,8 @@
 import { useHost, useMemo } from "atomico";
 /**
+ * @template {HTMLElement} T - reference current
  * @param {string} matches
- * @returns {import("atomico").Ref<HTMLElement>}
+ * @returns {import("atomico").Ref<T>}
  */
 export function useParent(matches) {
   const host = useHost();
