@@ -1,6 +1,6 @@
-import { useState } from "atomico";
+import { useLayoutEffect, useState } from "atomico";
 import { useParent } from "../use-parent/use-parent.js";
-import { useListener } from "../use-listener/use-listener";
+import { useListener } from "../use-listener/use-listener.js";
 
 /**
  * Gets the top form
@@ -23,21 +23,27 @@ export function useFormListener(name, handler, options) {
 
 /**
  * It allows observing the status of a value associated with a form field
+ * @template {string|number|boolean|null} T
  * @param {string} name
- * @returns {string|number|boolean|null}
+ * @returns {T}
  */
-export function useFormValue(name) {
+export function useFormValue(name, defaultValue = null) {
   const ref = useForm();
 
   const checkField = () => {
     const target = ref.current[name];
-    return target ? target.value : null;
+    return target ? target.value : defaultValue;
   };
 
   const [value, setValue] = useState(checkField);
 
-  useFormListener("change", () => setValue(checkField));
-  useFormListener("reset", () => setValue(checkField));
+  const check = () => setValue(checkField);
+
+  useFormListener("input", check);
+  useFormListener("change", check);
+  useFormListener("reset", check);
+
+  useLayoutEffect(check, []);
 
   return value;
 }
