@@ -8,10 +8,9 @@
   ],
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
-    "types": "tsc",
     "exports": "exports 'src/*/*.js' --ignore-build --types --exports --workspace 'src/**'",
     "test": "wtr src/**/*.test.js --node-resolve",
-    "prepare": "npm run test && npm run exports"
+    "prepublishOnly": "npm run test && npm run exports"
   },
   "publishConfig": {
     "access": "public"
