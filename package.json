@@ -8,7 +8,7 @@
   ],
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
-    "exports": "exports 'src/*/*.js' --ignore-build --types --exports --workspace 'src/**'",
+    "exports": "exports \"src/*/*.js\" --ignore-build --types --exports --workspace \"src/**\"",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepublishOnly": "npm run test && npm run exports"
   },
