@@ -12,10 +12,10 @@ export function useForm() {
 
 /**
  * Allows you to listen to the native events of the form
- * @tempalte {import("./internal").KeyFormEvents} T
+ * @template {keyof FormEvents} T
  * @param {T} name
- * @param {import("./internal").Handler<T>} handler
- * * @param {boolean|AddEventListenerOptions} [options]
+ * @param {FormHandler<T>} handler
+ * @param {boolean|AddEventListenerOptions} [options]
  */
 export function useFormListener(name, handler, options) {
   useListener(useForm(), name, handler, options);
@@ -41,3 +41,27 @@ export function useFormValue(name) {
 
   return value;
 }
+
+/**
+ * @typedef SubmitEvent
+ * @property {FormData} formData
+ */
+
+/**
+ * @typedef FormDataEvent
+ * @property {HTMLElement} submitter
+ */
+
+/**
+ * @typedef FormEvents
+ * @property {FormDataEvent & Event} formdata
+ * @property {SubmitEvent & Event} submit
+ * @property {Event} reset
+ * @property {Event} change
+ * @property {Event} input
+ */
+
+/**
+ * @template {keyof FormEvents} T
+ * @typedef {(ev:FormEvents[T])=>any} FormHandler
+ */
