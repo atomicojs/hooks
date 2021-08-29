@@ -24,6 +24,6 @@
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.4",
     "@web/test-runner-commands": "^0.4.5",
-    "typescript": "latest"
+    "typescript": "^4.4.2"
   }
 }
