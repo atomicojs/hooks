@@ -1,10 +1,10 @@
-import { useRef, useState } from "atomico";
+import { useState } from "atomico";
 import { useParent } from "../use-parent/use-parent.js";
 import { useListener } from "../use-listener/use-listener";
 
 /**
  * Gets the top form
- * @returns {{current?:HTMLForm}}
+ * @returns {import("atomico").Ref<HTMLFormElement>}
  */
 export function useForm() {
   return useParent("form");
