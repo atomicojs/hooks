@@ -22,8 +22,8 @@
     "@atomico/exports": "^0.18.2",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@types/chai": "^4.2.21",
-    "@web/test-runner": "^0.13.4",
-    "@web/test-runner-commands": "^0.4.5",
+    "@web/test-runner": "^0.13.16",
+    "@web/test-runner-commands": "^0.5.12",
     "typescript": "^4.4.2"
   }
 }
