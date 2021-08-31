@@ -34,7 +34,14 @@ export function useFormValue(name, defaultValue = null) {
     const { current } = ref;
     if (!current) return defaultValue;
     const target = current[name];
-    return target ? target.value : defaultValue;
+    if (target) {
+      if (target.type == "checkbox" || target.type == "radio") {
+        return target.checked;
+      } else {
+        return target.value;
+      }
+    }
+    return defaultValue;
   };
 
   const [value, setValue] = useState(checkField);
