@@ -31,7 +31,9 @@ export function useFormValue(name, defaultValue = null) {
   const ref = useForm();
 
   const checkField = () => {
-    const target = ref.current[name];
+    const { current } = ref;
+    if (!current) return defaultValue;
+    const target = current[name];
     return target ? target.value : defaultValue;
   };
 
