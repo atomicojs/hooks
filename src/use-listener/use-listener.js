@@ -16,6 +16,6 @@ export function useListener(ref, name, handler, options) {
     if (!current) return;
     let handler = (event) => scope.current(event);
     current.addEventListener(name, handler, options);
-    return () => current.removeEventListener(current);
+    return () => current.removeEventListener(current, handler);
   }, [name, !!handler]);
 }

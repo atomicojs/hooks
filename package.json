@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.12.5",
+  "version": "3.13.0",
   "type": "module",
   "workspaces": [
     "src/**/*"
@@ -9,7 +9,7 @@
   "editable": "https://github.com/atomicojs/hooks/tree/master",
   "scripts": {
     "exports": "exports \"src/*/*.js\" --ignore-build --types --exports --workspace \"src/**\"",
-    "test": "wtr src/**/*.test.js --node-resolve",
+    "test": "wtr src/use-form/*.test.js --node-resolve",
     "prepublishOnly": "npm run test && npm run exports"
   },
   "publishConfig": {

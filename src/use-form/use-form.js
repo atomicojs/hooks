@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "atomico";
+import { useLayoutEffect, useState, useHost } from "atomico";
 import { useParent } from "../use-parent/use-parent.js";
 import { useListener } from "../use-listener/use-listener.js";
 
@@ -25,10 +25,13 @@ export function useFormListener(name, handler, options) {
  * It allows observing the status of a value associated with a form field
  * @template {string|number|boolean|null} T
  * @param {string} name
+ * @param {string} defaultValue
  * @returns {T}
  */
 export function useFormValue(name) {
   const ref = useForm();
+
+  const host = useHost();
 
   const checkField = () => {
     const { current } = ref;
@@ -40,12 +43,23 @@ export function useFormValue(name) {
 
   const check = () => setValue(checkField);
 
+  const setFormValue = (value) => {
+    if (!host.input) {
+      host.input = document.createElement("input");
+      host.input.type = "hidden";
+      host.input.name = name;
+      host.current.appendChild(host.input);
+    }
+    host.input.value = value;
+  };
+
+  // create a task to read from after the form clears its state
+  useFormListener("reset", () => Promise.resolve().then(check));
   useFormListener("change", check);
-  useFormListener("reset", check);
 
-  useLayoutEffect(check, []);
+  useLayoutEffect(check, [name]);
 
-  return value;
+  return [value, setFormValue];
 }
 
 /**
