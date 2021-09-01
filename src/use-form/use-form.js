@@ -44,6 +44,7 @@ export function useFormValue(name) {
   const check = () => setValue(checkField);
 
   const setFormValue = (value) => {
+    if (!ref.current) return;
     if (!host.input) {
       host.input = document.createElement("input");
       host.input.type = "hidden";
