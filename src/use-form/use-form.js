@@ -35,11 +35,7 @@ export function useFormValue(name, defaultValue = null) {
     if (!current) return defaultValue;
     const target = current[name];
     if (target) {
-      if (target.type == "checkbox" || target.type == "radio") {
-        return target.checked;
-      } else {
-        return target.value;
-      }
+      return new FormData(target).get(name);
     }
     return defaultValue;
   };
@@ -48,7 +44,6 @@ export function useFormValue(name, defaultValue = null) {
 
   const check = () => setValue(checkField);
 
-  useFormListener("input", check);
   useFormListener("change", check);
   useFormListener("reset", check);
 
