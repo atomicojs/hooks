@@ -27,17 +27,13 @@ export function useFormListener(name, handler, options) {
  * @param {string} name
  * @returns {T}
  */
-export function useFormValue(name, defaultValue = null) {
+export function useFormValue(name) {
   const ref = useForm();
 
   const checkField = () => {
     const { current } = ref;
-    if (!current) return defaultValue;
-    const target = current[name];
-    if (target) {
-      return new FormData(target).get(name);
-    }
-    return defaultValue;
+    if (!current) return;
+    return new FormData(current).get(name);
   };
 
   const [value, setValue] = useState(checkField);
