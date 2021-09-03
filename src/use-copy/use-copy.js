@@ -18,5 +18,6 @@ export function copy(content) {
  */
 export const useCopy = (ref) => () => {
   const { current } = ref;
+  if (!current) return;
   copy("value" in current ? current.value : current.textContent);
 };

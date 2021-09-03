@@ -28,6 +28,8 @@ export function useDrag(ref, callback) {
   useEffect(() => {
     const { current } = ref;
 
+    if (!current) return;
+
     const onCapture = (event) => {
       target.event = event;
       if (!target.capture || target.prevent) return;

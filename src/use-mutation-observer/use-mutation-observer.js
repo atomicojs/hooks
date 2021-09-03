@@ -13,6 +13,7 @@ import { useEffect, useState } from "atomico";
  */
 export function useMutationObserver(ref, observe, config) {
   useEffect(() => {
+    if (!ref.current) return;
     const observer = new MutationObserver(observe);
     observer.observe(ref.current, config);
     return () => observer.disconnect();

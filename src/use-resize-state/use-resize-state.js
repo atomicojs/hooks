@@ -12,6 +12,7 @@ export function useResizeState(ref, sizes) {
   const [state, setState] = useState();
 
   function getState() {
+    if (!ref.current) return;
     const { clientWidth, clientHeight } = ref.current;
     const match = matches.find(
       ({ width, height }) =>

@@ -2,12 +2,14 @@ import { useState, useEffect, Mark } from "atomico";
 /**
  *
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
+ * @returns {ChildNode[]}
  */
 export function useSlot(ref) {
   const [childNodes, setChildNodes] = useState([]);
 
   useEffect(() => {
     const { current } = ref;
+    if (!current) return;
     const type = "slotchange";
 
     // handler subscriber to the event

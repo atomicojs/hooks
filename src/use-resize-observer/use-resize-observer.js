@@ -26,6 +26,7 @@ export function useResizeObserver(ref, callback) {
   refCallback.current = callback;
   useEffect(() => {
     const { current } = ref;
+    if (!current) return;
     /**
      * @param {Rect} rect
      */
