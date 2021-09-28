@@ -23,7 +23,7 @@ it("useParent shadowRoot", () => {
   document.body.appendChild(host);
 
   hooks.load(() => {
-    const ref = useParent("body");
+    const ref = useParent("body", true);
     expect(ref.current).to.equal(document.body);
   });
 });
