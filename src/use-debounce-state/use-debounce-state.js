@@ -12,12 +12,12 @@ export function useDebounceState(delay, initialState) {
   return [
     state,
     (current) => {
-      state.current = current;
+      ref.current = current;
       if (!ref.prevent) {
         ref.prevent = true;
         setTimeout(() => {
-          state.prevent = false;
-          setState(state.current);
+          ref.prevent = false;
+          setState(ref.current);
         }, delay);
       }
     },
