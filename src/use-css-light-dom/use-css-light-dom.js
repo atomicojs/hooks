@@ -18,10 +18,7 @@ export function useCssLightDom() {
     styles
       .map((style, index) =>
         serialize(cssToObject(style)).map((rule) =>
-          rule.replace(
-            /:host/g,
-            host.current.localName + " ." + host.id + index
-          )
+          rule.replace(/:host/g, "." + host.id + index)
         )
       )
       .flat()
@@ -34,6 +31,7 @@ export function useCssLightDom() {
         ? template
         : template.reduce((part, index) => part + (args[index] || ""));
     const iid = styles.indexOf(content);
+
     return host.id + (~iid ? iid : styles.push(content) - 1);
   };
 }
