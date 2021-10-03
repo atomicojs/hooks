@@ -14,18 +14,15 @@ export function useClickCoordinates(ref, callback) {
 
     if (!current) return;
 
-    const handler = (event) => {
-      const coordinates = getCoordinates(event);
-      coordinates && value.current(coordinates);
-    };
-
-    const removeClick = addListener(current, "click", handler, true);
-    const removeTouchstart = addListener(current, "touchstart", handler, true);
-
-    return () => {
-      removeClick();
-      removeTouchstart();
-    };
+    return addListener(
+      current,
+      "click",
+      (event) => {
+        const coordinates = getCoordinates(event);
+        coordinates && value.current(coordinates);
+      },
+      true
+    );
   }, [ref]);
 }
 
@@ -34,35 +31,19 @@ export function useClickCoordinates(ref, callback) {
  * @param {PointerEvent & TouchEvent} event
  * @returns {Coordinates|null}
  */
-export function getCoordinates(event) {
-  if (!event.isTrusted) return;
+function getCoordinates({ pageX: x, pageY: y, currentTarget, isTrusted }) {
+  if (!isTrusted) return;
 
-  let x, y, offset;
+  const rect = currentTarget.getBoundingClientRect();
 
-  if (/touch/.test(event.type)) {
-    let [touch] = event.touches;
-    if (!touch) return;
-
-    x = touch.clientX;
-    y = touch.clientY;
-
-    const rect = event.currentTarget.getBoundingClientRect();
-
-    offset = {
-      x: touch.pageX - rect.left,
-      y: touch.pageY - rect.top,
-    };
-  } else {
-    x = event.clientX;
-    y = event.clientY;
-
-    offset = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
-  }
-
-  return { offset, x, y };
+  return {
+    x,
+    y,
+    offset: {
+      x: x - rect.left,
+      y: y - rect.top,
+    },
+  };
 }
 
 /**
