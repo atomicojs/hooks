@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "atomico";
+import { useEffect, useState } from "atomico";
+import { useCurrentValue } from "../use-current-value/use-current-value";
 
 const listenersId = Symbol();
 
@@ -22,20 +23,22 @@ const resizeObserver = new ResizeObserver((entries) =>
  * @param {(rect:Rect)=>void} callback
  */
 export function useResizeObserver(ref, callback) {
-  const refCallback = useRef();
-  refCallback.current = callback;
+  const value = useCurrentValue(callback);
   useEffect(() => {
     const { current } = ref;
     if (!current) return;
     /**
      * @param {Rect} rect
      */
-    const listener = (rect) => refCallback.current(rect);
+    const listener = (rect) => value.current(rect);
+
     if (!current[listenersId]) {
       resizeObserver.observe(current);
       current[listenersId] = new Set();
     }
+
     current[listenersId].add(listener);
+
     return () => {
       current[listenersId].delete(listener);
       if (!current[listenersId].size) {

@@ -1,4 +1,5 @@
 import { useState, useEffect, Mark } from "atomico";
+import { addListener } from "../use-listener/use-listener";
 /**
  *
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
@@ -20,8 +21,7 @@ export function useSlot(ref) {
     // First load
     handler();
     // listener and unlistener
-    current.addEventListener(type, handler);
-    return () => current.removeEventListener(type, handler);
+    return addListener(current, "slotchange", handler);
   }, []);
 
   return childNodes;

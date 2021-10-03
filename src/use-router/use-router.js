@@ -2,6 +2,7 @@ import { useState, useEffect } from "atomico";
 import { getPath, listener } from "./src/history.js";
 import { matches, getMatch } from "./src/matches.js";
 export { redirect, getPath } from "./src/history.js";
+import { addListener } from "../use-listener/use-listener";
 
 /**@type {InternalState} */
 const DefaultState = {};
@@ -93,8 +94,7 @@ export function useRedirect(ref, proxy) {
         }
       } while ((target = target.parentNode));
     };
-    current.addEventListener("click", handler);
-    return () => current.removeEventListener("click", handler);
+    return addListener(current, "click", handler);
   }, [ref]);
 }
 

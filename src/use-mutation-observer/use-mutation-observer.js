@@ -1,4 +1,5 @@
 import { useEffect, useState } from "atomico";
+import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
  * create an instance of MutationObserver for the given reference
  * @example
@@ -12,9 +13,12 @@ import { useEffect, useState } from "atomico";
  * @param {MutationObserverInit} [config]
  */
 export function useMutationObserver(ref, observe, config) {
+  const value = useCurrentValue(observe);
   useEffect(() => {
     if (!ref.current) return;
-    const observer = new MutationObserver(observe);
+    const observer = new MutationObserver((mutations) =>
+      value.current(mutations)
+    );
     observer.observe(ref.current, config);
     return () => observer.disconnect();
   }, [ref]);

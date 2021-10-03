@@ -1,5 +1,5 @@
-import { useLayoutEffect, useRef } from "atomico";
-
+import { useLayoutEffect } from "atomico";
+import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
  * @template {string} T
  * @template {import("atomico").Ref<HTMLElement>} R
@@ -9,13 +9,23 @@ import { useLayoutEffect, useRef } from "atomico";
  * @param {boolean|AddEventListenerOptions} [options]
  */
 export function useListener(ref, name, handler, options) {
-  const scope = useRef();
-  scope.current = handler;
+  const value = useCurrentValue(handler);
   useLayoutEffect(() => {
     const { current } = ref;
     if (!current) return;
-    let handler = (event) => scope.current(event);
-    current.addEventListener(name, handler, options);
-    return () => current.removeEventListener(current, handler);
+    return addListener(current, name, (event) => value.current(event), options);
   }, [name, !!handler]);
+}
+
+/**
+ * Associate an event and return a callback to remove said event
+ * @param {Element} current
+ * @param {string} name
+ * @param {(ev:any)=>any} handler
+ * @param {boolean|AddEventListenerOptions} options
+ * @returns {()=>void}
+ */
+export function addListener(current, name, handler, options) {
+  current.addEventListener(name, handler, options);
+  return () => current.removeEventListener(name, handler);
 }
