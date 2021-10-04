@@ -19,7 +19,7 @@
     "atomico": "latest"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.18.2",
+    "@atomico/exports": "^0.20.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.16",

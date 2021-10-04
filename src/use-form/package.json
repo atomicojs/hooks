@@ -1,6 +1,4 @@
 {
-  "name": "@atomico/use-form",
-  "private": true,
   "dependencies": {
     "element-internals-polyfill": "latest"
   }

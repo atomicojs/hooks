@@ -1,6 +1,4 @@
 {
-  "name": "@atomico/use-router",
-  "private": true,
   "dependencies": {
     "@uppercod/exp-route": "latest"
   }

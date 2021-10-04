@@ -1,7 +1,13 @@
 {
-  "name": "@atomico/use-controller",
-  "private": true,
-  "dependencies": {
+  "devDependencies": {
     "@lit/reactive-element": "latest"
+  },
+  "peerDependencies": {
+    "@lit/reactive-element": "latest"
+  },
+  "peerDependenciesMeta": {
+    "@lit/reactive-element": {
+      "optional": true
+    }
   }
 }

@@ -1,6 +1,4 @@
 {
-  "name": "@atomico/use-channel",
-  "private": true,
   "dependencies": {
     "@atomico/channel": "latest"
   }
