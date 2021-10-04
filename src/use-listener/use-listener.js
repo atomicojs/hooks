@@ -12,7 +12,7 @@ export function useListener(ref, name, handler, options) {
   const value = useCurrentValue(handler);
   useLayoutEffect(() => {
     const { current } = ref;
-    if (!current) return;
+    if (!current || !handler) return;
     return addListener(current, name, (event) => value.current(event), options);
   }, [name, !!handler]);
 }
