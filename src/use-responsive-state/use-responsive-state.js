@@ -1,6 +1,13 @@
 import { useEffect, useState } from "atomico";
+import { escape } from "./src/string-escape";
 
-export const matchSize = /,\s*([^,]+)\s+(?:(\d+)(?:x(\d+)){0,1}(px|em|rem))/;
+export const escapes = [
+  /(\([^()]+\))/,
+  /(\{[^{}]+\})/,
+  /(\[[^[]]+\])/,
+  /('[^']+'])/,
+  /("[^"]+"])/,
+];
 
 /**
  * @type {Object<string,[string,Match[]]>}
@@ -59,26 +66,36 @@ export const getQuery = ({ width, height, type }) => {
  */
 export function getSizes(sizes) {
   if (cacheSize[sizes]) return cacheSize[sizes];
-  const values = [];
-  let test;
-  while ((test = sizes.match(matchSize))) {
-    const [replace, value, width, height, type] = test;
 
-    sizes = sizes.replace(replace, "");
+  let value = escapes.reduce((sizes, regExp) => escape(sizes, regExp), sizes);
 
-    values.push({
-      value,
-      width: Number(width),
-      height: Number(height || ""),
-      type,
-    });
-  }
-  return [
-    sizes.replace(/\s*,(.*)/, "").trim(),
-    values
+  const [defaultValue, query] = value.explode(",").reduce(
+    ([defaultValue, query], part) => {
+      const test = part
+        .trim()
+        .match(/(.+)\s+([\d\.]+)(?:x([\d\.]+)){0,1}(px|rem|em)$/);
+      if (test) {
+        const [, value, width, height, type] = test;
+        return [
+          defaultValue,
+          [
+            ...query,
+            { value, width: Number(width), height: Number(height || ""), type },
+          ],
+        ];
+      } else {
+        return [part, query];
+      }
+    },
+    ["", []]
+  );
+
+  return (cacheSize[sizes] = [
+    defaultValue,
+    query
       .sort((a, b) => (a.height > b.height ? -1 : 1))
       .sort((a, b) => (a.width > b.width ? -1 : a.width == b.height ? 0 : 1)),
-  ];
+  ]);
 }
 
 /**
