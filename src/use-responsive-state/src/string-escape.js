@@ -1,3 +1,5 @@
+let id = Date.now() + Math.random();
+
 export class StringEscape extends String {
   constructor(string, hash) {
     super(string);
