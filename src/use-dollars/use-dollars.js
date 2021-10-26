@@ -17,10 +17,7 @@ export function useDollars(ref, config = { prefix: "$" }) {
       .filter((el) => el instanceof Element)
       .map((element) => {
         const state = new AtomicoState(host.current);
-        const isTemplate = element instanceof HTMLTemplateElement;
-        new Host(isTemplate ? element.content : element, state, config);
-        if (isTemplate)
-          element.parentElement.insertBefore(element.content, element);
+        new Host(element, state, config);
         return state;
       });
   }, childNodes);
