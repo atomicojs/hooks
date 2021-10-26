@@ -25,7 +25,7 @@ export function useDollars(ref, config = { prefix: "$" }) {
       });
   }, childNodes);
 
-  ref?.states?.forEach((state) => state.update());
+  useEffect(() => ref?.states?.forEach((state) => state.update()));
 
   return ref;
 }
