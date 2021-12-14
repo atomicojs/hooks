@@ -1,4 +1,3 @@
-//@ts-check
 import { useLayoutEffect } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
