@@ -2,7 +2,7 @@ import { useHost, useState, useLayoutEffect } from "atomico";
 import { Channel } from "@atomico/channel";
 /**
  * @template T
- * @param {string} channel
+ * @param {string} namespace
  * @returns {[T,(T)=>T]}
  */
 

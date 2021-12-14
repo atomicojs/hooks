@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "element-internals-polyfill": "latest"
+    "element-internals-polyfill": "^0.1.49"
   }
 }

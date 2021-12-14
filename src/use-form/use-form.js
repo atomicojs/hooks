@@ -23,10 +23,8 @@ export function useFormListener(name, handler, options) {
 
 /**
  * It allows observing the status of a value associated with a form field
- * @template {string|number|boolean|null} T
  * @param {string} name
- * @param {string} defaultValue
- * @returns {T}
+ * @returns {[FormDataEntryValue,(value:any)=>void]}
  */
 export function useFormValue(name) {
   const ref = useForm();
@@ -41,7 +39,9 @@ export function useFormValue(name) {
 
   const [value, setValue] = useState(checkField);
 
-  const check = () => setValue(checkField);
+  const check = () => {
+    setValue(checkField);
+  };
 
   const setFormValue = (value) => {
     if (!ref.current) return;

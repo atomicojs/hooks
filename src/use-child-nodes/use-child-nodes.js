@@ -3,7 +3,7 @@ import { useHost, useState } from "atomico";
 const selectedChild = Symbol();
 /**
  * Search for the ChildNode outside the render
- * @param {HTMLElement & import("atomico").HostContext} current
+ * @param {HTMLElement & import("atomico/types/dom").AtomBase} current
  * @returns {ChildNode[]}
  */
 function loadChildNodes(current) {

@@ -3,7 +3,7 @@ import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
  * @template {string} T
  * @template {import("atomico").Ref<HTMLElement>} R
- * @param {R} ref
+ * @param {import("atomico").Ref<Element>} ref
  * @param {T} name
  * @param {(ev:any)=>any} handler
  * @param {boolean|AddEventListenerOptions} [options]
@@ -19,9 +19,10 @@ export function useListener(ref, name, handler, options) {
 
 /**
  * Associate an event and return a callback to remove said event
+ * @template {string} T
  * @param {Element} current
- * @param {string} name
- * @param {(ev:any)=>any} handler
+ * @param {T} name
+ * @param {(ev:import("atomico").DOMEvent<"click">)=>any} handler
  * @param {boolean|AddEventListenerOptions} options
  * @returns {()=>void}
  */
