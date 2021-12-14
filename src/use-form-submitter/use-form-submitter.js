@@ -36,6 +36,9 @@ export function useFormSubmitter(ref, options) {
        */
       const { action, request, submit, formData } = {
         ...defaultOptions,
+        ...{
+          action: current.getAttribute("action"),
+        },
         ...currentOptions.current,
       };
 
