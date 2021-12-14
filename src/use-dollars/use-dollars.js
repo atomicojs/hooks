@@ -15,11 +15,17 @@ export function useDollars(ref, config = { prefix: "$" }) {
   useEffect(() => {
     ref.states = childNodes
       .filter((el) => el instanceof Element)
-      .map((element) => {
-        const state = new AtomicoState(host.current);
-        new Host(element, state, config);
-        return state;
-      });
+      .map(
+        /**
+         *
+         * @param {Element} element
+         */
+        (element) => {
+          const state = new AtomicoState(host.current);
+          new Host(element, state, config);
+          return state;
+        }
+      );
   }, childNodes);
 
   useEffect(() => ref?.states?.forEach((state) => state.update()));
