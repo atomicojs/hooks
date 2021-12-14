@@ -39,4 +39,6 @@ export function usePromise(promise, run, args = []) {
   return state;
 }
 
-/**@typedef {[any,""|"pending"|"fulfilled"|"rejected"]} State */
+/**@typedef {""|"pending"|"fulfilled"|"rejected"} PromiseStatus */
+
+/**@typedef {[any,PromiseStatus]} State */
