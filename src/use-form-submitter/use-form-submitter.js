@@ -1,7 +1,7 @@
 import { useState, useEffect } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 import { addListener } from "../use-listener/use-listener";
-
+export { formDataToObject } from "./src/utils";
 /**
  * @type {Options}
  */
@@ -30,27 +30,26 @@ export function useFormSubmitter(ref, options) {
     const { current } = ref;
     let prevent;
     return addListener(current, "submit", async (event) => {
+      event.preventDefault();
       /**
        * @type {Options}
        */
       const { action, request, submit, formData } = {
         ...defaultOptions,
-        ...currentOptions.options,
+        ...currentOptions.current,
       };
-
-      event.preventDefault();
 
       if (prevent) return;
       prevent = true;
 
       setState([null, "pending"]);
       const data = await formData(current);
-
       try {
         setState([await submit(data, { action, request }), "fulfilled"]);
       } catch (error) {
         setState([error, "rejected"]);
       }
+      prevent = false;
     });
   }, []);
 
