@@ -1,11 +1,10 @@
+//@ts-check
 import { useLayoutEffect } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
- * @template {Element} E
- * @tempalte {string} T
- * @param {import("atomico").Ref<E>} ref
- * @param {T} name
- * @param {(ev:import("atomico").DOMEvent<"click",E>)=>any} handler
+ * @param {import("atomico").Ref} ref
+ * @param {string} name
+ * @param {EventListener} handler
  * @param {boolean|AddEventListenerOptions} [options]
  */
 export function useListener(ref, name, handler, options) {
@@ -19,11 +18,10 @@ export function useListener(ref, name, handler, options) {
 
 /**
  * Associate an event and return a callback to remove said event
- * @template {string} T
- * @param {Element} current
- * @param {T} name
- * @param {(ev:import("atomico").DOMEvent<"click">)=>any} handler
- * @param {boolean|AddEventListenerOptions} options
+ * @param {ChildNode} current
+ * @param {string} name
+ * @param {EventListener} handler
+ * @param {boolean|AddEventListenerOptions} [options]
  * @returns {()=>void}
  */
 export function addListener(current, name, handler, options) {
