@@ -1,11 +1,11 @@
 import { useLayoutEffect } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
- * @template {string} T
- * @template {import("atomico").Ref<HTMLElement>} R
- * @param {import("atomico").Ref<Element>} ref
+ * @template {Element} E
+ * @tempalte {string} T
+ * @param {import("atomico").Ref<E>} ref
  * @param {T} name
- * @param {(ev:any)=>any} handler
+ * @param {(ev:import("atomico").DOMEvent<"click",E>)=>any} handler
  * @param {boolean|AddEventListenerOptions} [options]
  */
 export function useListener(ref, name, handler, options) {
