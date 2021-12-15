@@ -1,7 +1,7 @@
 import { useState, useEffect } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 import { addListener } from "../use-listener/use-listener";
-export { formDataToObject } from "./src/utils";
+export { formToObject } from "@uppercod/form-tools";
 /**
  * @type {Options}
  */
@@ -17,7 +17,7 @@ const defaultOptions = {
  * Capture the submit of a form for submission
  * @param {import("atomico").Ref<HTMLFormElement>} ref
  * @param {Options} options
- * @returns {[any, import("../use-promise/use-promise").PromiseStatus]}
+ * @returns {[any, import("../use-promise/use-promise").PromiseStatus,()=>void]}
  */
 export function useFormSubmitter(ref, options) {
   const currentOptions = useCurrentValue(options);
@@ -26,37 +26,41 @@ export function useFormSubmitter(ref, options) {
    */
   const [state, setState] = useState([null, ""]);
 
+  async function submit(event) {
+    if (event instanceof Event) {
+      event.preventDefault();
+    }
+    const { current } = ref;
+    /**
+     * @type {Options}
+     */
+    const { action, request, submit, formData } = {
+      ...defaultOptions,
+      ...{
+        action: current.getAttribute("action"),
+      },
+      ...currentOptions.current,
+    };
+
+    if (currentOptions.prevent) return;
+    currentOptions.prevent = true;
+
+    setState([null, "pending"]);
+    const data = await formData(current);
+    try {
+      setState([await submit(data, { action, request }), "fulfilled"]);
+    } catch (error) {
+      setState([error, "rejected"]);
+    }
+    currentOptions.prevent = false;
+  }
+
   useEffect(() => {
     const { current } = ref;
-    let prevent;
-    return addListener(current, "submit", async (event) => {
-      event.preventDefault();
-      /**
-       * @type {Options}
-       */
-      const { action, request, submit, formData } = {
-        ...defaultOptions,
-        ...{
-          action: current.getAttribute("action"),
-        },
-        ...currentOptions.current,
-      };
-
-      if (prevent) return;
-      prevent = true;
-
-      setState([null, "pending"]);
-      const data = await formData(current);
-      try {
-        setState([await submit(data, { action, request }), "fulfilled"]);
-      } catch (error) {
-        setState([error, "rejected"]);
-      }
-      prevent = false;
-    });
+    return addListener(current, "submit", submit);
   }, []);
 
-  return state;
+  return [...state, submit];
 }
 
 /**
