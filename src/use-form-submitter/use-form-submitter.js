@@ -1,4 +1,5 @@
 import { useState, useEffect } from "atomico";
+import { Status } from "../use-promise/use-promise";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 import { addListener } from "../use-listener/use-listener";
 export { formToObject } from "@uppercod/form-tools";
@@ -24,20 +25,22 @@ export function useFormSubmitter(ref, options) {
   /**
    * @type {import("atomico").UseState<[any, import("../use-promise/use-promise").PromiseStatus]>}
    */
-  const [state, setState] = useState([null, ""]);
+  const [state, setState] = useState([null, Status.quiet]);
 
   async function submit(event) {
     if (event instanceof Event) {
       event.preventDefault();
     }
     const { current } = ref;
+
+    const target = event?.target || current;
     /**
      * @type {Options}
      */
     const { action, request, submit, formData } = {
       ...defaultOptions,
       ...{
-        action: current.getAttribute("action"),
+        action: target.getAttribute("action"),
       },
       ...currentOptions.current,
     };
@@ -45,12 +48,12 @@ export function useFormSubmitter(ref, options) {
     if (currentOptions.prevent) return;
     currentOptions.prevent = true;
 
-    setState([null, "pending"]);
-    const data = await formData(current);
+    setState([null, Status.pending]);
+    const data = await formData(target);
     try {
-      setState([await submit(data, { action, request }), "fulfilled"]);
+      setState([await submit(data, { action, request }), Status.fulfilled]);
     } catch (error) {
-      setState([error, "rejected"]);
+      setState([error, Status.rejected]);
     }
     currentOptions.prevent = false;
   }

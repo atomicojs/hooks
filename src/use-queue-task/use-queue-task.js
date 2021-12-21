@@ -1,4 +1,5 @@
 import { useState, useMemo } from "atomico";
+import { Status } from "../use-promise/use-promise";
 
 /**
  * Create a queue of tasks associated by an ID, either of the type object or string,
@@ -18,7 +19,7 @@ export function useQueueTask(map, id) {
     const currentId = id || value;
     /**
      *
-     * @param {import("../use-promise/use-promise").PromiseStatus} status
+     * @param {TaskStatus} status
      * @param {any} result
      * @returns
      */
@@ -36,11 +37,15 @@ export function useQueueTask(map, id) {
       );
 
     const task = map(value)
-      .then((result) => set("fulfilled", result))
-      .catch((result) => set("rejected", result));
+      .then((result) => set(Status.fulfilled, result))
+      .catch((result) => set(Status.rejected, result));
 
     /**@type {Task<any>} */
-    const current = { task, timeStamp: performance.now(), status: "pending" };
+    const current = {
+      task,
+      timeStamp: performance.now(),
+      status: Status.pending,
+    };
     queue.set(currentId, current);
 
     return current;
@@ -52,8 +57,12 @@ export function useQueueTask(map, id) {
 /**
  * @template R
  * @typedef {Object} Task
- * @property {import("../use-promise/use-promise").PromiseStatus} status
+ * @property {TaskStatus} status
  * @property {R} [result]
  * @property {number} timeStamp
  * @property {Promise<R>} task
+ */
+
+/**
+ * @typedef {Exclude<import("../use-promise/use-promise").PromiseStatus,"">} TaskStatus
  */

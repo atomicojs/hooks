@@ -1,6 +1,15 @@
 import { useEffect, useState } from "atomico";
 
 /**
+ * @type {Status}
+ */
+export const Status = {
+  quiet: "",
+  pending: "pending",
+  fulfilled: "fulfilled",
+  rejected: "rejected",
+};
+/**
  * @return {State}
  */
 const initalState = () => [, ""];
@@ -20,17 +29,17 @@ export function usePromise(promise, run, args = []) {
 
   useEffect(() => {
     if (run) {
-      setState(([result]) => [result, "pending"]);
+      setState(([result]) => [result, Status.pending]);
       promise().then(
-        (result) => run && setState(() => [result, "fulfilled"]),
-        (result) => run && setState(() => [result, "rejected"])
+        (result) => run && setState(() => [result, Status.fulfilled]),
+        (result) => run && setState(() => [result, Status.rejected])
       );
     }
     return () => {
       setState((state) => {
         const [result, status] = state;
         // clear the state since the promise has been canceled
-        return status == "pending" ? [result, ""] : state;
+        return status == Status.pending ? [result, Status.quiet] : state;
       });
       run = null;
     };
@@ -39,6 +48,14 @@ export function usePromise(promise, run, args = []) {
   return state;
 }
 
-/**@typedef {""|"pending"|"fulfilled"|"rejected"} PromiseStatus */
+/**@typedef {Status["quiet"]|Status["pending"]|Status["fulfilled"]|Status["rejected"]} PromiseStatus */
 
 /**@typedef {[any,PromiseStatus]} State */
+
+/**
+ * @typedef {Object} Status
+ * @property {""} quiet
+ * @property {"pending"} pending
+ * @property {"fulfilled"} fulfilled
+ * @property {"rejected"} rejected
+ */
