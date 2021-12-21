@@ -68,8 +68,8 @@ export function useFormSubmitter(ref, options) {
 
 /**
  * @typedef {Object} Options
- * @property {string} action
- * @property {RequestInit} request
+ * @property {string} [action]
+ * @property {RequestInit} [request]
  * @property {(target: HTMLFormElement)=>any} [formData]
- * @property {(data: any, options: {action: string, request: RequestInit})=>any} submit
+ * @property {(data: any, options: {action: string, request: RequestInit})=>any} [submit]
  */
