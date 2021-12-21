@@ -11,8 +11,6 @@ export function useSlot(ref) {
   useEffect(() => {
     const { current } = ref;
     if (!current) return;
-    const type = "slotchange";
-
     // handler subscriber to the event
     const handler = () =>
       setChildNodes(

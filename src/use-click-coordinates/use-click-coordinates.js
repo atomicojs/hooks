@@ -23,7 +23,7 @@ export function useClickCoordinates(ref, callback) {
       },
       true
     );
-  }, [ref]);
+  }, [ref, ref?.current]);
 }
 
 /**

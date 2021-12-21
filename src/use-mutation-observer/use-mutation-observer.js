@@ -21,7 +21,7 @@ export function useMutationObserver(ref, observe, config) {
     );
     observer.observe(ref.current, config);
     return () => observer.disconnect();
-  }, [ref]);
+  }, [ref, ref?.current]);
 }
 
 /**

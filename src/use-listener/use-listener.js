@@ -12,7 +12,7 @@ export function useListener(ref, name, handler, options) {
     const { current } = ref;
     if (!current || !handler) return;
     return addListener(current, name, (event) => value.current(event), options);
-  }, [name, !!handler]);
+  }, [ref, ref?.current, name, !!handler]);
 }
 
 /**

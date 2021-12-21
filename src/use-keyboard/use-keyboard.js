@@ -36,5 +36,5 @@ export function useKeyboard(ref, keys, callback) {
       removeKeydown();
       removeKeyup();
     };
-  }, keys);
+  }, [ref, ref?.current, ...keys]);
 }

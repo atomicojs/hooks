@@ -46,7 +46,7 @@ export function useResizeObserver(ref, callback) {
         resizeObserver.unobserve(current);
       }
     };
-  }, [ref]);
+  }, [ref, ref?.current]);
 }
 
 /**
