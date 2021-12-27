@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "atomico";
+import { useLayoutEffect, useState } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value";
 /**
  * @param {import("atomico").Ref} ref
@@ -26,4 +26,18 @@ export function useListener(ref, name, handler, options) {
 export function addListener(current, name, handler, options) {
   current.addEventListener(name, handler, options);
   return () => current.removeEventListener(name, handler);
+}
+
+/**
+ * @template T
+ * @param {import("atomico").Ref} ref
+ * @param {string} name
+ * @param {(event:Event)=>T} handler
+ * @param {boolean|AddEventListenerOptions} [options]
+ * @return {T|null}
+ */
+export function useListenerState(ref, name, handler, options) {
+  const [state, setState] = useState();
+  useListener(ref, name, (event) => setState(handler(event)), options);
+  return state;
 }

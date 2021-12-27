@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.23.0",
+  "version": "3.24.0",
   "type": "module",
   "workspaces": [
     "src/**/*"
@@ -15,8 +15,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "atomico": "^1.34.0"
+  "peerDependencies": {
+    "atomico": "^1.35.0"
   },
   "devDependencies": {
     "@atomico/exports": "^0.20.0",
@@ -24,6 +24,7 @@
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.16",
     "@web/test-runner-commands": "^0.5.12",
+    "atomico": "^1.35.0",
     "typescript": "^4.4.2"
   }
 }
