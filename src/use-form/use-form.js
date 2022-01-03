@@ -1,6 +1,7 @@
-import { useLayoutEffect, useState, useHost } from "atomico";
+import { h, useState } from "atomico";
 import { useParent } from "../use-parent/use-parent.js";
 import { useListener } from "../use-listener/use-listener.js";
+import { useRender } from "../use-render/use-render";
 
 /**
  * Gets the top form
@@ -22,45 +23,16 @@ export function useFormListener(name, handler, options) {
 }
 
 /**
- * It allows observing the status of a value associated with a form field
+ * Render an input hidden to pass values to forms
  * @param {string} name
- * @returns {[FormDataEntryValue,(value:any)=>void]}
+ * @param {string} value
  */
-export function useFormValue(name) {
-  const ref = useForm();
-
-  const host = useHost();
-
-  const checkField = () => {
-    const { current } = ref;
-    if (!current) return;
-    return new FormData(current).get(name);
-  };
-
-  const [value, setValue] = useState(checkField);
-
-  const check = () => {
-    setValue(checkField);
-  };
-
-  const setFormValue = (value) => {
-    if (!ref.current) return;
-    if (!host.input) {
-      host.input = document.createElement("input");
-      host.input.type = "hidden";
-      host.input.name = name;
-      host.current.appendChild(host.input);
-    }
-    host.input.value = value;
-  };
-
-  // create a task to read from after the form clears its state
-  useFormListener("reset", () => Promise.resolve().then(check));
-  useFormListener("change", check);
-
-  useLayoutEffect(check, [name]);
-
-  return [value, setFormValue];
+export function useFormValue(name, value) {
+  const [slot] = useState(Math.random);
+  useRender(
+    () => h("input", { type: "hidden", value, name, slot }),
+    [name, value]
+  );
 }
 
 /**
