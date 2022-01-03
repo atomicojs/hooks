@@ -14,7 +14,7 @@ export function useFormInputRadio(input) {
   const [checked, setChecked] = useProp("checked");
   const [name] = useProp("name");
 
-  useFormListener("change", (currentTarget, target) => {
+  useFormListener("change", ({ currentTarget, target }) => {
     if (!(target instanceof HTMLInputElement)) return;
     const group = currentTarget.elements[name];
     if (group instanceof RadioNodeList) {
