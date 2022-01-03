@@ -27,7 +27,7 @@ export function useFormListener(name, handler, options) {
  * @param {string} name
  * @param {string} value
  */
-export function useFormValue(name, value) {
+export function useFormInputHidden(name, value) {
   const [slot] = useState(Math.random);
   useRender(
     () => h("input", { type: "hidden", value, name, slot }),

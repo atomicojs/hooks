@@ -1,11 +1,11 @@
 import { c, html } from "atomico";
 import { fixture } from "atomico/test-dom";
 import { expect } from "@esm-bundle/chai";
-import { useFormValue } from "./use-form.js";
+import { useFormInputHidden } from "./use-form.js";
 
-it("useFormValue", async () => {
+it("useFormInputHidden", async () => {
   const Component = c(() => {
-    useFormValue("field", "20");
+    useFormInputHidden("field", "20");
     return html`<host shadowDom></host>`;
   });
 
