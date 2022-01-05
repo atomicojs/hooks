@@ -11,13 +11,15 @@ it("useRouter", () => {
     if (render++) {
       expect(result[0]).to.deep.equal({ any: "" });
     } else {
-      expect(result).to.undefined;
+      expect(result).to.deep.equal([]);
     }
   }
 
   hooks.load(load);
 
   hooks.cleanEffects()();
+
+  hooks.load(load);
 });
 
 it("useRouteMatch", () => {
