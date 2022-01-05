@@ -44,7 +44,7 @@ export function useRouter(routes) {
  * @template T
  * allows you to listen to only one route
  * @param {string} path
- * @param {import("./src/matches").RouterCallback} callback
+ * @param {import("./src/matches").RouterCallback} [callback]
  * @returns {[T, StringPath, ParamsPath, SearchPath]}
  */
 export function useRoute(path, callback = (param) => param) {
