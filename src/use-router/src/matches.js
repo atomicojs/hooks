@@ -23,7 +23,7 @@ export const matches = (routes, currentPath) => {
     const match = getMatch(route);
     const params = match(path);
     if (params) {
-      return [routes[route](params, search), path, params, search];
+      return [routes[route](params, search), route, params, search];
     }
   }
 };
