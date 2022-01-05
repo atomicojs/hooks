@@ -3,19 +3,20 @@ import { getPath, listener } from "./src/history.js";
 import { matches, getMatch } from "./src/matches.js";
 export { redirect, getPath } from "./src/history.js";
 import { addListener } from "../use-listener/use-listener";
+import { useCurrentValue } from "../use-current-value/use-current-value";
 
-/**@type {InternalState} */
 const DefaultState = {};
-
 /**
+ * @template T
  * allows you to listen to only one route
  * @param {import("./src/matches").Routes} routes
+ * @returns {[T, StringPath, ParamsPath, SearchPath]}
  */
 export function useRouter(routes) {
   const [state, setState] = useState(DefaultState);
+  const refRoutes = useCurrentValue(routes);
 
   useEffect(() => {
-    if (!routes) return;
     // Returns to the default state to recycle the routes object
     setState(DefaultState);
 
@@ -25,7 +26,7 @@ export function useRouter(routes) {
         return current.path != path
           ? {
               path,
-              result: matches(routes, path),
+              result: matches(refRoutes.current, path),
             }
           : current;
       });
@@ -34,15 +35,17 @@ export function useRouter(routes) {
     reduce();
 
     return listener(reduce);
-  }, [routes]);
+  }, Object.keys(routes));
 
-  return state.result;
+  return state.result || [];
 }
 
 /**
+ * @template T
  * allows you to listen to only one route
  * @param {string} path
  * @param {import("./src/matches").RouterCallback} callback
+ * @returns {[T, StringPath, ParamsPath, SearchPath]}
  */
 export function useRoute(path, callback = (param) => param) {
   const routes = { [path]: callback };
@@ -102,4 +105,16 @@ export function useRedirect(ref, proxy) {
  * @typedef {Object} InternalState
  * @property {string} [path]
  * @property {any} [result]
+ */
+
+/**
+ * @typedef {string} StringPath
+ */
+
+/**
+ * @typedef {Object<string,string>} ParamsPath
+ */
+
+/**
+ * @typedef {Object<string,string>} SearchPath
  */
