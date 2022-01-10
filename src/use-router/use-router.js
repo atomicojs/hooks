@@ -1,5 +1,5 @@
 import { useState, useEffect } from "atomico";
-import { getPath, listener } from "./src/history.js";
+import { getPath, listener, redirect } from "./src/history.js";
 import { matches, getMatch } from "./src/matches.js";
 export { redirect, getPath } from "./src/history.js";
 import { addListener } from "../use-listener/use-listener";
@@ -82,8 +82,9 @@ export function useRedirect(ref, proxy) {
   useEffect(() => {
     const { current } = ref;
     const handler = (ev) => {
-      let { target } = ev;
-      do {
+      const path = ev.composedPath();
+      let target;
+      while ((target = path.shift())) {
         if (
           target.hasAttribute &&
           target.hasAttribute("href") &&
@@ -95,9 +96,9 @@ export function useRedirect(ref, proxy) {
             redirect(proxy ? proxy(href) : href);
           break;
         }
-      } while ((target = target.parentNode));
+      }
     };
-    return addListener(current, "click", handler);
+    return addListener(current, "click", handler, { capture: true });
   }, [ref]);
 }
 
