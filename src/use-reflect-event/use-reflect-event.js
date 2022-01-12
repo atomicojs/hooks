@@ -1,4 +1,4 @@
-import { useListener } from "../use-listener/use-listener";
+import { useListener } from "../use-listener/use-listener.js";
 
 /**
  * reflects an event to another node

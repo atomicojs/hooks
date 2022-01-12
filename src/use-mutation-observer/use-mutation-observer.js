@@ -1,5 +1,5 @@
 import { useEffect, useState } from "atomico";
-import { useCurrentValue } from "../use-current-value/use-current-value";
+import { useCurrentValue } from "../use-current-value/use-current-value.js";
 /**
  * create an instance of MutationObserver for the given reference
  * @example

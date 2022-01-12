@@ -2,8 +2,8 @@ import { useState, useEffect } from "atomico";
 import { getPath, listener, redirect } from "./src/history.js";
 import { matches, getMatch } from "./src/matches.js";
 export { redirect, getPath } from "./src/history.js";
-import { addListener } from "../use-listener/use-listener";
-import { useCurrentValue } from "../use-current-value/use-current-value";
+import { addListener } from "../use-listener/use-listener.js";
+import { useCurrentValue } from "../use-current-value/use-current-value.js";
 
 const DefaultState = {};
 /**

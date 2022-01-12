@@ -1,5 +1,5 @@
 import { useState, useMemo } from "atomico";
-import { Status } from "../use-promise/use-promise";
+import { Status } from "../use-promise/use-promise.js";
 
 /**
  * Create a queue of tasks associated by an ID, either of the type object or string,

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "atomico";
-import { useCurrentValue } from "../use-current-value/use-current-value";
+import { useCurrentValue } from "../use-current-value/use-current-value.js";
 /**
  * @param {import("atomico").Ref} ref
  * @param {string} name

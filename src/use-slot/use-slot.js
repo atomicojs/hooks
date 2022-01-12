@@ -1,5 +1,5 @@
 import { useState, useEffect, Mark } from "atomico";
-import { addListener } from "../use-listener/use-listener";
+import { addListener } from "../use-listener/use-listener.js";
 /**
  *
  * @param {import("atomico").Ref<HTMLSlotElement>} ref

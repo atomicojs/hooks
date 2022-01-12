@@ -1,5 +1,5 @@
 import { useEffect, useState } from "atomico";
-import { escape } from "./src/string-escape";
+import { escape } from "./src/string-escape.js";
 
 export const escapes = [
   /(\([^()]+\))/,

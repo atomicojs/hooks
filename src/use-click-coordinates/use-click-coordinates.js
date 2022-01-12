@@ -1,6 +1,6 @@
 import { useEffect } from "atomico";
-import { useCurrentValue } from "../use-current-value/use-current-value";
-import { addListener } from "../use-listener/use-listener";
+import { useCurrentValue } from "../use-current-value/use-current-value.js";
+import { addListener } from "../use-listener/use-listener.js";
 /**
  *
  * @param {import("atomico").Ref} ref
