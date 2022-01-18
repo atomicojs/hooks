@@ -1,9 +1,9 @@
 import { useState, useEffect, Mark } from "atomico";
 import { addListener } from "../use-listener/use-listener.js";
 /**
- *
+ * @template {ChildNode} T
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
- * @returns {ChildNode[]}
+ * @returns {T[]}
  */
 export function useSlot(ref) {
   const [childNodes, setChildNodes] = useState([]);
