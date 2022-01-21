@@ -8,7 +8,7 @@ import { useListener } from "../use-listener/use-listener.js";
 export const reflectEvent = (current, event) => {
   if (!event.composedPath().includes(current)) {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     current.dispatchEvent(new event.constructor(event.type, event));
   }
 };
@@ -27,8 +27,9 @@ export function useReflectEvent(refFrom, refTo, type) {
      */
     (event) => {
       const { current } = refTo;
-      if (!current) return;
+      if (!current || event.target == current) return;
       reflectEvent(current, event);
-    }
+    },
+    { capture: true }
   );
 }
