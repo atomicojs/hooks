@@ -1,4 +1,4 @@
-import { useEffect, useHost } from "atomico";
+import { useHost, useLayoutEffect } from "atomico";
 import { getRules } from "./src/utils.js";
 
 let ID = 0;
@@ -8,22 +8,23 @@ let ID = 0;
  */
 export function useCssLightDom(sheet) {
   const host = useHost();
-  const { current } = host;
 
-  if (!host.style) {
-    host.style = document.createElement("style");
+  useLayoutEffect(() => {
+    const style = document.createElement("style");
+
+    const { current } = host;
+
     if (!current.dataset.sheet) {
       current.dataset.sheet = ID++;
     }
-    current.appendChild(host.style);
-  }
 
-  if (host.sheet != sheet) {
+    current.appendChild(style);
+
     getRules(
       sheet,
       current.localName + `[data-sheet="${current.dataset.sheet}"]`
-    ).forEach((rule, index) => host.style.sheet.insertRule(rule, index));
-  }
+    ).forEach((rule, index) => style.sheet.insertRule(rule, index));
 
-  useEffect(() => () => host.style.remove(), []);
+    return () => style.remove();
+  }, [sheet]);
 }

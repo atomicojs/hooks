@@ -18,9 +18,9 @@ it("useCss", () => {
     }
   `;
 
-  hooks.load(() => {
-    useCssLightDom(sheet);
-  });
+  hooks.load(() => useCssLightDom(sheet));
+
+  hooks.cleanEffects();
 
   const style = getComputedStyle(host);
 
