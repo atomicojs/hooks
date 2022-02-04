@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.26.4",
+  "version": "3.27.0",
   "type": "module",
   "workspaces": [
     "src/**/*"
