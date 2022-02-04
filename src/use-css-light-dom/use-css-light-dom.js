@@ -4,7 +4,7 @@ import { getRules } from "./src/utils.js";
 let ID = 0;
 /**
  * Create a style collector to apply once the render is finished
- * @param {import("atomico").Sheet[]} sheets
+ * @param {import("atomico").Sheet} sheet
  */
 export function useCssLightDom(sheet) {
   const host = useHost();
