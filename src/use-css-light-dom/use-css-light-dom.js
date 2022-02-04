@@ -1,78 +1,29 @@
-import { useHost, useLayoutEffect, useState } from "atomico";
-import { cssToObject } from "@uppercod/css-to-object";
+import { useEffect, useHost } from "atomico";
+import { getRules } from "./src/utils.js";
 
-let count = 0;
+let ID = 0;
 /**
  * Create a style collector to apply once the render is finished
- * @returns {(template:TemplateStringsArray|string,...args:string[])=>string}
+ * @param {import("atomico").Sheet[]} sheets
  */
-export function useCssLightDom() {
+export function useCssLightDom(sheet) {
   const host = useHost();
-  const [styles] = useState(() => {
-    host.style = host.current.appendChild(document.createElement("style"));
-    host.id = `S` + count++;
-    return [];
-  });
+  const { current } = host;
 
-  useLayoutEffect(() =>
-    styles
-      .map((style, index) =>
-        serialize(cssToObject(style)).map((rule) =>
-          rule.replace(/:host/g, "." + host.id + index)
-        )
-      )
-      .flat()
-      .forEach((rule, index) => host.style.sheet.insertRule(rule, index))
-  );
-
-  return (template, ...args) => {
-    const content =
-      typeof template == "string"
-        ? template
-        : template.reduce((part, index) => part + (args[index] || ""));
-    const iid = styles.indexOf(content);
-
-    return host.id + (~iid ? iid : styles.push(content) - 1);
-  };
-}
-
-/**
- * CSS ruler template
- * @param {string} selector
- * @param {string} content
- */
-const rule = (selector, content) => `${selector}{${content}}`;
-/**
- * Serializes the rules of an object and returns them in list
- * @param {any} json
- * @returns {string[]}
- */
-function serialize(json, rules = [], parent = "") {
-  const decl = [];
-  for (const prop in json) {
-    if (typeof json[prop] == "object") {
-      const isAtRule = /@/.test(prop);
-      const subparent = isAtRule
-        ? parent
-        : prop.startsWith(":host")
-        ? parent || prop
-        : parent + prop;
-
-      const subrule = serialize(json[prop], [], subparent);
-
-      if (isAtRule) {
-        rules.push(rule(prop, subrule.join("")));
-      } else {
-        rules.push(...subrule);
-      }
-    } else {
-      decl.push(prop + ":" + json[prop]);
+  if (!host.style) {
+    host.style = document.createElement("style");
+    if (!current.dataset.sheet) {
+      current.dataset.sheet = ID++;
     }
+    current.appendChild(host.style);
   }
 
-  if (parent && decl.length) {
-    rules.unshift(rule(parent, decl.join(";")));
+  if (host.sheet != sheet) {
+    getRules(
+      sheet,
+      current.localName + `[data-sheet="${current.dataset.sheet}"]`
+    ).forEach((rule, index) => host.style.sheet.insertRule(rule, index));
   }
 
-  return rules;
+  useEffect(() => () => host.style.remove(), []);
 }

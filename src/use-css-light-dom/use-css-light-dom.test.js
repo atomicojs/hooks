@@ -1,5 +1,6 @@
-import { expect } from "@esm-bundle/chai";
+import { css } from "atomico";
 import { createHooks } from "atomico/test-hooks";
+import { expect } from "@esm-bundle/chai";
 import { useCssLightDom } from "./use-css-light-dom";
 
 it("useCss", () => {
@@ -7,30 +8,24 @@ it("useCss", () => {
 
   const hooks = createHooks(() => {}, host);
 
-  const cssText = /*css*/ `
-    :host{
-        color: red
+  const sheet = css`
+    :host {
+      width: 100px;
+      height: 100px;
+      color: red;
+      border-radius: 50%;
+      display: flex;
     }
   `;
 
   hooks.load(() => {
-    const css = useCssLightDom(cssText);
-    host.className = css`
-      :host {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        display: block;
-      }
-    `;
+    useCssLightDom(sheet);
   });
-
-  hooks.cleanEffects();
 
   const style = getComputedStyle(host);
 
   expect(style.width).to.equal("100px");
   expect(style.height).to.equal("100px");
   expect(style.borderRadius).to.equal("50%");
-  expect(style.display).to.equal("block");
+  expect(style.display).to.equal("flex");
 });
