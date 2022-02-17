@@ -38,39 +38,37 @@ export function useProxySlot(ref) {
   const host = useHost();
   const children = useSlot(ref);
   const [currentChildren, setCurrentChildren] = useState(children);
+  const intoHost = (node) => node.parentElement === host.current;
 
   useEffect(() => {
     if (!children.length) return;
+    // clean the list keeping only the nodes nested in the host
+    setCurrentChildren([...currentChildren, ...children].filter(intoHost));
+  }, children);
 
-    const { current } = host;
-    const intoHost = (node) => node.parentElement === current;
+  useEffect(() => {
+    if (!currentChildren.length) return;
 
-    const group = [...currentChildren, ...children].filter(intoHost);
+    // gets all assigned slots
+    const slots = new Set(currentChildren.map((child) => child.assignedSlot));
 
-    const slots = group.reduce(
-      (slots, el) =>
-        el.assignedSlot === ref.current
-          ? slots
-          : slots.includes(el.assignedSlot)
-          ? slots
-          : [...slots, el.assignedSlot],
-      []
-    );
+    // Avoid the reference given as parameter
+    slots.delete(ref.current);
 
-    const unlisteners = slots.map((slot) =>
-      addListener(slot, "slotchange", (event) => {
+    const unlisteners = [...slots].map((slot) =>
+      addListener(slot, "slotchange", () =>
         setCurrentChildren((children) => {
+          // clean the list keeping only the nodes nested in the host
           const next = children.filter(intoHost);
           if (children.length === next.length) return children;
           return next;
-        });
-      })
+        })
+      )
     );
 
-    setCurrentChildren(group);
-
+    // remove the subscription to assigned slots
     return () => unlisteners.map((unlistener) => unlistener());
-  }, children);
+  }, currentChildren);
 
   return currentChildren;
 }
