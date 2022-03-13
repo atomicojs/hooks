@@ -17,9 +17,11 @@ export function useListener(ref, name, handler, options) {
 
 /**
  * Associate an event and return a callback to remove said event
- * @param {ChildNode} current
+ * @template {ChildNode} C
+ * @template {Event} E
+ * @param {C} current
  * @param {string} name
- * @param {EventListener} handler
+ * @param {(event:import("atomico").DOMEvent<C, E>)=>any} handler
  * @param {boolean|AddEventListenerOptions} [options]
  * @returns {()=>void}
  */
