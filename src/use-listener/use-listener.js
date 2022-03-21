@@ -17,7 +17,7 @@ export function useListener(ref, name, handler, options) {
 
 /**
  * Associate an event and return a callback to remove said event
- * @template {ChildNode} C
+ * @template {ChildNode | typeof window} C
  * @template {Event} E
  * @param {C} current
  * @param {string} name
