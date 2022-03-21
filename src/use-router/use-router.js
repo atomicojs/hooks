@@ -76,14 +76,20 @@ export function useRouteMatch() {
  * Capture the click events of a reference to find
  * if a node declares href to associate redirection
  * @param {import("atomico").Ref<Element>} ref
- * @param {(path:string)=>string} [proxy] allows to change the redirect url
+ * @param {{proxy:(path:string)=>string, composed:boolean}} [options] allows to change the redirect url
  */
-export function useRedirect(ref, proxy) {
+export function useRedirect(ref, { proxy, composed } = {}) {
   useEffect(() => {
     const { current } = ref;
+    /**
+     * @param {Event} ev
+     */
     const handler = (ev) => {
       const path = ev.composedPath();
       let target;
+
+      if (!composed && path.find((el) => el instanceof ShadowRoot)) return;
+
       while ((target = path.shift())) {
         if (
           target.hasAttribute &&
