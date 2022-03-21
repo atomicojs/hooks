@@ -1,18 +1,18 @@
+import { addListener } from "../../use-listener/use-listener.js";
 /**
  * @param {string} url
+ * @param {string} [title]
  */
-export function redirect(url) {
-  history.pushState({}, "history", url);
+export function redirect(path, title = path) {
+  if (history.state?.path === path) return;
+  history.pushState({ path }, title, path);
   window.dispatchEvent(new PopStateEvent("popstate"));
 }
 /**
  *
  * @param {(ev: PopStateEvent) => void} handler
  */
-export function listener(handler) {
-  window.addEventListener("popstate", handler);
-  return () => window.removeEventListener("popstate", handler);
-}
+export const listener = (handler) => addListener(window, "popstate", handler);
 
 export const getPath = () =>
   location.pathname + location.hash + location.search;
