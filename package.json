@@ -25,6 +25,6 @@
     "@web/test-runner": "^0.13.16",
     "@web/test-runner-commands": "^0.5.12",
     "atomico": "^1.45.0",
-    "typescript": "^4.4.2"
+    "typescript": "^4.6.2"
   }
 }
