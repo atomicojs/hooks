@@ -76,7 +76,7 @@ export function useRouteMatch() {
  * Capture the click events of a reference to find
  * if a node declares href to associate redirection
  * @param {import("atomico").Ref<Element>} ref
- * @param {{proxy:(path:string)=>string, composed:boolean}} [options] allows to change the redirect url
+ * @param {{proxy?:(path:string)=>string, composed?:boolean}} [options] allows to change the redirect url
  */
 export function useRedirect(ref, { proxy, composed } = {}) {
   useEffect(() => {
