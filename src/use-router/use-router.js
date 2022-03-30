@@ -2,7 +2,7 @@ import { useState, useEffect } from "atomico";
 import { getPath, listener, redirect } from "./src/history.js";
 import { matches, getMatch } from "./src/matches.js";
 export { redirect, getPath } from "./src/history.js";
-import { addListener } from "../use-listener/use-listener.js";
+import { useListener } from "../use-listener/use-listener.js";
 import { useCurrentValue } from "../use-current-value/use-current-value.js";
 
 const DefaultState = {};
@@ -78,17 +78,25 @@ export function useRouteMatch() {
  * @param {import("atomico").Ref<Element>} ref
  * @param {{proxy?:(path:string)=>string, composed?:boolean}} [options] allows to change the redirect url
  */
-export function useRedirect(ref, { proxy, composed } = {}) {
-  useEffect(() => {
-    const { current } = ref;
-    /**
-     * @param {Event} ev
-     */
-    const handler = (ev) => {
-      const path = ev.composedPath();
-      let target;
+export function useRedirect(ref, { proxy, composed = true } = {}) {
+  useListener(
+    ref,
+    "click",
+    (event) => {
+      const { current } = ref;
+      const { shadowRoot } = current;
 
-      if (!composed && path.find((el) => el instanceof ShadowRoot)) return;
+      const path = event.composedPath();
+
+      const index = path.indexOf(current);
+
+      const insetShadowRoot = path
+        .slice(0, index)
+        .find((el) => el instanceof ShadowRoot);
+
+      if (!composed && insetShadowRoot !== shadowRoot) return;
+
+      let target;
 
       while ((target = path.shift())) {
         if (
@@ -96,16 +104,17 @@ export function useRedirect(ref, { proxy, composed } = {}) {
           target.hasAttribute("href") &&
           !target.hasAttribute("ignore")
         ) {
-          ev.preventDefault();
           const href = target.getAttribute("href");
-          if (!/^(http(s){0,1}:){0,1}\/\//.test(href))
+          if (!/^(http(s){0,1}:){0,1}\/\//.test(href)) {
+            event.preventDefault();
             redirect(proxy ? proxy(href) : href);
+          }
           break;
         }
       }
-    };
-    return addListener(current, "click", handler, { capture: true });
-  }, [ref]);
+    },
+    { capture: true }
+  );
 }
 
 /**
