@@ -15,8 +15,8 @@ export function useClickCoordinates(ref, callback) {
 
 /**
  *
- * @param {PointerEvent & TouchEvent} event
- * @returns {Coordinates|null}
+ * @param {{pageX:number,pageY:number, currentTarget:EventTarget|null}} event
+ * @returns {Coordinates}
  */
 export function getCoordinates({ pageX: x, pageY: y, currentTarget }) {
   const rect = currentTarget.getBoundingClientRect();
