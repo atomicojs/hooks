@@ -8,7 +8,7 @@ import { useState } from "atomico";
  */
 export function useHistory(value, maxLength = 100) {
   const [state] = useState(() => ({ history: [] }));
-  if (state.history.at(-1) !== value) {
+  if (state.history[state.history.length - 1] !== value) {
     state.history = [...state.history, value].slice(maxLength * -1);
   }
   return state.history;
