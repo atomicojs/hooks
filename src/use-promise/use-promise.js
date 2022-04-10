@@ -14,15 +14,16 @@ export const Status = {
  */
 const initalState = () => [, ""];
 /**
+ * @template {()=>Promise<any>} T
  * @example
  * ```js
  * const [executePromise, setExecutePromise] = useState();
  * const [ result, status ] = usePromise(()=>fetch("./any").then(res=>res.json()),executePromise);
  * ```
- * @param {()=>Promise<any>} promise -
+ * @param {T} promise -
  * @param {boolean} run
  * @param {any[]} [args]
- * @returns {State}
+ * @returns {T extends (...args:any[])=>Promise<infer R> ?  State<R>  :  State<any> }
  */
 export function usePromise(promise, run, args = []) {
   const [state, setState] = useState(initalState);
@@ -50,7 +51,10 @@ export function usePromise(promise, run, args = []) {
 
 /**@typedef {Status["quiet"]|Status["pending"]|Status["fulfilled"]|Status["rejected"]} PromiseStatus */
 
-/**@typedef {[any,PromiseStatus]} State */
+/**
+ * @template T
+ * @typedef {[T,PromiseStatus]} State
+ **/
 
 /**
  * @typedef {Object} Status
