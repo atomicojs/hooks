@@ -26,8 +26,10 @@ export function useCssLightDom(sheet) {
         getRules(
           sheet,
           current.localName + `[data-sheet="${current.dataset.sheet}"]`
-        ).forEach((rule) =>
-          style.sheet.insertRule(rule, style.sheet.cssRules.length)
+        ).forEach(
+          (rule) =>
+            style.sheet &&
+            style.sheet.insertRule(rule, style.sheet.cssRules.length)
         )
     );
 
