@@ -1,4 +1,5 @@
 import { useHost, useLayoutEffect } from "atomico";
+import { getSheet } from "@atomico/design-tokens";
 import { getRules } from "./src/utils.js";
 
 let ID = 0;
@@ -20,19 +21,20 @@ export function useCssLightDom(sheet) {
 
     current.appendChild(style);
 
-    (Array.isArray(sheet) ? sheet.flat(100) : [sheet]).forEach(
-      (sheet) =>
-        sheet &&
+    if (style.sheet) {
+      (Array.isArray(sheet) ? sheet.flat(100) : [sheet]).forEach((target) => {
+        if (!target) return;
+
+        const sheet = getSheet(target);
+
         getRules(
           sheet,
           current.localName + `[data-sheet="${current.dataset.sheet}"]`
-        ).forEach(
-          (rule) =>
-            style.sheet &&
-            style.sheet.insertRule(rule, style.sheet.cssRules.length)
-        )
-    );
-
+        ).forEach((rule) =>
+          style.sheet.insertRule(rule, style.sheet.cssRules.length)
+        );
+      });
+    }
     return () => style.remove();
   }, [sheet]);
 }
