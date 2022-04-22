@@ -26,11 +26,17 @@ export function usePropProxy(prop, config) {
         if (value.current?.get) {
           return value.current?.get();
         }
-        return descriptor?.get?.call(current);
+        if (descriptor?.get) {
+          return descriptor?.get?.call(current);
+        }
       },
       set(nextValue) {
-        value.current?.set(nextValue);
-        return descriptor?.set?.call(current, nextValue);
+        if (value.current?.set) {
+          value.current?.set(nextValue);
+        }
+        if (descriptor?.set) {
+          return descriptor?.set?.call(current, nextValue);
+        }
       },
     });
   });
