@@ -24,9 +24,11 @@ it("useResponsiveState <= 320px", async () => {
 
   await setViewport({ width: 360, height: 640 });
 
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
   await setViewport({ width: 200, height: 640 });
 
-  await new Promise((resolve) => setTimeout(resolve, 50));
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   expect(results).to.deep.equal([undefined, "yes", "no"]);
 });
