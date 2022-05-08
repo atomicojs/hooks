@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "dollars.js": "^0.6.2"
+  },
+  "peerDependencies": {
+    "dollars.js": "^0.6.2"
   }
 }

@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "@uppercod/form-tools": "^0.0.0"
+  },
+  "optionalDependencies": {
+    "@uppercod/form-tools": "^0.0.0"
   }
 }

@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "element-internals-polyfill": "^0.1.49"
+  },
+  "peerDependencies": {
+    "element-internals-polyfill": "^0.1.49"
   }
 }
