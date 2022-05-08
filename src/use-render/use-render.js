@@ -1,4 +1,4 @@
-import { h, render, useHost, useMemo, useEffect } from "atomico";
+import { h, useHost, useMemo, useEffect, options } from "atomico";
 
 const host = h("host");
 /**
@@ -22,7 +22,10 @@ function fillHost(vdom) {
 export function useRender(callback, args) {
   const host = useHost();
   host.id = host.id || Symbol();
-  useMemo(() => render(fillHost(callback()), host.current, host.id), args);
+  useMemo(
+    () => !options.ssr && fillHost(callback()).render(host.current, host.id),
+    args
+  );
   // Clean nodes in case of recycling
-  useEffect(() => () => render(fillHost(), host.current, host.id), []);
+  useEffect(() => () => fillHost().render(host.current, host.id), []);
 }

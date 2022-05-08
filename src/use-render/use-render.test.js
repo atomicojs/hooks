@@ -1,5 +1,5 @@
 import { expect } from "@esm-bundle/chai";
-import html from "atomico/html";
+import { html } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { useRender } from "./use-render.js";
 
