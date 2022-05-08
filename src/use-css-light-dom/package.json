@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@atomico/design-tokens": "latest"
-  },
-  "peerDependencies": {
-    "@atomico/design-tokens": "latest"
-  }
-}

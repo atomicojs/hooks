@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@uppercod/hash": "^1.1.1"
   }

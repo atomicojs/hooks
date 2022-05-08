@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "element-internals-polyfill": "^0.1.49"
   }

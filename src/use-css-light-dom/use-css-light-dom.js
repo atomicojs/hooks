@@ -1,6 +1,5 @@
 import { useHost, useLayoutEffect } from "atomico";
-import { getSheet } from "@atomico/design-tokens";
-import { getRules } from "./src/utils.js";
+import { getRules, getSheet } from "./src/utils.js";
 
 let ID = 0;
 /**
