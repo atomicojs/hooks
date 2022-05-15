@@ -1,4 +1,5 @@
-import { useLayoutEffect, useState } from "atomico";
+import { useState } from "atomico";
+import { useRefValues } from "../use-ref-values/use-ref-values.js";
 import { useCurrentValue } from "../use-current-value/use-current-value.js";
 /**
  * @param {import("atomico").Ref} ref
@@ -8,11 +9,17 @@ import { useCurrentValue } from "../use-current-value/use-current-value.js";
  */
 export function useListener(ref, name, handler, options) {
   const value = useCurrentValue(handler);
-  useLayoutEffect(() => {
-    const { current } = ref;
-    if (!current || !handler) return;
-    return addListener(current, name, (event) => value.current(event), options);
-  }, [ref, ref?.current, name, !!handler]);
+  useRefValues(
+    ([current]) => {
+      return addListener(
+        current,
+        name,
+        (event) => value.current(event),
+        options
+      );
+    },
+    [ref]
+  );
 }
 
 /**

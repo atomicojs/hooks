@@ -1,15 +1,12 @@
-import { useEffect, useState } from "atomico";
+import { useState } from "atomico";
 import { useCurrentValue } from "../use-current-value/use-current-value.js";
+import { useRefValues } from "../use-ref-values/use-ref-values.js";
 
 const listenersId = Symbol();
-
-const resizeObserver = new ResizeObserver((entries) =>
-  entries.forEach(({ contentRect, target }) => {
-    const rect = contentRect.toJSON();
-    const listeners = target[listenersId];
-    for (const listener of listeners) listener(rect);
-  })
-);
+/**
+ * @type {ResizeObserver}
+ */
+let resizeObserver;
 
 /**
  * Observe the ResizeObserver state of a reference
@@ -24,29 +21,40 @@ const resizeObserver = new ResizeObserver((entries) =>
  */
 export function useResizeObserver(ref, callback) {
   const value = useCurrentValue(callback);
-  useEffect(() => {
-    const { current } = ref;
-    if (!current) return;
-    /**
-     * @param {Rect} rect
-     */
-    const listener = (rect) => value.current(rect);
 
-    if (!current[listenersId]) {
-      resizeObserver.observe(current);
-      current[listenersId] = new Set();
-    }
-
-    current[listenersId].add(listener);
-
-    return () => {
-      current[listenersId].delete(listener);
-      if (!current[listenersId].size) {
-        delete current[listenersId];
-        resizeObserver.unobserve(current);
+  useRefValues(
+    ([current]) => {
+      if (!resizeObserver) {
+        resizeObserver = new ResizeObserver((entries) =>
+          entries.forEach(({ contentRect, target }) => {
+            const rect = contentRect.toJSON();
+            const listeners = target[listenersId];
+            for (const listener of listeners) listener(rect);
+          })
+        );
       }
-    };
-  }, [ref, ref?.current]);
+      /**
+       * @param {Rect} rect
+       */
+      const listener = (rect) => value.current(rect);
+
+      if (!current[listenersId]) {
+        resizeObserver.observe(current);
+        current[listenersId] = new Set();
+      }
+
+      current[listenersId].add(listener);
+
+      return () => {
+        current[listenersId].delete(listener);
+        if (!current[listenersId].size) {
+          delete current[listenersId];
+          resizeObserver.unobserve(current);
+        }
+      };
+    },
+    [ref]
+  );
 }
 
 /**
