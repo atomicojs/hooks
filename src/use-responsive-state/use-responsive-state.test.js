@@ -1,49 +1,26 @@
 import { expect } from "@esm-bundle/chai";
 import { setViewport } from "@web/test-runner-commands";
 import { createHooks } from "atomico/test-hooks";
-import {
-  getSizes,
-  getQuery,
-  useResponsiveState,
-} from "./use-responsive-state.js";
+import { useResponsiveState } from "./use-responsive-state.js";
 
-it("getSize", () => {
-  const [sizeDefault, sizes] = getSizes("default, hd 1080px, fullhd 1980px");
-  expect(sizeDefault).to.equal("default");
+describe("useResponsiveState", () => {
+  it("useResponsiveState <= 320px", async () => {
+    const hooks = createHooks(() => {});
 
-  const cases = [
-    {
-      value: "fullhd",
-      media: "(min-width: 1980px)",
-    },
-    {
-      value: "hd",
-      media: "(min-width: 1080px)",
-    },
-  ];
+    await setViewport({ width: 360, height: 640 });
 
-  sizes
-    .map((match) => ({ ...match, query: getQuery(match) }))
-    .map(({ query, value }, index) => {
-      expect(value).to.equal(cases[index].value);
-      expect(query.media).to.equal(cases[index].media);
-    });
-});
+    const load = () => {
+      return useResponsiveState("no, yes 320px");
+    };
 
-it("useResponsiveState <= 320px", async () => {
-  const hooks = createHooks(() => {});
+    expect(hooks.load(load)).to.equal("yes");
 
-  await setViewport({ width: 360, height: 640 });
+    hooks.cleanEffects()();
 
-  const load = () => {
-    return useResponsiveState("no, yes 320px");
-  };
+    await setViewport({ width: 280, height: 640 });
 
-  expect(hooks.load(load)).to.equal("yes");
+    await new Promise((resolve) => setTimeout(resolve, 50));
 
-  await setViewport({ width: 280, height: 640 });
-
-  hooks.cleanEffects()();
-
-  expect(hooks.load(load)).to.equal("no");
+    expect(hooks.load(load)).to.equal("no");
+  });
 });

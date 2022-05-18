@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@uppercod/match-media": "^1.1.0"
+  },
+  "peerDependencies": {
+    "@uppercod/match-media": "^1.1.0"
+  }
+}
