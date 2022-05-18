@@ -1,6 +1,6 @@
 import { useState } from "atomico";
 import { useResizeObserver } from "../use-resize-observer/use-resize-observer.js";
-import { getSizes } from "../use-responsive-state/use-responsive-state.js";
+import media from "@uppercod/match-media";
 
 /**
  *
@@ -8,17 +8,17 @@ import { getSizes } from "../use-responsive-state/use-responsive-state.js";
  * @return {string}
  */
 export function useResizeState(ref, sizes) {
-  const [sizeDefault, matches] = getSizes(sizes);
+  /**
+   * @type {ReturnType<media>}
+   */
+  const template = media.call(null, { raw: [sizes] });
+
   const [state, setState] = useState();
 
   function getState() {
-    if (!ref.current) return;
-    const { clientWidth, clientHeight } = ref.current;
-    const match = matches.find(
-      ({ width, height }) =>
-        width <= clientWidth && height <= (clientHeight || height)
-    );
-    return match ? match.value : sizeDefault;
+    const { clientWidth } = ref.current;
+
+    return template.match(({ size }) => size <= clientWidth);
   }
 
   useResizeObserver(ref, () => setState(getState));

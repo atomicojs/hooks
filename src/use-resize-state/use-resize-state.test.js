@@ -1,5 +1,5 @@
 import { expect } from "@esm-bundle/chai";
-import { setViewport } from "@web/test-runner-commands";
+import { compareSnapshot, setViewport } from "@web/test-runner-commands";
 import { createHooks } from "atomico/test-hooks";
 import { useResizeState } from "./use-resize-state.js";
 
