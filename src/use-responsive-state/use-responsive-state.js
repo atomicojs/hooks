@@ -7,20 +7,31 @@ import media from "@uppercod/match-media";
 const CACHE = {};
 
 /**
+ * @type {{[index:string]:ReturnType<media>}}
+ */
+const CACHE_TEMPLATE = {};
+
+/**
  * @param {import("@uppercod/match-media").Result} result
  */
 const getId = ({ size, unit }) => `(min-width: ${size}${unit})`;
 
+/**
+ *
+ * @param {string|TemplateStringsArray} part
+ * @param  {...any} [args]
+ * @returns
+ */
 export function useResponsiveState(part, ...args) {
   /**@type {ReturnType<typeof media>} */
   let template;
 
   if (typeof part === "string") {
-    if (!CACHE[part]) {
-      CACHE[part] = media.call(null, { raw: [part] });
+    if (!CACHE_TEMPLATE[part]) {
+      CACHE_TEMPLATE[part] = media.call(null, { raw: [part] });
     }
-    template = CACHE[part];
-  } else if (part) {
+    template = CACHE_TEMPLATE[part];
+  } else {
     template = media.call(null, part, ...args);
   }
 
