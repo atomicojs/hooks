@@ -53,7 +53,8 @@ export function useResizeObserver(ref, callback) {
         }
       };
     },
-    [ref]
+    [ref],
+    true
   );
 }
 
