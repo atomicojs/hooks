@@ -6,7 +6,11 @@
   "workspaces": [
     "src/**/*"
   ],
-  "editable": "https://github.com/atomicojs/hooks/tree/master",
+  "author": {
+    "name": "UpperCod",
+    "email": "uppercod.git@gmail.com",
+    "url": "https://github.com/uppercod"
+  },
   "scripts": {
     "exports": "exports \"src/*/*.js\" --ignore-build --types --exports --workspace \"src/**\"",
     "test": "wtr src/**/*.test.js --node-resolve",
