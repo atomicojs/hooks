@@ -105,7 +105,10 @@ export function useRedirect(ref, { proxy, composed = true } = {}) {
           !target.hasAttribute("ignore")
         ) {
           const href = target.getAttribute("href");
-          if (!/^(http(s){0,1}:){0,1}\/\//.test(href)) {
+          if (
+            !target.hasAttribute("target") &&
+            !/^(http(s){0,1}:){0,1}\/\//.test(href)
+          ) {
             event.preventDefault();
             redirect(proxy ? proxy(href) : href);
           }
