@@ -19,7 +19,7 @@ const getId = ({ size, unit }) => `(min-width: ${size}${unit})`;
 /**
  *
  * @param {string|TemplateStringsArray} part
- * @param  {...any} [args]
+ * @param  {...any} args
  * @returns
  */
 export function useResponsiveState(part, ...args) {

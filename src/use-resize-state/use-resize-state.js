@@ -33,7 +33,7 @@ export function useRefResizeState(ref, sizes) {
 /**
  *
  * @param {string|TemplateStringsArray} part
- * @param  {...any} [args]
+ * @param  {...any} args
  * @returns
  */
 export function useResizeState(part, ...args) {
