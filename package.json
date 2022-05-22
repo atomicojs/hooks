@@ -11,6 +11,14 @@
     "email": "uppercod.git@gmail.com",
     "url": "https://github.com/uppercod"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/atomicojs/hooks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atomicojs/hooks/issues"
+  },
+  "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
   "scripts": {
     "exports": "exports \"src/*/*.js\" --ignore-build --types --exports --workspace \"src/**\"",
     "test": "wtr src/**/*.test.js --node-resolve",
