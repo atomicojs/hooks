@@ -3,7 +3,7 @@ import { useHost, useState } from "atomico";
 const INTERNALS = Symbol("attachInternals");
 
 /**
- * @returns {import("element-internals-polyfill").IElementInternals}
+ * @returns {ElementInternals}
  */
 export function useInternals() {
   const host = useHost();
