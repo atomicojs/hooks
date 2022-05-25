@@ -62,6 +62,8 @@ export function useResponsiveState(part, ...args) {
         };
       });
 
+    setValue(check);
+
     return () => unlisteners.forEach((fn) => fn());
   }, [template.result]);
 
