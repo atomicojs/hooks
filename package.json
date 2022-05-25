@@ -31,12 +31,12 @@
     "atomico": "^1.58.0"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.20.0",
+    "@atomico/exports": "^0.30.0",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.16",
     "@web/test-runner-commands": "^0.5.12",
-    "atomico": "^1.58.0",
-    "typescript": "^4.6.2"
+    "atomico": "^1.59.0",
+    "typescript": "^4.7.2"
   }
 }
