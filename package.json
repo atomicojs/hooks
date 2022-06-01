@@ -4,7 +4,7 @@
   "version": "3.43.1",
   "type": "module",
   "workspaces": [
-    "src/**/*"
+    "src"
   ],
   "author": {
     "name": "UpperCod",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
   "scripts": {
-    "exports": "exports \"src/*/*.js\" --ignore-build --types --exports --workspace \"src/**\"",
+    "exports": "exports \"src/*/*.js\" --types --exports",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepublishOnly": "npm run test && npm run exports"
   },
@@ -31,7 +31,7 @@
     "atomico": "^1.58.0"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.30.0",
+    "@atomico/exports": "^0.32.2",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.16",
