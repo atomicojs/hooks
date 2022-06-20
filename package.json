@@ -4,7 +4,7 @@
   "version": "3.44.0",
   "type": "module",
   "workspaces": [
-    "src"
+    "src/*"
   ],
   "author": {
     "name": "UpperCod",
