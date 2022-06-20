@@ -4,3 +4,4 @@ node_modules
 /use-router
 /types
 /*.d.ts
+/dist
