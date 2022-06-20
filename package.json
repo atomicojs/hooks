@@ -1,7 +1,7 @@
 {
   "name": "@atomico/hooks",
   "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.43.1",
+  "version": "3.44.0",
   "type": "module",
   "workspaces": [
     "src"
@@ -20,8 +20,8 @@
   },
   "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
   "scripts": {
-    "dev": "exports \"src/*/*.js\" --types --exports --watch",
-    "exports": "exports \"src/*/*.js\" --types --exports",
+    "dev": "exports \"src/*/*.{ts,js}\" --types --exports --watch",
+    "exports": "exports \"src/*/*.{ts,js}\" --types --exports",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepublishOnly": "npm run test && npm run exports"
   },
