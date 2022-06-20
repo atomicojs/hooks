@@ -3,7 +3,7 @@ import { useListener } from "../use-listener/use-listener";
 import { useDebounceState } from "../use-debounce-state/use-debounce-state";
 import { useIntersectionObserver } from "../use-intersection-observer/use-intersection-observer";
 
-export function useMouseMove(host: Ref) {
+export function useParallax(host: Ref) {
   const refWindow = useRef(globalThis);
 
   const [state, setState] = useDebounceState<{ x: number; y: number }>(
