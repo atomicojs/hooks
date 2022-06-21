@@ -24,7 +24,7 @@ export function useParallax(host: Ref) {
   useListener(
     refWindow,
     "deviceorientation",
-    ({ beta, alpha, gamma }: DOMEvent<HTMLElement, DeviceOrientationEvent>) => {
+    ({ beta, gamma }: DOMEvent<HTMLElement, DeviceOrientationEvent>) => {
       if (!intersectio) return;
       if (!refWindow.start) {
         refWindow.start = { beta, gamma };
@@ -61,6 +61,13 @@ export function useParallax(host: Ref) {
       } = currentTarget;
       const centerX = clientWidth / 2;
       const centerY = clientHeight / 2;
+
+      // Reset the coordinates only to the observed container
+      if (currentTarget.getBoundingClientRect) {
+        const rect = currentTarget.getBoundingClientRect();
+        clientX -= rect.x;
+        clientY -= rect.y;
+      }
 
       const x =
         clientX > centerX
