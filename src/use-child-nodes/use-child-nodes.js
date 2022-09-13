@@ -2,6 +2,7 @@ import { useHost, useState } from "atomico";
 
 const selectedChild = Symbol();
 /**
+ * @deprecated
  * Search for the ChildNode outside the render
  * @param {HTMLElement & import("atomico/types/dom").AtomBase} current
  * @returns {ChildNode[]}

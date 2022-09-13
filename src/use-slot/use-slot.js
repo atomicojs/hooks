@@ -5,9 +5,10 @@ import { addListener } from "../use-listener/use-listener.js";
  * returns the assigned nodes of a slot
  * @template {ChildNode} T
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
+ * @param {(node:ChildNode)=>boolean} [filter]  - allows you to filter the nodes to be associated only when they change
  * @returns {T[]}
  */
-export function useSlot(ref) {
+export function useSlot(ref, filter) {
   const [childNodes, setChildNodes] = useState([]);
 
   useEffect(() => {
@@ -16,7 +17,12 @@ export function useSlot(ref) {
     // handler subscriber to the event
     const handler = () =>
       setChildNodes(
-        current.assignedNodes().filter((child) => !(child instanceof Mark))
+        current
+          .assignedNodes()
+          .filter(
+            (child) =>
+              !(child instanceof Mark) && (filter ? filter(child) : true)
+          )
       );
     // First load
     handler();
@@ -32,11 +38,12 @@ export function useSlot(ref) {
  * keeping the node in the list as long as it remains on the host
  * @template {ChildNode} T
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
+ * @param {(node:ChildNode)=>boolean} [filter]  - allows you to filter the nodes to be associated only when they change
  * @returns {T[]}
  */
-export function useProxySlot(ref) {
+export function useProxySlot(ref, filter) {
   const host = useHost();
-  const children = useSlot(ref);
+  const children = useSlot(ref, filter);
   const [currentChildren, setCurrentChildren] = useState(children);
   const intoHost = (node) => node.parentElement === host.current;
 
