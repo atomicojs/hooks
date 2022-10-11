@@ -6,7 +6,7 @@ import { addListener } from "../use-listener/use-listener.js";
  * @template {ChildNode} T
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
  * @param {(node:ChildNode)=>boolean} [filter]  - allows you to filter the nodes to be associated only when they change
- * @returns {T[]}
+ * @returns {import("atomico").Ref<T>["current"][]}
  */
 export function useSlot(ref, filter) {
   const [childNodes, setChildNodes] = useState([]);
@@ -39,7 +39,7 @@ export function useSlot(ref, filter) {
  * @template {ChildNode} T
  * @param {import("atomico").Ref<HTMLSlotElement>} ref
  * @param {(node:ChildNode)=>boolean} [filter]  - allows you to filter the nodes to be associated only when they change
- * @returns {T[]}
+ * @returns {import("atomico").Ref<T>["current"][]}
  */
 export function useProxySlot(ref, filter) {
   const host = useHost();
