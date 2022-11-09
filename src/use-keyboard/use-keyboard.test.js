@@ -12,7 +12,7 @@ it("useKeyboard", () => {
     });
   });
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   ref.current.dispatchEvent(
     new KeyboardEvent("keydown", { code: "KeyQ", key: "1" })

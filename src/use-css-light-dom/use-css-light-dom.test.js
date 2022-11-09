@@ -20,7 +20,7 @@ it("useCss", () => {
 
   hooks.load(() => useCssLightDom(sheet));
 
-  hooks.cleanEffects();
+  hooks.cleanEffects()();
 
   const style = getComputedStyle(host);
 

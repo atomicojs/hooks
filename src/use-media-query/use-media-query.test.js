@@ -15,7 +15,7 @@ it("useMediaQuery", (done) => {
 
   expect(match).to.equal(false);
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   setViewport({ width: 360, height: 640 });
 });

@@ -15,7 +15,7 @@ describe("useResponsiveState", () => {
 
     expect(hooks.load(load)).to.equal("yes");
 
-    hooks.cleanEffects()();
+    hooks.cleanEffects()()();
 
     await setViewport({ width: 280, height: 640 });
 

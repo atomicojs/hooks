@@ -21,7 +21,7 @@ it("useFormSubmitter", (done) => {
     });
   });
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   form.dispatchEvent(new Event("submit"));
 });

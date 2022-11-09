@@ -22,7 +22,7 @@ describe("useResizeObserver", () => {
 
     hooks.load(load);
 
-    hooks.cleanEffects()();
+    hooks.cleanEffects()()();
 
     await new Promise((resolve) => setTimeout(resolve, 50)); // emulate task queue
 

@@ -41,7 +41,7 @@ describe("useAttributes", () => {
     div.setAttribute("class", "class-10");
 
     hooks.load(load);
-    hooks.cleanEffects()();
+    hooks.cleanEffects()()();
 
     await new Promise((resolve) => setTimeout(resolve, 50));
 

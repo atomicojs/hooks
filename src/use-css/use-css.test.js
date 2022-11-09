@@ -17,7 +17,7 @@ it("useCss", () => {
     useCss(cssText);
   });
 
-  hooks.cleanEffects();
+  hooks.cleanEffects()();
 
   expect(host.shadowRoot.querySelector("style")).to.be.an.instanceof(
     HTMLStyleElement
@@ -25,7 +25,7 @@ it("useCss", () => {
 
   expect(host.shadowRoot.querySelector("style").textContent).to.equal(cssText);
 
-  hooks.cleanEffects(1);
+  hooks.cleanEffects(true)();
 
   expect(host.shadowRoot.querySelector("style")).to.be.null;
 });

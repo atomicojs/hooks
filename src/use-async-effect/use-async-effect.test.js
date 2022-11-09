@@ -12,7 +12,7 @@ it("useAsyncEffect", (done) => {
 
   hooks.load(load);
   // mounted effect
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
   // unmounted effect
-  hooks.cleanEffects(true)();
+  hooks.cleanEffects(true)()();
 });

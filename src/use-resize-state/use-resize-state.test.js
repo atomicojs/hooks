@@ -20,7 +20,7 @@ describe("useResponsiveState", () => {
 
     hooks.load(load);
 
-    hooks.cleanEffects()();
+    hooks.cleanEffects()()();
 
     await setViewport({ width: 360, height: 640 });
 

@@ -25,7 +25,7 @@ describe("useScript", () => {
 
     hooks.load(load);
 
-    hooks.cleanEffects()();
+    hooks.cleanEffects()()();
 
     const value = await task;
 

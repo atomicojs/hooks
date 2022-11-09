@@ -17,7 +17,7 @@ it("useRouter", () => {
 
   hooks.load(load);
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   hooks.load(load);
 });

@@ -17,7 +17,7 @@ it("useListener", (done) => {
     });
   });
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   host.dispatchEvent(new CustomEvent(eventName));
 });

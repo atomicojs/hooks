@@ -31,5 +31,5 @@ it("usePromise run = true", (done) => {
 
   render();
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 });

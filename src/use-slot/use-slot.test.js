@@ -20,7 +20,7 @@ it("useSlot", () => {
 
   render(); // first  render
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 });
 
 it("avoid Mark", () => {
@@ -40,5 +40,5 @@ it("avoid Mark", () => {
 
   render(); // first  render
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 });

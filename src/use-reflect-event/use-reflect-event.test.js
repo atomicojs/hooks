@@ -13,7 +13,7 @@ it("useReflectEvent", (done) => {
     useReflectEvent(refFrom, refTo, "click");
   });
 
-  hooks.cleanEffects()();
+  hooks.cleanEffects()()();
 
   refTo.current.addEventListener("click", (event) => {
     done();
