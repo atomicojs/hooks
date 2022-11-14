@@ -1,6 +1,12 @@
 import { h, useHost, useMemo, useEffect, options } from "atomico";
 
 const host = h("host");
+
+const IdUseRender = Symbol.for("Atomico.useRender");
+
+const props = {
+  [IdUseRender]: true,
+};
 /**
  * Ensures that the render function always
  * receives a tree that starts from the host tag
@@ -8,7 +14,16 @@ const host = h("host");
  */
 function fillHost(vdom) {
   if (vdom && typeof vdom == "object") {
-    vdom = vdom.type == "host" ? vdom : h("host", null, vdom);
+    vdom =
+      vdom.type == "host"
+        ? {
+            ...vdom,
+            props: {
+              ...props,
+              ...vdom.props,
+            },
+          }
+        : h("host", props, vdom);
     return vdom;
   }
   return host;
