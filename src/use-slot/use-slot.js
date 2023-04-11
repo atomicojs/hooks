@@ -28,7 +28,7 @@ export function useSlot(ref, filter) {
     handler();
     // listener and unlistener
     return addListener(current, "slotchange", handler);
-  }, []);
+  }, [ref.current]);
 
   return childNodes;
 }
