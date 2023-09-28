@@ -1,31 +1,33 @@
-import { expect } from "@esm-bundle/chai";
+import { expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
 import { useCss } from "./use-css.js";
 
 it("useCss", () => {
-  const host = document.createElement("div");
-  host.attachShadow({ mode: "open" });
-  const hooks = createHooks(() => {}, host);
+	const host = document.createElement("div");
+	host.attachShadow({ mode: "open" });
+	const hooks = createHooks(() => {}, host);
 
-  const cssText = /*css*/ `
+	const cssText = /*css*/ `
     :host{
         color: red
     }
   `;
 
-  hooks.load(() => {
-    useCss(cssText);
-  });
+	hooks.load(() => {
+		useCss(cssText);
+	});
 
-  hooks.cleanEffects()();
+	hooks.cleanEffects()();
 
-  expect(host.shadowRoot.querySelector("style")).to.be.an.instanceof(
-    HTMLStyleElement
-  );
+	expect(host.shadowRoot.querySelector("style")).to.be.an.instanceof(
+		HTMLStyleElement,
+	);
 
-  expect(host.shadowRoot.querySelector("style").textContent).to.equal(cssText);
+	expect(host.shadowRoot.querySelector("style").textContent).to.equal(
+		cssText,
+	);
 
-  hooks.cleanEffects(true)();
+	hooks.cleanEffects(true)();
 
-  expect(host.shadowRoot.querySelector("style")).to.be.null;
+	expect(host.shadowRoot.querySelector("style")).to.be.null;
 });

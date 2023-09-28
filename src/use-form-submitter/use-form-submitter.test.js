@@ -1,27 +1,27 @@
 import { createHooks } from "atomico/test-hooks";
-import { expect } from "@esm-bundle/chai";
+import { expect } from "vitest";
 import { useFormSubmitter } from "./use-form-submitter";
 
 it("useFormSubmitter", (done) => {
-  const hooks = createHooks(() => {});
-  const form = document.createElement("form");
-  const value = "my value...";
-  form.innerHTML = `<input type="text" name="field" value="${value}"/>`;
+	const hooks = createHooks(() => {});
+	const form = document.createElement("form");
+	const value = "my value...";
+	form.innerHTML = `<input type="text" name="field" value="${value}"/>`;
 
-  const refForm = {
-    current: form,
-  };
+	const refForm = {
+		current: form,
+	};
 
-  hooks.load(() => {
-    useFormSubmitter(refForm, {
-      submit(data) {
-        expect(data.get("field")).to.equal(value);
-        done();
-      },
-    });
-  });
+	hooks.load(() => {
+		useFormSubmitter(refForm, {
+			submit(data) {
+				expect(data.get("field")).to.equal(value);
+				done();
+			},
+		});
+	});
 
-  hooks.cleanEffects()()();
+	hooks.cleanEffects()()();
 
-  form.dispatchEvent(new Event("submit"));
+	form.dispatchEvent(new Event("submit"));
 });

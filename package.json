@@ -1,43 +1,55 @@
 {
-  "name": "@atomico/hooks",
-  "description": "Series of utilities in hooks format to extend the operation of Atomico",
-  "version": "3.49.1",
-  "type": "module",
-  "workspaces": [
-    "src/*"
-  ],
-  "author": {
-    "name": "UpperCod",
-    "email": "uppercod.git@gmail.com",
-    "url": "https://github.com/uppercod"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/atomicojs/hooks.git"
-  },
-  "bugs": {
-    "url": "https://github.com/atomicojs/hooks/issues"
-  },
-  "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
-  "scripts": {
-    "dev": "exports \"src/**/*.{ts,js}\" --types --exports --watch",
-    "exports": "exports \"src/**/*.{ts,js}\" --types --exports",
-    "test": "wtr src/**/*.test.js --node-resolve",
-    "prepublishOnly": "npm run test && npm run exports"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "atomico": "^1.68.0"
-  },
-  "devDependencies": {
-    "@atomico/exports": "^0.33.6",
-    "@esm-bundle/chai": "^4.3.4-fix.0",
-    "@types/chai": "^4.2.21",
-    "@web/test-runner": "^0.13.16",
-    "@web/test-runner-commands": "^0.5.12",
-    "atomico": "^1.68.0",
-    "typescript": "^4.7.2"
-  }
+	"name": "@atomico/hooks",
+	"description": "Series of utilities in hooks format to extend the operation of Atomico",
+	"version": "3.49.1",
+	"type": "module",
+	"workspaces": [
+		"packages/*"
+	],
+	"author": {
+		"name": "UpperCod",
+		"email": "uppercod.git@gmail.com",
+		"url": "https://github.com/uppercod"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/atomicojs/hooks.git"
+	},
+	"bugs": {
+		"url": "https://github.com/atomicojs/hooks/issues"
+	},
+	"homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
+	"scripts": {
+		"dev": "exports \"src/**/*.{ts,js}\" --types --exports --watch",
+		"exports": "exports \"src/**/*.{ts,js}\" --types --exports",
+		"test": "wtr src/**/*.test.js --node-resolve",
+		"prepublishOnly": "npm run test && npm run exports"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependencies": {
+		"atomico": "^1.68.0"
+	},
+	"devDependencies": {
+		"atomico": "^1.74.0",
+		"typescript": "^5.2.2"
+	},
+	"prettier": {
+		"endOfLine": "lf",
+		"semi": true,
+		"singleQuote": false,
+		"trailingComma": "all",
+		"useTabs": true,
+		"tabWidth": 4
+	},
+	"dependencies": {
+		"@atomico/run": "^0.12.0",
+		"@atomico/tsconfig": "^1.1.2",
+		"@atomico/vite": "^2.11.3",
+		"@vitest/browser": "^0.34.5",
+		"vite": "^4.4.9",
+		"vitest": "^0.34.5",
+		"webdriverio": "^8.16.12"
+	}
 }

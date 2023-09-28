@@ -1,60 +1,63 @@
 import { useRef } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { expect } from "@esm-bundle/chai";
+import { expect } from "vitest";
 import { useRefValues } from "./use-ref-values.js";
 
 describe("useRefValues", () => {
-  const hooks = createHooks();
-  const values = [];
+	const hooks = createHooks();
+	const values = [];
 
-  const load = () => {
-    const ref = useRef();
+	const load = () => {
+		const ref = useRef();
 
-    useRefValues(
-      (args) => {
-        const data = { args };
-        values.push(data);
-        return () => {
-          data.clean = true;
-        };
-      },
-      [ref]
-    );
+		useRefValues(
+			(args) => {
+				const data = { args };
+				values.push(data);
+				return () => {
+					data.clean = true;
+				};
+			},
+			[ref],
+		);
 
-    return ref;
-  };
+		return ref;
+	};
 
-  const ref = hooks.load(load);
+	const ref = hooks.load(load);
 
-  const cycle = () => {
-    hooks.load(load);
-    hooks.cleanEffects()()();
-  };
+	const cycle = () => {
+		hooks.load(load);
+		hooks.cleanEffects()()();
+	};
 
-  cycle();
+	cycle();
 
-  ref.current = 100;
+	ref.current = 100;
 
-  let loop = 3;
+	let loop = 3;
 
-  while (loop--) {
-    cycle();
-  }
+	while (loop--) {
+		cycle();
+	}
 
-  ref.current = undefined;
+	ref.current = undefined;
 
-  cycle();
+	cycle();
 
-  ref.current = 200;
+	ref.current = 200;
 
-  cycle();
+	cycle();
 
-  expect(values).to.deep.equal([{ args: [100], clean: true }, { args: [200] }]);
+	expect(values).to.deep.equal([
+		{ args: [100], clean: true },
+		{ args: [200] },
+	]);
 
-  hooks.cleanEffects(true)()();
+	hooks.cleanEffects(true)()();
 
-  // expect(values).to.deep.equal([
-  //   { args: [100], clean: true },
-  //   { args: [200], clean: true },
-  // ]);
+	// expect(values).to.deep.equal([
+	//   { args: [100], clean: true },
+	//   { args: [200], clean: true },
+	// ]);
 });
