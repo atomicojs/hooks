@@ -18,7 +18,7 @@
 	"homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
 	"scripts": {
 		"build:compile": "tsc",
-		"build:exports": "exports ",
+		"build:exports": "exports \"dist/**/*\"",
 		"test": "wtr src/**/*.test.js --node-resolve",
 		"prepublishOnly": "npm run test && npm run exports"
 	},
