@@ -32,6 +32,10 @@
         "./use-internals": {
             "default": "./dist/use-internals.js",
             "types": "./dist/use-internals.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-internals.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

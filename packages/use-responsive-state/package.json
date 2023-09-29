@@ -35,6 +35,10 @@
         "./use-responsive-state": {
             "default": "./dist/use-responsive-state.js",
             "types": "./dist/use-responsive-state.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -43,5 +47,6 @@
                 "dist/use-responsive-state.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

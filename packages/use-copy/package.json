@@ -32,6 +32,10 @@
         "./use-copy": {
             "default": "./dist/use-copy.js",
             "types": "./dist/use-copy.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-copy.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

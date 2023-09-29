@@ -6,7 +6,7 @@ import { useListener } from "@atomico/use-listener";
  * depending on the type of pressure
  */
 export function useClickPress(
-	ref: Ref,
+	ref: Ref<Element | Window>,
 	callback: () => any,
 	aceleration = 0.9,
 	minMs = 24,
@@ -52,10 +52,12 @@ export function useClickPress(
 	useListener(ref, "mousedown", handlerStart);
 	useListener(ref, "touchstart", handlerStart);
 
+	const x = new Image();
+
 	useListener(
 		ref,
 		"keydown",
-		(event: KeyboardEvent) => event.code === "Space" && handlerStart(event),
+		(event) => event.code === "Space" && handlerStart(event),
 	);
 
 	useListener(ref, "mouseup", handlerStop);
@@ -63,5 +65,5 @@ export function useClickPress(
 	useListener(ref, "touchend", handlerStop);
 	useListener(ref, "touchmove", handlerStop);
 
-	useListener(ref, "keyup", (event: KeyboardEvent) => handlerStop(event));
+	useListener(ref, "keyup", (event) => handlerStop(event));
 }

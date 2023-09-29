@@ -18,8 +18,8 @@ export function useMutationObserver(
 	const value = useCurrentValue(observe);
 	useRefValues(
 		([current]) => {
-			const observer = new MutationObserver((mutations) =>
-				value.current(mutations),
+			const observer = new MutationObserver((...args) =>
+				value.current(...args),
 			);
 			observer.observe(current, config);
 			return () => observer.disconnect();

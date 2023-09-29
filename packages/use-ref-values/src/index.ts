@@ -7,9 +7,9 @@ type Args<E extends Ref[]> = {
 type Collector = void | (() => any);
 
 export function useRefValues<T extends Ref[]>(
-	callback: (args: Args<T>) => Collector,
+	callback: (args: Args<T>) => Collector | void,
 	args: T,
-	mode: boolean,
+	mode?: boolean,
 ) {
 	const { current } = useRef<{
 		values: Args<T>;

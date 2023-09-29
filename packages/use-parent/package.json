@@ -32,6 +32,10 @@
         "./use-parent": {
             "default": "./dist/use-parent.js",
             "types": "./dist/use-parent.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-parent.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

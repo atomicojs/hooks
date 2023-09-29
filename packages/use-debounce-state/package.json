@@ -32,6 +32,10 @@
         "./use-debounce-state": {
             "default": "./dist/use-debounce-state.js",
             "types": "./dist/use-debounce-state.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-debounce-state.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

@@ -4,7 +4,7 @@ import { useRefValues } from "@atomico/use-ref-values";
 import { addListener } from "@atomico/use-listener";
 
 export function useKeyboard(
-	ref: Ref,
+	ref: Ref<Element>,
 	keys: string[],
 	callback: (event: KeyboardEvent) => void,
 ) {
@@ -22,6 +22,8 @@ export function useKeyboard(
 					}
 				}
 			};
+
+			
 
 			const removeKeydown = addListener(current, "keydown", (event) => {
 				history.add(event.code);

@@ -32,6 +32,10 @@
         "./use-history": {
             "default": "./dist/use-history.js",
             "types": "./dist/use-history.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-history.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

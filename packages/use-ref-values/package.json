@@ -32,6 +32,10 @@
         "./use-ref-values": {
             "default": "./dist/use-ref-values.js",
             "types": "./dist/use-ref-values.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-ref-values.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

@@ -41,6 +41,10 @@
         "./use-controller": {
             "default": "./dist/use-controller.js",
             "types": "./dist/use-controller.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -49,5 +53,6 @@
                 "dist/use-controller.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }

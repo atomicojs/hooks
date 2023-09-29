@@ -32,6 +32,10 @@
         "./use-render": {
             "default": "./dist/use-render.js",
             "types": "./dist/use-render.d.ts"
+        },
+        ".": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
@@ -40,5 +44,6 @@
                 "dist/use-render.d.ts"
             ]
         }
-    }
+    },
+    "types": "dist/index.d.ts"
 }
