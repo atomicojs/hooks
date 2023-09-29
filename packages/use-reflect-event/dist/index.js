@@ -23,11 +23,7 @@ export const reflectEvent = (current, event, composed) => {
  * This hook reflects an event and cancels its propagation
  */
 export function useReflectEvent(refFrom, refTo, type, { capture = true, composed = true, } = {}) {
-    useListener(refFrom, type, 
-    /**
-     * @param {Event} event
-     */
-    (event) => {
+    useListener(refFrom, type, (event) => {
         const { current } = refTo;
         current && reflectEvent(current, event, composed);
     }, { capture });

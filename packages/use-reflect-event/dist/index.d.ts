@@ -6,7 +6,7 @@ export declare const reflectEvent: (current: Element, event: Event, composed?: b
 /**
  * This hook reflects an event and cancels its propagation
  */
-export declare function useReflectEvent(refFrom: string, refTo: Ref, type: Ref, { capture, composed, }?: {
+export declare function useReflectEvent(refFrom: Ref, refTo: Ref, type: string, { capture, composed, }?: {
     capture?: boolean;
     composed?: boolean;
 }): void;

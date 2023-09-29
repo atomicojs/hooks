@@ -31,9 +31,9 @@ export const reflectEvent = (
  * This hook reflects an event and cancels its propagation
  */
 export function useReflectEvent(
-	refFrom: string,
+	refFrom: Ref,
 	refTo: Ref,
-	type: Ref,
+	type: string,
 	{
 		capture = true,
 		composed = true,
@@ -42,12 +42,9 @@ export function useReflectEvent(
 	useListener(
 		refFrom,
 		type,
-		/**
-		 * @param {Event} event
-		 */
 		(event) => {
 			const { current } = refTo;
-			current && reflectEvent(current, event, composed);
+			current && reflectEvent(current, event as any, composed);
 		},
 		{ capture },
 	);

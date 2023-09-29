@@ -39,6 +39,7 @@ export function useClickPress(ref, callback, aceleration = 0.9, minMs = 24) {
     };
     useListener(ref, "mousedown", handlerStart);
     useListener(ref, "touchstart", handlerStart);
+    const x = new Image();
     useListener(ref, "keydown", (event) => event.code === "Space" && handlerStart(event));
     useListener(ref, "mouseup", handlerStop);
     useListener(ref, "mouseleave", handlerStop);

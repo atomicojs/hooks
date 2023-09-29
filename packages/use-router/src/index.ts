@@ -1,19 +1,18 @@
-import { useState, useEffect } from "atomico";
+import { Ref, useState, useEffect } from "atomico";
 import { getPath, listener, redirect } from "./history.js";
-import { matches, getMatch } from "./matches.js";
+import { Routes, matches, getMatch, RouterCallback } from "./matches.js";
 export { redirect, getPath } from "./history.js";
 import { useListener } from "@atomico/use-listener";
 import { useCurrentValue } from "@atomico/use-current-value";
+import { Match, Params } from "@uppercod/exp-route";
 
 const DefaultState = {};
-/**
- * @template T
- * allows you to listen to only one route
- * @param {import("./src/matches").Routes} routes
- * @returns {[T, StringPath, ParamsPath, SearchPath]}
- */
-export function useRouter(routes) {
-	const [state, setState] = useState(DefaultState);
+
+export function useRouter<T>(routes: Routes): [T, string, Params, Params] {
+	const [state, setState] = useState<{
+		path?: string;
+		result?: any;
+	}>(DefaultState);
 	const refRoutes = useCurrentValue(routes);
 
 	useEffect(() => {
@@ -40,14 +39,10 @@ export function useRouter(routes) {
 	return state.result || [];
 }
 
-/**
- * @template T
- * allows you to listen to only one route
- * @param {string} path
- * @param {import("./src/matches").RouterCallback} [callback]
- * @returns {[T, StringPath, ParamsPath, SearchPath]}
- */
-export function useRoute(path, callback = (param) => param) {
+export function useRoute<T>(
+	path: string,
+	callback: RouterCallback = (param) => param,
+): [T, string, Params, Params] {
 	const routes = { [path]: callback };
 	return useRouter(routes);
 }
@@ -64,21 +59,27 @@ export function useRoute(path, callback = (param) => param) {
  *
  * console.log(match("/:id"))
  * ```
- * @returns {(path:string)=>import("@uppercod/exp-route").Match}
+ 
  */
-export function useRouteMatch() {
+export function useRouteMatch(): (path: string) => Match {
 	const [state, setState] = useState(getPath);
 	useEffect(() => listener(() => setState(getPath)), []);
+	// @ts-ignore
 	return (path) => getMatch(path)(state);
 }
 
 /**
  * Capture the click events of a reference to find
  * if a node declares href to associate redirection
- * @param {import("atomico").Ref<Element>} ref
- * @param {{proxy?:(path:string)=>string, composed?:boolean}} [options] allows to change the redirect url
+ 
  */
-export function useRedirect(ref, { proxy, composed = true } = {}) {
+export function useRedirect(
+	ref: Ref<Element>,
+	{
+		proxy,
+		composed = true,
+	}: { proxy?: (path: string) => string; composed?: boolean } = {},
+) {
 	useListener(
 		ref,
 		"click",
@@ -119,21 +120,3 @@ export function useRedirect(ref, { proxy, composed = true } = {}) {
 		{ capture: true },
 	);
 }
-
-/**
- * @typedef {Object} InternalState
- * @property {string} [path]
- * @property {any} [result]
- */
-
-/**
- * @typedef {string} StringPath
- */
-
-/**
- * @typedef {Object<string,string>} ParamsPath
- */
-
-/**
- * @typedef {Object<string,string>} SearchPath
- */

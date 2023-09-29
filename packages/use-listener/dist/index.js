@@ -1,6 +1,6 @@
-import { useState } from "atomico";
-import { useRefValues } from "@atomico/use-ref-values";
 import { useCurrentValue } from "@atomico/use-current-value";
+import { useRefValues } from "@atomico/use-ref-values";
+import { useState } from "atomico";
 export function useListener(ref, name, handler, options) {
     const value = useCurrentValue(handler);
     useRefValues(([current]) => {

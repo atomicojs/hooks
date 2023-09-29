@@ -35,7 +35,7 @@ export function useFormInputRadio(input) {
         },
     }));
     useListener(ref, "change", (event) => {
-        setChecked(event.target.checked);
+        setChecked(event.currentTarget.checked);
     });
     useEffect(() => {
         setChecked(ref.current.checked);

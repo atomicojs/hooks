@@ -24,7 +24,7 @@ export function useParallax(host: Ref) {
 	useListener(
 		refWindow,
 		"deviceorientation",
-		({ beta, gamma }: DOMEvent<HTMLElement, DeviceOrientationEvent>) => {
+		({ beta, gamma }) => {
 			if (!intersectio) return;
 			if (!refWindow.start) {
 				refWindow.start = { beta, gamma };

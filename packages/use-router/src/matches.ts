@@ -6,9 +6,9 @@ import {
 	searchParams,
 } from "@uppercod/exp-route";
 
-type RouterCallback = (params: Params, search: Params) => any;
+export type RouterCallback = (params: Params, search: Params) => any;
 
-type Routes = {
+export type Routes = {
 	[path: string]: RouterCallback;
 };
 

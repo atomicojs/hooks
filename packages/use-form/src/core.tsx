@@ -1,7 +1,7 @@
-import { Ref, useState } from "atomico";
-import { useParent } from "@atomico/use-parent";
 import { useListener } from "@atomico/use-listener";
+import { useParent } from "@atomico/use-parent";
 import { useRender } from "@atomico/use-render";
+import { Ref, useState } from "atomico";
 
 interface SubmitEvent {
 	formData: FormData;
@@ -11,7 +11,11 @@ interface FormDataEvent {
 	submitter: HTMLElement;
 }
 
-type FormHandler<T extends FormKeyofEvents> = (ev: FormEvents[T]) => any;
+type FormHandler<T extends FormKeyofEvents> = (
+	ev: Omit<FormEvents[T], "currentTarget"> & {
+		currentTarget: HTMLFormElement;
+	},
+) => any;
 
 interface FormEvents {
 	formdata: FormDataEvent & Event;
@@ -35,7 +39,7 @@ export function useFormListener<T extends FormKeyofEvents>(
 	handler: FormHandler<T>,
 	options?: boolean | AddEventListenerOptions,
 ) {
-	useListener(useForm(), name, handler, options);
+	useListener(useForm(), name as string, handler as any, options);
 }
 
 export function useFormInputHidden(name: string, value: string) {

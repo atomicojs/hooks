@@ -28,22 +28,14 @@
     "peerDependencies": {
         "atomico": "^1.68.0"
     },
+    "types": "dist/index.d.ts",
     "exports": {
-        "./use-copy": {
-            "default": "./dist/use-copy.js",
-            "types": "./dist/use-copy.d.ts"
-        },
         ".": {
             "default": "./dist/index.js",
             "types": "./dist/index.d.ts"
         }
     },
     "typesVersions": {
-        "*": {
-            "use-copy": [
-                "dist/use-copy.d.ts"
-            ]
-        }
-    },
-    "types": "dist/index.d.ts"
+        "*": {}
+    }
 }

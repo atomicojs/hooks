@@ -5,12 +5,6 @@ export { redirect, getPath } from "./history.js";
 import { useListener } from "@atomico/use-listener";
 import { useCurrentValue } from "@atomico/use-current-value";
 const DefaultState = {};
-/**
- * @template T
- * allows you to listen to only one route
- * @param {import("./src/matches").Routes} routes
- * @returns {[T, StringPath, ParamsPath, SearchPath]}
- */
 export function useRouter(routes) {
     const [state, setState] = useState(DefaultState);
     const refRoutes = useCurrentValue(routes);
@@ -33,13 +27,6 @@ export function useRouter(routes) {
     }, Object.keys(routes));
     return state.result || [];
 }
-/**
- * @template T
- * allows you to listen to only one route
- * @param {string} path
- * @param {import("./src/matches").RouterCallback} [callback]
- * @returns {[T, StringPath, ParamsPath, SearchPath]}
- */
 export function useRoute(path, callback = (param) => param) {
     const routes = { [path]: callback };
     return useRouter(routes);
@@ -57,20 +44,20 @@ export function useRoute(path, callback = (param) => param) {
  *
  * console.log(match("/:id"))
  * ```
- * @returns {(path:string)=>import("@uppercod/exp-route").Match}
+ 
  */
 export function useRouteMatch() {
     const [state, setState] = useState(getPath);
     useEffect(() => listener(() => setState(getPath)), []);
+    // @ts-ignore
     return (path) => getMatch(path)(state);
 }
 /**
  * Capture the click events of a reference to find
  * if a node declares href to associate redirection
- * @param {import("atomico").Ref<Element>} ref
- * @param {{proxy?:(path:string)=>string, composed?:boolean}} [options] allows to change the redirect url
+ 
  */
-export function useRedirect(ref, { proxy, composed = true } = {}) {
+export function useRedirect(ref, { proxy, composed = true, } = {}) {
     useListener(ref, "click", (event) => {
         const { current } = ref;
         const { shadowRoot } = current;
@@ -97,17 +84,3 @@ export function useRedirect(ref, { proxy, composed = true } = {}) {
         }
     }, { capture: true });
 }
-/**
- * @typedef {Object} InternalState
- * @property {string} [path]
- * @property {any} [result]
- */
-/**
- * @typedef {string} StringPath
- */
-/**
- * @typedef {Object<string,string>} ParamsPath
- */
-/**
- * @typedef {Object<string,string>} SearchPath
- */

@@ -5,7 +5,9 @@ interface SubmitEvent {
 interface FormDataEvent {
     submitter: HTMLElement;
 }
-type FormHandler<T extends FormKeyofEvents> = (ev: FormEvents[T]) => any;
+type FormHandler<T extends FormKeyofEvents> = (ev: Omit<FormEvents[T], "currentTarget"> & {
+    currentTarget: HTMLFormElement;
+}) => any;
 interface FormEvents {
     formdata: FormDataEvent & Event;
     submit: SubmitEvent & Event;

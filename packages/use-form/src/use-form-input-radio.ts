@@ -8,7 +8,7 @@ import { useFormListener } from "./core";
  * of the props checked: Boolean and name: String
  */
 export function useFormInputRadio(input: any): Ref<HTMLInputElement> {
-	const ref = useRef();
+	const ref = useRef<HTMLInputElement>();
 	const [checked, setChecked] = useProp("checked");
 	const [name] = useProp("name");
 
@@ -39,7 +39,7 @@ export function useFormInputRadio(input: any): Ref<HTMLInputElement> {
 	}));
 
 	useListener(ref, "change", (event) => {
-		setChecked(event.target.checked);
+		setChecked(event.currentTarget.checked);
 	});
 
 	useEffect(() => {
