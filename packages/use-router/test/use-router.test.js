@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useRoute, useRouteMatch } from "../src/use-router";
+import { useRoute, useRouteMatch } from "../src/";
 
 it("useRouter", () => {
 	const hooks = createHooks(() => {});

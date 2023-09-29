@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useAttributes } from "../src/use-attributes";
+import { useAttributes } from "../src";
 
 describe("useAttributes", () => {
 	it("case 1", () => {

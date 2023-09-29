@@ -1,16 +1,16 @@
 {
-    "include": ["src/**/*"],
-    "exclude": ["src/tests/*"],
-    "compilerOptions": {
-      "jsx": "react-jsx",
-      "jsxImportSource": "atomico",
-      "allowJs": true,
-      "declaration": true,
-      "emitDeclarationOnly": true,
-      "outDir": "",
-      "moduleResolution": "node",
-      "module": "ESNext",
-      "target": "ESNext",
-      "lib": ["ESNext", "DOM","DOM.Iterable"]
-    }
-  }
+	"include": ["src/**/*"],
+	"exclude": ["src/tests/*"],
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "atomico",
+		"allowJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"outDir": "",
+		"moduleResolution": "node",
+		"module": "ESNext",
+		"target": "ESNext",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"]
+	}
+}

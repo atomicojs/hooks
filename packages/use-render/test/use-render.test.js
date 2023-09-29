@@ -1,7 +1,7 @@
 import { it, expect } from "vitest";
 import { html } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { useRender } from "../src/use-render.js";
+import { useRender } from "../src/";
 
 it("use-render", () => {
 	const container = document.createElement("div");

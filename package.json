@@ -22,7 +22,7 @@
 	"scripts": {
 		"dev": "exports \"src/**/*.{ts,js}\" --types --exports --watch",
 		"exports": "exports \"src/**/*.{ts,js}\" --types --exports",
-		"test": "wtr src/**/*.test.js --node-resolve",
+		"test": "vitest run",
 		"prepublishOnly": "npm run test && npm run exports"
 	},
 	"publishConfig": {

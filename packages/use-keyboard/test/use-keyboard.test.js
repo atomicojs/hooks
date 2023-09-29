@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useKeyboard } from "../src/use-keyboard";
+import { useKeyboard } from "../src/";
 
 it("useKeyboard", () => {
 	const ref = { current: document };

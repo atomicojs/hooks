@@ -1,7 +1,7 @@
 import { c, html } from "atomico";
 import { fixture } from "atomico/test-dom";
 import { it, expect } from "vitest";
-import { useFormInputHidden } from "../src/use-form";
+import { useFormInputHidden } from "../src/";
 
 it("useFormInputHidden", async () => {
 	const Component = c(() => {

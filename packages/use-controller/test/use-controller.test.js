@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useController } from "../src/use-controller";
+import { useController } from "../src";
 
 class SimpleController {
 	host;

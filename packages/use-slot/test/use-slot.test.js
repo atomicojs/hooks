@@ -1,7 +1,7 @@
 import { it, expect } from "vitest";
 import { Mark } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { useSlot } from "../src/use-slot";
+import { useSlot } from "../src/";
 
 it("useSlot", () => {
 	const current = document.createElement("slot");

@@ -1,58 +1,58 @@
 {
-    "name": "@atomico/use-controller",
-    "description": "Series of utilities in hooks format to extend the operation of Atomico",
-    "version": "1.0.0",
-    "type": "module",
-    "author": {
-        "name": "UpperCod",
-        "email": "uppercod.git@gmail.com",
-        "url": "https://github.com/uppercod"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+ssh://git@github.com/atomicojs/hooks.git"
-    },
-    "bugs": {
-        "url": "https://github.com/atomicojs/hooks/issues"
-    },
-    "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
-    "scripts": {
-        "build:compile": "tsc",
-        "build:exports": "exports \"dist/**/*\"",
-        "test": "wtr src/**/*.test.js --node-resolve",
-        "prepublishOnly": "npm run test && npm run exports"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "peerDependencies": {
-        "atomico": "^1.68.0",
-        "@lit/reactive-element": "^1.0.2"
-    },
-    "devDependencies": {
-        "@lit/reactive-element": "^1.0.2"
-    },
-    "peerDependenciesMeta": {
-        "@lit/reactive-element": {
-            "optional": true
-        }
-    },
-    "exports": {
-        "./use-controller": {
-            "default": "./dist/use-controller.js",
-            "types": "./dist/use-controller.d.ts"
-        },
-        ".": {
-            "default": "./dist/index.js",
-            "types": "./dist/index.d.ts"
-        }
-    },
-    "typesVersions": {
-        "*": {
-            "use-controller": [
-                "dist/use-controller.d.ts"
-            ]
-        }
-    },
-    "types": "dist/index.d.ts"
+	"name": "@atomico/use-controller",
+	"description": "Series of utilities in hooks format to extend the operation of Atomico",
+	"version": "1.0.0",
+	"type": "module",
+	"author": {
+		"name": "UpperCod",
+		"email": "uppercod.git@gmail.com",
+		"url": "https://github.com/uppercod"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/atomicojs/hooks.git"
+	},
+	"bugs": {
+		"url": "https://github.com/atomicojs/hooks/issues"
+	},
+	"homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
+	"scripts": {
+		"build:compile": "tsc",
+		"build:exports": "exports \"dist/**/*\"",
+		"test": "vitest run",
+		"prepublishOnly": "npm run test && npm run exports"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependencies": {
+		"atomico": "^1.68.0",
+		"@lit/reactive-element": "^1.0.2"
+	},
+	"devDependencies": {
+		"@lit/reactive-element": "^1.0.2"
+	},
+	"peerDependenciesMeta": {
+		"@lit/reactive-element": {
+			"optional": true
+		}
+	},
+	"exports": {
+		"./use-controller": {
+			"default": "./dist/use-controller.js",
+			"types": "./dist/use-controller.d.ts"
+		},
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"use-controller": [
+				"dist/use-controller.d.ts"
+			]
+		}
+	},
+	"types": "dist/index.d.ts"
 }

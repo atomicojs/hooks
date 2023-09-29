@@ -1,7 +1,7 @@
 import { useRef } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { describe, expect } from "vitest";
-import { useRefValues } from "../src/use-ref-values.js";
+import { useRefValues } from "../src/";
 
 describe("useRefValues", () => {
 	const hooks = createHooks();
