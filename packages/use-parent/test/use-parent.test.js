@@ -1,6 +1,6 @@
 import { it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useParent } from "./use-parent.js";
+import { useParent } from "../src";
 
 it("useParent", () => {
 	const host = document.createElement("div");

@@ -32,7 +32,6 @@ export function useRefValues<T extends Ref[]>(
 		const oldValues = current.values;
 		const values = args.map((ref) => ref.current) as Args<T>;
 		const withDiff = values.some((value, i) => value !== oldValues[i]);
-
 		if (withDiff) {
 			clean();
 			if (

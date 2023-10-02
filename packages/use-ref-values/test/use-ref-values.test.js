@@ -1,9 +1,9 @@
 import { useRef } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { describe, expect } from "vitest";
-import { useRefValues } from "../src/";
+import { expect, it } from "vitest";
+import { useRefValues } from "../src";
 
-describe("useRefValues", () => {
+it("useRefValues", () => {
 	const hooks = createHooks();
 	const values = [];
 
@@ -53,11 +53,4 @@ describe("useRefValues", () => {
 		{ args: [100], clean: true },
 		{ args: [200] },
 	]);
-
-	hooks.cleanEffects(true)()();
-
-	// expect(values).to.deep.equal([
-	//   { args: [100], clean: true },
-	//   { args: [200], clean: true },
-	// ]);
 });

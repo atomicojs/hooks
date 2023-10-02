@@ -1,7 +1,7 @@
 import { expect, it } from "vitest";
 import { useHost } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { useReflectEvent } from "./use-reflect-event";
+import { useReflectEvent } from "../src";
 
 it("useReflectEvent", (done) => {
 	const host = document.createElement("div");

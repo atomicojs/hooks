@@ -2,16 +2,9 @@ import { useProp, useLayoutEffect } from "atomico";
 import { useParent } from "@atomico/use-parent";
 import { useMutationObserver } from "@atomico/use-mutation-observer";
 
-/**
- *
- * @param {Element} el
- * @returns
- */
-const checkDisable = (el) => el.hasAttribute("disabled");
+const checkDisable = (el: Element) => el.hasAttribute("disabled");
 /**
  * Synchronize disabled status with a parent
- * @param {string} [matches] - allows to change the search of the fieldset to another element.
- * @returns {boolean}
  * @example
  * ```jsx
  * <fieldset disabled>
@@ -25,7 +18,7 @@ const checkDisable = (el) => el.hasAttribute("disabled");
  * }
  * ```
  */
-export function useDisabled(matches = "fieldset") {
+export function useDisabled(matches = "fieldset"): boolean {
 	const fieldset = useParent(matches);
 	const [disabled, setDisabled] = useProp("disabled");
 
@@ -35,7 +28,7 @@ export function useDisabled(matches = "fieldset") {
 			items
 				.filter((item) => item.attributeName == "disabled")
 				.map((el) => {
-					setDisabled(checkDisable(el.target));
+					setDisabled(checkDisable(el.target as Element));
 				}),
 		{
 			attributes: true,

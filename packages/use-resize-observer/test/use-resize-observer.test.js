@@ -1,6 +1,6 @@
-import { expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useResizeObserver } from "./use-resize-observer.js";
+import { useResizeObserver } from "../src";
 
 describe("useResizeObserver", () => {
 	it("loop", async () => {

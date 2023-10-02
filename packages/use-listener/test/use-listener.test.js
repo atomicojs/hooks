@@ -1,7 +1,7 @@
-import { it,expect } from "vitest";
+import { it, expect } from "vitest";
 import { useHost } from "atomico";
 import { createHooks } from "atomico/test-hooks";
-import { useListener } from "./use-listener.js";
+import { useListener } from "../src";
 
 it("useListener", (done) => {
 	const host = document.createElement("div");

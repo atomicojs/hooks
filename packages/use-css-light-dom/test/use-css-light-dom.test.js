@@ -1,7 +1,7 @@
 import { css } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { expect, it } from "vitest";
-import { useCssLightDom } from "./use-css-light-dom";
+import { useCssLightDom } from "../src";
 
 it("useCss", () => {
 	const host = document.body.appendChild(document.createElement("div"));

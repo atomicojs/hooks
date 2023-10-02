@@ -18,4 +18,7 @@ export default defineConfig({
 			vitest: true,
 		}),
 	],
+	optimizeDeps: {
+		exclude: "atomico/test-dom",
+	},
 });

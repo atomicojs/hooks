@@ -1,6 +1,6 @@
 import { createHooks } from "atomico/test-hooks";
 import { describe, expect, it } from "vitest";
-import { usePropProxy } from "./use-prop-proxy.js";
+import { usePropProxy } from "../src";
 
 describe("usePropProxy", () => {
 	it("case 1", () => {

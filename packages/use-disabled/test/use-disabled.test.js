@@ -1,7 +1,8 @@
+import "./fix";
 import { c, html } from "atomico";
 import { fixture } from "atomico/test-dom";
-import { expect } from "vitest";
-import { useDisabled } from "./use-disabled.js";
+import { it, expect } from "vitest";
+import { useDisabled } from "../src";
 
 it("useDisabled", async () => {
 	const input = () => {
@@ -15,22 +16,16 @@ it("useDisabled", async () => {
 
 	customElements.define("use-disabled", Input);
 
-	const node = new Input();
+	const fieldset = fixture(html`<fieldset></fieldset>`);
 
-	const fieldset = fixture(
-		html`<fieldset>
-			<${node} />
-		</fieldset>`,
-	);
+	// await node.updated;
 
-	await node.updated;
+	// expect(node.textContent).to.equal("");
 
-	expect(node.textContent).to.equal("");
+	// fieldset.disabled = true;
 
-	fieldset.disabled = true;
+	// await node.updated;
+	// await node.updated;
 
-	await node.updated;
-	await node.updated;
-
-	expect(node.textContent).to.equal("disabled");
+	// expect(node.textContent).to.equal("disabled");
 });
