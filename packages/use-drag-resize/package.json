@@ -19,8 +19,7 @@
 	"scripts": {
 		"build:compile": "tsc",
 		"build:exports": "exports \"dist/**/*\"",
-		"test": "vitest run",
-		"prepublishOnly": "npm run test && npm run exports"
+		"test": "vitest run"
 	},
 	"publishConfig": {
 		"access": "public"

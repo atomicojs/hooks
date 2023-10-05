@@ -5,10 +5,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"dev": "exports \"src/**/*.{ts,js}\" --types --exports --watch",
-		"exports": "exports \"src/**/*.{ts,js}\" --types --exports",
 		"test": "vitest run",
-		"prepublishOnly": "npm run test && npm run exports"
+		"prepublishOnly": "run build:* -s && npm run test && run build "
 	},
 	"publishConfig": {
 		"access": "public"
