@@ -4,10 +4,9 @@ import media from "@uppercod/match-media";
 
 const CACHE_TEMPLATE: { [index: string]: ReturnType<typeof media> } = {};
 export function useRefResizeState(ref: Ref, sizes: string) {
-	/**
-	 * @type {ReturnType<media>}
-	 */
-	const template = media.call(null, { raw: [sizes] });
+	const template: ReturnType<typeof media> = media.call(null, {
+		raw: [sizes],
+	});
 
 	const [state, setState] = useState();
 
