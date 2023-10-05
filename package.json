@@ -6,7 +6,7 @@
 	],
 	"scripts": {
 		"test": "vitest run",
-		"packages": "run build:* -s && npm run test && run centralize publish -s"
+		"packages": "run build:* -s -r && npm run test && run centralize publish -s"
 	},
 	"publishConfig": {
 		"access": "public"
