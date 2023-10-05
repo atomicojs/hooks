@@ -6,11 +6,7 @@ export default defineConfig({
 		target: "esnext",
 	},
 	test: {
-		browser: {
-			enabled: true,
-			headless: true,
-			name: "chrome", // browser name is required
-		},
+		environment: "happy-dom",
 	},
 	plugins: [
 		...atomico({

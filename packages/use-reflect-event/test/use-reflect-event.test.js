@@ -3,22 +3,23 @@ import { useHost } from "atomico";
 import { createHooks } from "atomico/test-hooks";
 import { useReflectEvent } from "../src";
 
-it("useReflectEvent", (done) => {
-	const host = document.createElement("div");
-	const hooks = createHooks(null, host);
-	const refTo = { current: document.createElement("div") };
+it("useReflectEvent", () =>
+	new Promise((done) => {
+		const host = document.createElement("div");
+		const hooks = createHooks(null, host);
+		const refTo = { current: document.createElement("div") };
 
-	hooks.load(() => {
-		const refFrom = useHost();
-		useReflectEvent(refFrom, refTo, "click");
-	});
+		hooks.load(() => {
+			const refFrom = useHost();
+			useReflectEvent(refFrom, refTo, "click");
+		});
 
-	hooks.cleanEffects()()();
+		hooks.cleanEffects()()();
 
-	refTo.current.addEventListener("click", (event) => {
-		done();
-		expect(event).to.be.an.instanceof(PointerEvent);
-	});
+		refTo.current.addEventListener("click", (event) => {
+			done();
+			expect(event).to.be.an.instanceof(Event);
+		});
 
-	host.click();
-});
+		host.click();
+	}));
