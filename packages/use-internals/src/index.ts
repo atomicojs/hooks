@@ -1,15 +1,13 @@
 import { useHost, useState } from "atomico";
 
-const INTERNALS = Symbol("attachInternals");
+const INTERNALS = Symbol.for("@atomico/use-internals");
 
 export function useInternals(): ElementInternals {
-	const host = useHost();
-	const [internals] = useState(() => {
-		const { current } = host;
-		if (!current[INTERNALS]) {
-			current[INTERNALS] = current.attachInternals();
-		}
-		return current[INTERNALS];
-	});
+	const { current } = useHost();
+	const [internals] = useState(
+		() =>
+			(current[INTERNALS] =
+				current[INTERNALS] || current.attachInternals()),
+	);
 	return internals;
 }
