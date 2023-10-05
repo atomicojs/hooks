@@ -35,5 +35,6 @@
 		"trailingComma": "all",
 		"useTabs": true,
 		"tabWidth": 4
-	}
+	},
+	"version": "4.0.0-beta"
 }
