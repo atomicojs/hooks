@@ -24,6 +24,60 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.68.0",
+		"@atomico/react": "*",
+		"@atomico/vue": "*"
+	},
+	"dependencies": {
+		"@atomico/use-attributes": "^1.0.0",
+		"@atomico/use-click-coordinates": "^1.0.0",
+		"@atomico/use-click-press": "^1.0.0",
+		"@atomico/use-copy": "^1.0.0",
+		"@atomico/use-controller": "^1.0.0",
+		"@atomico/use-css-light-dom": "^1.0.0",
+		"@atomico/use-current-value": "^1.0.0",
+		"@atomico/use-debounce-state": "^1.0.0",
+		"@atomico/use-disabled": "^1.0.0",
+		"@atomico/use-drag-resize": "^1.0.0",
+		"@atomico/use-form": "^1.0.0",
+		"@atomico/use-internals": "^1.0.0",
+		"@atomico/use-intersection-observer": "^1.0.0",
+		"@atomico/use-keyboard": "^1.0.0",
+		"@atomico/use-listener": "^1.0.0",
+		"@atomico/use-media-query": "^1.0.0",
+		"@atomico/use-mutation-observer": "^1.0.0",
+		"@atomico/use-parallax": "^1.0.0",
+		"@atomico/use-parent": "^1.0.0",
+		"@atomico/use-prop-proxy": "^1.0.0",
+		"@atomico/use-ref-values": "^1.0.0",
+		"@atomico/use-reflect-event": "^1.0.0",
+		"@atomico/use-render": "^1.0.0",
+		"@atomico/use-resize-observer": "^1.0.0",
+		"@atomico/use-resize-state": "^1.0.0",
+		"@atomico/use-responsive-state": "^1.0.0",
+		"@atomico/use-router": "^1.0.0",
+		"@atomico/use-script": "^1.0.0",
+		"@atomico/use-slot": "^1.0.0",
+		"@atomico/use-value-history": "^1.0.0"
+	},
+	"peerDependenciesMeta": {
+		"@atomico/react": {
+			"optional": true
+		},
+		"@atomico/vue": {
+			"optional": true
+		}
+	},
+	"main": "wrapper/index.js",
+	"module": "wrapper/index.js",
+	"types": "wrapper/index.d.ts",
+	"exports": {
+		".": {
+			"default": "./wrapper/index.js",
+			"types": "./wrapper/index.d.ts"
+		}
+	},
+	"typesVersions": {
+		"*": {}
 	}
 }
