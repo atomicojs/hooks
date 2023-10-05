@@ -1,5 +1,5 @@
 {
-	"include": ["src/**/*"],
+	"include": ["packages/**/*"],
 	"exclude": ["src/tests/*"],
 	"compilerOptions": {
 		"jsx": "react-jsx",
