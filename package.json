@@ -29,5 +29,14 @@
 		"vite": "^4.4.9",
 		"vitest": "^0.34.5",
 		"webdriverio": "^8.16.12"
+	},
+	"prettier":{
+			"endOfLine": "lf",
+			"semi": true,
+			"singleQuote": false,
+			"trailingComma": "all",
+			"useTabs": true,
+			"tabWidth": 4
+		
 	}
 }
