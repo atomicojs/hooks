@@ -3,10 +3,9 @@ import { useResizeObserver } from "@atomico/use-resize-observer";
 import media from "@uppercod/match-media";
 const CACHE_TEMPLATE = {};
 export function useRefResizeState(ref, sizes) {
-    /**
-     * @type {ReturnType<media>}
-     */
-    const template = media.call(null, { raw: [sizes] });
+    const template = media.call(null, {
+        raw: [sizes],
+    });
     const [state, setState] = useState();
     function getState() {
         const { clientWidth } = ref.current;

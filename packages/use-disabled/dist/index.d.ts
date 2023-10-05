@@ -1,7 +1,5 @@
 /**
  * Synchronize disabled status with a parent
- * @param {string} [matches] - allows to change the search of the fieldset to another element.
- * @returns {boolean}
  * @example
  * ```jsx
  * <fieldset disabled>
@@ -15,4 +13,4 @@
  * }
  * ```
  */
-export declare function useDisabled(matches?: string): any;
+export declare function useDisabled(matches?: string): boolean;

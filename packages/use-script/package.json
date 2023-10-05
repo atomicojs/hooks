@@ -26,5 +26,15 @@
 	},
 	"peerDependencies": {
 		"atomico": "^1.68.0"
+	},
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"typesVersions": {
+		"*": {}
 	}
 }

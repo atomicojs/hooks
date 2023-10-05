@@ -1,16 +1,9 @@
 import { useProp, useLayoutEffect } from "atomico";
 import { useParent } from "@atomico/use-parent";
 import { useMutationObserver } from "@atomico/use-mutation-observer";
-/**
- *
- * @param {Element} el
- * @returns
- */
 const checkDisable = (el) => el.hasAttribute("disabled");
 /**
  * Synchronize disabled status with a parent
- * @param {string} [matches] - allows to change the search of the fieldset to another element.
- * @returns {boolean}
  * @example
  * ```jsx
  * <fieldset disabled>

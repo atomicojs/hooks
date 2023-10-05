@@ -1,4 +1,4 @@
-import { useEffect, useState } from "atomico";
+import { useEffect, useState, options } from "atomico";
 import media from "@uppercod/match-media";
 const CACHE = {};
 const CACHE_TEMPLATE = {};
@@ -15,6 +15,8 @@ export function useResponsiveState(part, ...args) {
         template = media.call(null, part, ...args);
     }
     const check = () => template.match((result) => {
+        if (options.ssr)
+            return false;
         const id = getId(result);
         CACHE[id] = CACHE[id] || matchMedia(id);
         return CACHE[id].matches;
