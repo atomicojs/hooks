@@ -1,5 +1,5 @@
-import { Ref, Mark, useEffect, useHost, useState } from "atomico";
 import { addListener } from "@atomico/use-listener";
+import { Mark, Ref, useEffect, useHost, useState } from "atomico";
 
 /**
  * returns the assigned nodes of a slot
