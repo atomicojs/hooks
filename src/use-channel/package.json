@@ -1,9 +1,0 @@
-{
-  "type": "module",
-  "dependencies": {
-    "@atomico/channel": "^0.0.1"
-  },
-  "peerDependencies": {
-    "@atomico/channel": "^0.0.1"
-  }
-}
