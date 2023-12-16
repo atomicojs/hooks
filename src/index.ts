@@ -11,7 +11,6 @@ export { useCssLightDom } from "./use-css-light-dom/use-css-light-dom";
 export { useCurrentValue } from "./use-current-value/use-current-value";
 export { useDebounceState } from "./use-debounce-state/use-debounce-state";
 export { useDisabled } from "./use-disabled/use-disabled";
-export { useDollars } from "./use-dollars/use-dollars";
 export { useDragResize } from "./use-drag-resize/use-drag-resize";
 export {
   useForm,
@@ -59,3 +58,7 @@ export {
 export { useScript } from "./use-script/use-script";
 export { useProxySlot } from "./use-slot/use-slot";
 export { useUniqueIdSelector } from "./use-unique-id-selector/use-unique-id-selector";
+/**
+ * @deprecate
+ **/
+// export { useDollars } from "./use-dollars/use-dollars";
