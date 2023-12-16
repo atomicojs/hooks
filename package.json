@@ -20,8 +20,8 @@
   },
   "homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
   "scripts": {
-    "dev": "exports \"src/**/*.{ts,js}\" --types --exports --watch",
-    "exports": "exports \"src/**/*.{ts,js}\" --types --exports",
+    "dev": "exports \"src/**/*.{ts,js}\" --watch",
+    "exports": "exports \"src/**/*.{ts,js}\"",
     "test": "wtr src/**/*.test.js --node-resolve",
     "prepublishOnly": "npm run test && npm run exports"
   },
@@ -32,12 +32,326 @@
     "atomico": "^1.68.0"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.33.6",
+    "@atomico/exports": "^1.11.3",
     "@esm-bundle/chai": "^4.3.4-fix.0",
     "@types/chai": "^4.2.21",
     "@web/test-runner": "^0.13.16",
     "@web/test-runner-commands": "^0.5.12",
     "atomico": "^1.68.0",
     "typescript": "^4.7.2"
+  },
+  "exports": {
+    "./use-channel": {
+      "default": "./src/use-channel/use-channel.js",
+      "types": "./src/use-channel/use-channel.js"
+    },
+    "./use-async-effect": {
+      "default": "./src/use-async-effect/use-async-effect.js",
+      "types": "./src/use-async-effect/use-async-effect.js"
+    },
+    "./use-click-coordinates": {
+      "default": "./src/use-click-coordinates/use-click-coordinates.js",
+      "types": "./src/use-click-coordinates/use-click-coordinates.js"
+    },
+    "./use-child-nodes": {
+      "default": "./src/use-child-nodes/use-child-nodes.js",
+      "types": "./src/use-child-nodes/use-child-nodes.js"
+    },
+    "./use-click-press": {
+      "default": "./src/use-click-press/use-click-press.js",
+      "types": "./src/use-click-press/use-click-press.js"
+    },
+    "./use-copy": {
+      "default": "./src/use-copy/use-copy.js",
+      "types": "./src/use-copy/use-copy.js"
+    },
+    "./use-controller": {
+      "default": "./src/use-controller/use-controller.js",
+      "types": "./src/use-controller/use-controller.js"
+    },
+    "./use-css": {
+      "default": "./src/use-css/use-css.js",
+      "types": "./src/use-css/use-css.js"
+    },
+    "./use-attributes": {
+      "default": "./src/use-attributes/use-attributes.js",
+      "types": "./src/use-attributes/use-attributes.js"
+    },
+    "./use-css-light-dom": {
+      "default": "./src/use-css-light-dom/use-css-light-dom.js",
+      "types": "./src/use-css-light-dom/use-css-light-dom.js"
+    },
+    "./src/utils": {
+      "default": "./src/use-css-light-dom/src/utils.js",
+      "types": "./src/use-css-light-dom/src/utils.js"
+    },
+    "./use-current-value": {
+      "default": "./src/use-current-value/use-current-value.js",
+      "types": "./src/use-current-value/use-current-value.js"
+    },
+    "./use-debounce-state": {
+      "default": "./src/use-debounce-state/use-debounce-state.js",
+      "types": "./src/use-debounce-state/use-debounce-state.js"
+    },
+    "./use-disabled": {
+      "default": "./src/use-disabled/use-disabled.js",
+      "types": "./src/use-disabled/use-disabled.js"
+    },
+    "./use-dollars": {
+      "default": "./src/use-dollars/use-dollars.js",
+      "types": "./src/use-dollars/use-dollars.js"
+    },
+    "./use-drag-resize": {
+      "default": "./src/use-drag-resize/use-drag-resize.ts",
+      "types": "./src/use-drag-resize/use-drag-resize.ts"
+    },
+    "./use-form": {
+      "default": "./src/use-form/use-form.js",
+      "types": "./src/use-form/use-form.js"
+    },
+    "./src/core": {
+      "default": "./src/use-form/src/core.js",
+      "types": "./src/use-form/src/core.js"
+    },
+    "./src/use-form-input-radio": {
+      "default": "./src/use-form/src/use-form-input-radio.js",
+      "types": "./src/use-form/src/use-form-input-radio.js"
+    },
+    "./use-form-submitter": {
+      "default": "./src/use-form-submitter/use-form-submitter.js",
+      "types": "./src/use-form-submitter/use-form-submitter.js"
+    },
+    "./use-history": {
+      "default": "./src/use-history/use-history.js",
+      "types": "./src/use-history/use-history.js"
+    },
+    "./use-internals": {
+      "default": "./src/use-internals/use-internals.js",
+      "types": "./src/use-internals/use-internals.js"
+    },
+    "./use-intersection-observer": {
+      "default": "./src/use-intersection-observer/use-intersection-observer.js",
+      "types": "./src/use-intersection-observer/use-intersection-observer.js"
+    },
+    "./use-keyboard": {
+      "default": "./src/use-keyboard/use-keyboard.js",
+      "types": "./src/use-keyboard/use-keyboard.js"
+    },
+    "./use-listener": {
+      "default": "./src/use-listener/use-listener.js",
+      "types": "./src/use-listener/use-listener.js"
+    },
+    "./use-media-query": {
+      "default": "./src/use-media-query/use-media-query.js",
+      "types": "./src/use-media-query/use-media-query.js"
+    },
+    "./use-mutation-observer": {
+      "default": "./src/use-mutation-observer/use-mutation-observer.js",
+      "types": "./src/use-mutation-observer/use-mutation-observer.js"
+    },
+    "./use-parallax": {
+      "default": "./src/use-parallax/use-parallax.ts",
+      "types": "./src/use-parallax/use-parallax.ts"
+    },
+    "./use-parent": {
+      "default": "./src/use-parent/use-parent.js",
+      "types": "./src/use-parent/use-parent.js"
+    },
+    "./use-promise": {
+      "default": "./src/use-promise/use-promise.js",
+      "types": "./src/use-promise/use-promise.js"
+    },
+    "./use-prop-proxy": {
+      "default": "./src/use-prop-proxy/use-prop-proxy.js",
+      "types": "./src/use-prop-proxy/use-prop-proxy.js"
+    },
+    "./use-queue-task": {
+      "default": "./src/use-queue-task/use-queue-task.js",
+      "types": "./src/use-queue-task/use-queue-task.js"
+    },
+    "./use-ref-values": {
+      "default": "./src/use-ref-values/use-ref-values.js",
+      "types": "./src/use-ref-values/use-ref-values.js"
+    },
+    "./use-reflect-event": {
+      "default": "./src/use-reflect-event/use-reflect-event.js",
+      "types": "./src/use-reflect-event/use-reflect-event.js"
+    },
+    "./use-render": {
+      "default": "./src/use-render/use-render.js",
+      "types": "./src/use-render/use-render.js"
+    },
+    "./use-resize-observer": {
+      "default": "./src/use-resize-observer/use-resize-observer.js",
+      "types": "./src/use-resize-observer/use-resize-observer.js"
+    },
+    "./use-resize-state": {
+      "default": "./src/use-resize-state/use-resize-state.js",
+      "types": "./src/use-resize-state/use-resize-state.js"
+    },
+    "./use-responsive-state": {
+      "default": "./src/use-responsive-state/use-responsive-state.js",
+      "types": "./src/use-responsive-state/use-responsive-state.js"
+    },
+    "./use-router": {
+      "default": "./src/use-router/use-router.js",
+      "types": "./src/use-router/use-router.js"
+    },
+    "./src/history": {
+      "default": "./src/use-router/src/history.js",
+      "types": "./src/use-router/src/history.js"
+    },
+    "./src/matches": {
+      "default": "./src/use-router/src/matches.js",
+      "types": "./src/use-router/src/matches.js"
+    },
+    "./use-script": {
+      "default": "./src/use-script/use-script.js",
+      "types": "./src/use-script/use-script.js"
+    },
+    "./use-slot": {
+      "default": "./src/use-slot/use-slot.js",
+      "types": "./src/use-slot/use-slot.js"
+    },
+    "./use-unique-id-selector": {
+      "default": "./src/use-unique-id-selector/use-unique-id-selector.js",
+      "types": "./src/use-unique-id-selector/use-unique-id-selector.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "use-channel": [
+        "src/use-channel/use-channel.js"
+      ],
+      "use-async-effect": [
+        "src/use-async-effect/use-async-effect.js"
+      ],
+      "use-click-coordinates": [
+        "src/use-click-coordinates/use-click-coordinates.js"
+      ],
+      "use-child-nodes": [
+        "src/use-child-nodes/use-child-nodes.js"
+      ],
+      "use-click-press": [
+        "src/use-click-press/use-click-press.js"
+      ],
+      "use-copy": [
+        "src/use-copy/use-copy.js"
+      ],
+      "use-controller": [
+        "src/use-controller/use-controller.js"
+      ],
+      "use-css": [
+        "src/use-css/use-css.js"
+      ],
+      "use-attributes": [
+        "src/use-attributes/use-attributes.js"
+      ],
+      "use-css-light-dom": [
+        "src/use-css-light-dom/use-css-light-dom.js"
+      ],
+      "src/utils": [
+        "src/use-css-light-dom/src/utils.js"
+      ],
+      "use-current-value": [
+        "src/use-current-value/use-current-value.js"
+      ],
+      "use-debounce-state": [
+        "src/use-debounce-state/use-debounce-state.js"
+      ],
+      "use-disabled": [
+        "src/use-disabled/use-disabled.js"
+      ],
+      "use-dollars": [
+        "src/use-dollars/use-dollars.js"
+      ],
+      "use-drag-resize": [
+        "src/use-drag-resize/use-drag-resize.ts"
+      ],
+      "use-form": [
+        "src/use-form/use-form.js"
+      ],
+      "src/core": [
+        "src/use-form/src/core.js"
+      ],
+      "src/use-form-input-radio": [
+        "src/use-form/src/use-form-input-radio.js"
+      ],
+      "use-form-submitter": [
+        "src/use-form-submitter/use-form-submitter.js"
+      ],
+      "use-history": [
+        "src/use-history/use-history.js"
+      ],
+      "use-internals": [
+        "src/use-internals/use-internals.js"
+      ],
+      "use-intersection-observer": [
+        "src/use-intersection-observer/use-intersection-observer.js"
+      ],
+      "use-keyboard": [
+        "src/use-keyboard/use-keyboard.js"
+      ],
+      "use-listener": [
+        "src/use-listener/use-listener.js"
+      ],
+      "use-media-query": [
+        "src/use-media-query/use-media-query.js"
+      ],
+      "use-mutation-observer": [
+        "src/use-mutation-observer/use-mutation-observer.js"
+      ],
+      "use-parallax": [
+        "src/use-parallax/use-parallax.ts"
+      ],
+      "use-parent": [
+        "src/use-parent/use-parent.js"
+      ],
+      "use-promise": [
+        "src/use-promise/use-promise.js"
+      ],
+      "use-prop-proxy": [
+        "src/use-prop-proxy/use-prop-proxy.js"
+      ],
+      "use-queue-task": [
+        "src/use-queue-task/use-queue-task.js"
+      ],
+      "use-ref-values": [
+        "src/use-ref-values/use-ref-values.js"
+      ],
+      "use-reflect-event": [
+        "src/use-reflect-event/use-reflect-event.js"
+      ],
+      "use-render": [
+        "src/use-render/use-render.js"
+      ],
+      "use-resize-observer": [
+        "src/use-resize-observer/use-resize-observer.js"
+      ],
+      "use-resize-state": [
+        "src/use-resize-state/use-resize-state.js"
+      ],
+      "use-responsive-state": [
+        "src/use-responsive-state/use-responsive-state.js"
+      ],
+      "use-router": [
+        "src/use-router/use-router.js"
+      ],
+      "src/history": [
+        "src/use-router/src/history.js"
+      ],
+      "src/matches": [
+        "src/use-router/src/matches.js"
+      ],
+      "use-script": [
+        "src/use-script/use-script.js"
+      ],
+      "use-slot": [
+        "src/use-slot/use-slot.js"
+      ],
+      "use-unique-id-selector": [
+        "src/use-unique-id-selector/use-unique-id-selector.js"
+      ]
+    }
   }
 }
