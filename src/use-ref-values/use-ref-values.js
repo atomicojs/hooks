@@ -2,7 +2,7 @@ import { useEffect, useRef, useLayoutEffect } from "atomico";
 
 /**
  * @template {import("atomico").Ref[]} T
- * @param {(args: Args<T>)=>(void | ()=>any)} callback
+ * @param {(args: Args<T>)=>(void | (()=>any))} callback
  * @param {T} args
  * @param {boolean} mode
  */
