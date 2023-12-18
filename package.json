@@ -19,8 +19,8 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
-		"@atomico/exports": "^1.12.0",
-		"@atomico/run": "^0.13.0",
+		"@atomico/exports": "^1.13.0",
+		"@atomico/run": "^0.14.0",
 		"@atomico/tsconfig": "^1.1.2",
 		"@atomico/vite": "^2.11.3",
 		"@vitest/browser": "^0.34.5",
