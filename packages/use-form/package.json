@@ -25,12 +25,12 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-parent": "*",
 		"@atomico/use-listener": "*",
+		"@atomico/use-parent": "*",
 		"@atomico/use-render": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0",
+		"atomico": "^1.75.1",
 		"element-internals-polyfill": "^0.1.49"
 	},
 	"types": "dist/index.d.ts",

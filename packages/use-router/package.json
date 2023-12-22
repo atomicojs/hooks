@@ -25,13 +25,13 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-listener": "*",
 		"@atomico/use-current-value": "*",
-		"@uppercod/exp-route": "*"
+		"@atomico/use-listener": "*",
+		"@uppercod/exp-route": "^1.3.0"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0",
-		"@uppercod/exp-route": "^1.3.0"
+		"@uppercod/exp-route": "^1.3.0",
+		"atomico": "^1.75.1"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

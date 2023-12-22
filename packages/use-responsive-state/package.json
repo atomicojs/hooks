@@ -28,7 +28,7 @@
 		"@uppercod/match-media": "^1.1.0"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.75.1"
 	},
 	"exports": {
 		"./use-responsive-state": {

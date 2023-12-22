@@ -25,11 +25,11 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-listener": "*",
-		"@atomico/use-debounce-state": "*"
+		"@atomico/use-debounce-state": "*",
+		"@atomico/use-listener": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.75.1"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

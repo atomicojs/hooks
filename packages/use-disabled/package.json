@@ -25,11 +25,11 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-parent": "*",
-		"@atomico/use-mutation-observer": "*"
+		"@atomico/use-mutation-observer": "*",
+		"@atomico/use-parent": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.75.1"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

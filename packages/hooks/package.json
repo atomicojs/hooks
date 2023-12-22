@@ -23,8 +23,8 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0",
 		"@atomico/react": "*",
-		"@atomico/vue": "*"
+		"@atomico/vue": "*",
+		"atomico": "^1.75.1"
 	}
 }

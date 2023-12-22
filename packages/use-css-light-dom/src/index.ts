@@ -1,5 +1,5 @@
 import { Sheet, useHost, useLayoutEffect } from "atomico";
-import { getRules, getSheet } from "./utils";
+import { getRules, getSheet } from "./utils.js";
 
 const ATTR = "data-sheet";
 let ID = 0;

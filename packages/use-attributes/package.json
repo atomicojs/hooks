@@ -28,7 +28,7 @@
 		"@atomico/use-mutation-observer": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.75.1"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

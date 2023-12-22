@@ -2,5 +2,10 @@
 	"extends": "@atomico/tsconfig/base.json",
 	"include": ["src/**/*"],
 	"exclude": ["src/tests/*"],
-	"compilerOptions": { "outDir": "dist", "emitDeclarationOnly": false }
+	"compilerOptions": {
+		"outDir": "dist",
+		"emitDeclarationOnly": false,
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext"
+	}
 }

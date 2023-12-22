@@ -25,11 +25,11 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-ref-values": "*",
-		"@atomico/use-current-value": "*"
+		"@atomico/use-current-value": "*",
+		"@atomico/use-ref-values": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.75.1"
 	},
 	"exports": {
 		"./use-listener": {

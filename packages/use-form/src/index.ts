@@ -1,2 +1,2 @@
-export * from "./core";
-export { useFormInputRadio } from "./use-form-input-radio";
+export * from "./core.js";
+export { useFormInputRadio } from "./use-form-input-radio.js";
