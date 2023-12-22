@@ -1,7 +1,7 @@
 {
 	"name": "@atomico/use-resize-state",
 	"description": "Series of utilities in hooks format to extend the operation of Atomico",
-	"version": "1.0.0-beta",
+	"version": "1.0.1-beta",
 	"type": "module",
 	"author": {
 		"name": "UpperCod",
