@@ -8,8 +8,8 @@
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"outDir": "",
-		"moduleResolution": "node",
-		"module": "ESNext",
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext",
 		"target": "ESNext",
 		"lib": ["ESNext", "DOM", "DOM.Iterable"]
 	}
