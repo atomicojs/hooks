@@ -19,7 +19,7 @@
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
-		"@atomico/exports": "^1.13.0",
+		"@atomico/exports": "^1.13.2",
 		"@atomico/run": "^0.14.2",
 		"@atomico/tsconfig": "^1.1.2",
 		"@atomico/vite": "^2.11.3",
