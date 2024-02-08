@@ -27,7 +27,7 @@
 	"dependencies": {
 		"@atomico/use-current-value": "*",
 		"@atomico/use-listener": "*",
-		"@uppercod/exp-route": "^1.4.1"
+		"@uppercod/exp-route": "^1.4.2"
 	},
 	"peerDependencies": {
 		"atomico": "^1.75.1"
