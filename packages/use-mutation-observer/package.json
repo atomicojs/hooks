@@ -1,7 +1,7 @@
 {
 	"name": "@atomico/use-mutation-observer",
 	"description": "Series of utilities in hooks format to extend the operation of Atomico",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"type": "module",
 	"author": {
 		"name": "UpperCod",
@@ -17,6 +17,7 @@
 	},
 	"homepage": "https://atomico.gitbook.io/doc/atomico/atomico-hooks",
 	"scripts": {
+		"example": "vite",
 		"build:compile": "tsc",
 		"build:exports": "exports \"dist/**/*\"",
 		"test": "vitest run"
