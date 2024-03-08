@@ -1,35 +1,22 @@
-import { useState } from "atomico";
-import { useCurrentValue } from "@atomico/use-current-value";
-import { useRefValues } from "@atomico/use-ref-values";
-/**
- * create an instance of MutationObserver for the given reference
- * @example
- * ```js
- * const ref = useRef();
- * const config = {childList: true};
- * useMutationObserver(ref, (mutationRecords)=>{}, config);
- * ```
- */
-export function useMutationObserver(ref, observe, config) {
-    const value = useCurrentValue(observe);
-    useRefValues(([current]) => {
-        const observer = new MutationObserver((...args) => value.current(...args));
-        observer.observe(current, config);
-        return () => observer.disconnect();
-    }, [ref]);
-}
-/**
- * create an instance of MutationObserver for the given reference
- * and bind MutationRecord[] to a local state
- * @example
- * ```js
- * const ref = useRef();
- * const config = {childList: true};
- * const mutationRecords = useMutationObserverState(ref, config);
- * ```
- */
-export function useMutationObserverState(ref, config) {
-    const [state, setState] = useState();
-    useMutationObserver(ref, setState, config);
-    return state;
+import { useHost, useInsertionEffect } from "atomico";
+export function useMutationObserver(callback, config = {
+    childList: true,
+    characterData: true,
+}) {
+    const host = useHost();
+    host.callback = callback;
+    useInsertionEffect(() => {
+        const mutation = new MutationObserver((entries) => {
+            entries.forEach(({ addedNodes }) => addedNodes.forEach(map));
+            host.callback(entries, mutation);
+        });
+        const map = (child) => {
+            if (child instanceof Text) {
+                mutation.observe(child, { ...config, characterData: true });
+            }
+        };
+        mutation.observe(host.current, config);
+        host.current.childNodes.forEach(map);
+        return () => mutation.disconnect();
+    }, []);
 }
