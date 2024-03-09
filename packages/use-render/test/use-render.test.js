@@ -11,5 +11,7 @@ it("use-render", () => {
 		useRender(() => html`<button />`);
 	});
 
+	hooks.cleanEffects()()();
+
 	expect(container.querySelector("button")).to.not.equal(null);
 });
