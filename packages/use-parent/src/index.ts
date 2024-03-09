@@ -1,15 +1,20 @@
-import { Ref, useHost, useMemo } from "atomico";
+import { createRef, useHost, useMemo } from "atomico";
 
-export function useParent<T extends HTMLElement>(
-	matches: string,
+export function useParent<T extends Element>(
+	matches: T | string,
 	composed?: boolean,
-): Ref<T> {
+) {
 	const path = useParentPath(composed);
 	return useMemo(
 		() =>
-			({
-				current: path.find((el) => el.matches && el.matches(matches)),
-			} as Ref<T>),
+			createRef(
+				path.find(
+					typeof matches === "string"
+						? (el) => el?.matches?.(matches)
+						: //@ts-ignore
+						  (el) => el instanceof matches,
+				) as T extends string ? typeof Element : T,
+			),
 		[matches],
 	);
 }
