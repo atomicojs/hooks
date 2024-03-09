@@ -28,7 +28,7 @@ interface FormEvents {
 type FormKeyofEvents = keyof FormEvents;
 
 export function useForm(): Ref<HTMLFormElement> {
-	return useParent("form");
+	return useParent<HTMLFormElement>("form");
 }
 
 /**
