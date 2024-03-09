@@ -12,10 +12,10 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"atomico": "^1.68.0"
+		"atomico": "^1.77.1"
 	},
 	"devDependencies": {
-		"atomico": "^1.76.4",
+		"atomico": "^1.77.1",
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
