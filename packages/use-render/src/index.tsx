@@ -10,7 +10,7 @@ const fillHost = (vnode?: any) =>
  * Generate a second render, this render escapes the current
  * one and is useful for collaborative work between LightDOM and shadowDOM
  */
-export function useRender(callback: () => any, args: any[] = []) {
+export function useRender(callback: () => any, args?: any[]) {
 	const host = useHost();
 
 	host.id = host.id || Symbol();

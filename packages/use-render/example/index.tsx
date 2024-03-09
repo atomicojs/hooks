@@ -4,6 +4,7 @@ import { useRender } from "../src";
 const MyComponent = c(
 	({ name, checked }) => {
 		useRender(<input type="checkbox" name={name} checked={checked} />);
+
 		return (
 			<host shadowDom>
 				<slot />
