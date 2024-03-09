@@ -15,7 +15,7 @@
 		"atomico": "^1.68.0"
 	},
 	"devDependencies": {
-		"atomico": "^1.74.2",
+		"atomico": "^1.76.4",
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {

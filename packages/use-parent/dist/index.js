@@ -1,9 +1,10 @@
-import { useHost, useMemo } from "atomico";
+import { createRef, useHost, useMemo } from "atomico";
 export function useParent(matches, composed) {
     const path = useParentPath(composed);
-    return useMemo(() => ({
-        current: path.find((el) => el.matches && el.matches(matches)),
-    }), [matches]);
+    return useMemo(() => createRef(path.find(typeof matches === "string"
+        ? (el) => el?.matches?.(matches)
+        : //@ts-ignore
+            (el) => el instanceof matches)), [matches]);
 }
 export function useParentPath(composed) {
     const host = useHost();

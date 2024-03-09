@@ -1,7 +1,7 @@
 {
-	"name": "@atomico/use-mutation-observer",
+	"name": "@atomico/use-child-nodes",
 	"description": "Series of utilities in hooks format to extend the operation of Atomico",
-	"version": "2.0.0",
+	"version": "1.0.0",
 	"type": "module",
 	"author": {
 		"name": "UpperCod",
@@ -25,29 +25,25 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"@atomico/use-current-value": "*",
-		"@atomico/use-ref-values": "*"
-	},
 	"peerDependencies": {
 		"atomico": "^1.75.1"
 	},
-	"types": "dist/index.d.ts",
 	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+		"./use-render": {
+			"default": "./dist/use-render.js",
+			"types": "./dist/use-render.d.ts"
 		},
-		"./use-mutation-observer": {
-			"types": "./dist/use-mutation-observer.d.ts",
-			"default": "./dist/use-mutation-observer.js"
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"typesVersions": {
 		"*": {
-			"use-mutation-observer": [
-				"dist/use-mutation-observer.d.ts"
+			"use-render": [
+				"dist/use-render.d.ts"
 			]
 		}
-	}
+	},
+	"types": "dist/index.d.ts"
 }

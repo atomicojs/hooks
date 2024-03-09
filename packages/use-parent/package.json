@@ -29,12 +29,12 @@
 	},
 	"exports": {
 		"./use-parent": {
-			"default": "./dist/use-parent.js",
-			"types": "./dist/use-parent.d.ts"
+			"types": "./dist/use-parent.d.ts",
+			"default": "./dist/use-parent.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -46,3 +46,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

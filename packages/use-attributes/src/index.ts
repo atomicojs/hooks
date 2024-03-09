@@ -30,7 +30,7 @@ export function useAttributes() {
 	const setAttributes = () => mapAttributes(host.current);
 	const [state, setState] = useState(setAttributes);
 
-	useMutationObserver(host, () => setState(setAttributes), {
+	useMutationObserver(() => setState(setAttributes), {
 		attributes: true,
 	});
 

@@ -1,6 +1,6 @@
 import { useProp, useLayoutEffect } from "atomico";
 import { useParent } from "@atomico/use-parent";
-import { useMutationObserver } from "@atomico/use-mutation-observer";
+import { useRefMutationObserver } from "@atomico/use-mutation-observer";
 
 const checkDisable = (el: Element) => el.hasAttribute("disabled");
 /**
@@ -18,11 +18,13 @@ const checkDisable = (el: Element) => el.hasAttribute("disabled");
  * }
  * ```
  */
-export function useDisabled(matches = "fieldset"): boolean {
+export function useDisabled(
+	matches: string | HTMLElement = "fieldset",
+): boolean {
 	const fieldset = useParent(matches);
 	const [disabled, setDisabled] = useProp("disabled");
 
-	useMutationObserver(
+	useRefMutationObserver(
 		fieldset,
 		(items) =>
 			items
