@@ -1,7 +1,7 @@
 import { useProp, useRef, useEffect } from "atomico";
 import { useListener } from "@atomico/use-listener";
 import { useRender } from "@atomico/use-render";
-import { useFormListener } from "./core";
+import { useFormListener } from "./core.js";
 /**
  * reflects input radio in forms, this hook requires the declaration
  * of the props checked: Boolean and name: String

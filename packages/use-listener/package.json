@@ -33,12 +33,12 @@
 	},
 	"exports": {
 		"./use-listener": {
-			"default": "./dist/use-listener.js",
-			"types": "./dist/use-listener.d.ts"
+			"types": "./dist/use-listener.d.ts",
+			"default": "./dist/use-listener.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -50,3 +50,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

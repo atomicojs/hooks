@@ -13,4 +13,4 @@
  * }
  * ```
  */
-export declare function useDisabled(matches?: string): boolean;
+export declare function useDisabled(matches?: string | HTMLElement): boolean;

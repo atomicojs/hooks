@@ -30,12 +30,12 @@
 	},
 	"exports": {
 		"./use-internals": {
-			"default": "./dist/use-internals.js",
-			"types": "./dist/use-internals.d.ts"
+			"types": "./dist/use-internals.d.ts",
+			"default": "./dist/use-internals.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -47,3 +47,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

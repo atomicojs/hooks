@@ -30,12 +30,12 @@
 	},
 	"exports": {
 		"./use-current-value": {
-			"default": "./dist/use-current-value.js",
-			"types": "./dist/use-current-value.d.ts"
+			"types": "./dist/use-current-value.d.ts",
+			"default": "./dist/use-current-value.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -47,3 +47,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

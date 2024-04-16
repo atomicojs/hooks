@@ -34,12 +34,12 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./use-resize-observer": {
-			"default": "./dist/use-resize-observer.js",
-			"types": "./dist/use-resize-observer.d.ts"
+			"types": "./dist/use-resize-observer.d.ts",
+			"default": "./dist/use-resize-observer.js"
 		}
 	},
 	"typesVersions": {
@@ -50,3 +50,4 @@
 		}
 	}
 }
+

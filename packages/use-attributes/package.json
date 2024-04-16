@@ -34,12 +34,12 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./use-attributes": {
-			"default": "./dist/use-attributes.js",
-			"types": "./dist/use-attributes.d.ts"
+			"types": "./dist/use-attributes.d.ts",
+			"default": "./dist/use-attributes.js"
 		}
 	},
 	"typesVersions": {
@@ -50,3 +50,4 @@
 		}
 	}
 }
+

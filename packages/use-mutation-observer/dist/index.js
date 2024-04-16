@@ -1,4 +1,4 @@
-import { useHost, useInsertionEffect, useRef } from "atomico";
+import { useHost, useRef, useRefEffect } from "atomico";
 export function useMutationObserver(callback, config = {
     childList: true,
     characterData: true,
@@ -11,7 +11,9 @@ export function useRefMutationObserver(host, callback, config = {
 }) {
     const ref = useRef();
     ref.current = callback;
-    useInsertionEffect(() => {
+    useRefEffect(() => {
+        if (!host.current)
+            return;
         const mutation = new MutationObserver((entries) => {
             entries.forEach(({ addedNodes }) => addedNodes.forEach(map));
             ref.current(entries, mutation);
@@ -24,5 +26,5 @@ export function useRefMutationObserver(host, callback, config = {
         mutation.observe(host.current, config);
         host.current.childNodes.forEach(map);
         return () => mutation.disconnect();
-    }, []);
+    }, [host]);
 }

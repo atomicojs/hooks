@@ -37,16 +37,16 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		"./core": {
-			"default": "./dist/core.js",
-			"types": "./dist/core.d.ts"
+			"types": "./dist/core.d.ts",
+			"default": "./dist/core.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./use-form-input-radio": {
-			"default": "./dist/use-form-input-radio.js",
-			"types": "./dist/use-form-input-radio.d.ts"
+			"types": "./dist/use-form-input-radio.d.ts",
+			"default": "./dist/use-form-input-radio.js"
 		}
 	},
 	"typesVersions": {
@@ -60,3 +60,4 @@
 		}
 	}
 }
+

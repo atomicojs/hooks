@@ -36,16 +36,16 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		"./history": {
-			"default": "./dist/history.js",
-			"types": "./dist/history.d.ts"
+			"types": "./dist/history.d.ts",
+			"default": "./dist/history.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./matches": {
-			"default": "./dist/matches.js",
-			"types": "./dist/matches.d.ts"
+			"types": "./dist/matches.d.ts",
+			"default": "./dist/matches.js"
 		}
 	},
 	"typesVersions": {
@@ -59,3 +59,4 @@
 		}
 	}
 }
+

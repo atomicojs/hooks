@@ -30,12 +30,12 @@
 	},
 	"exports": {
 		"./use-media-query": {
-			"default": "./dist/use-media-query.js",
-			"types": "./dist/use-media-query.d.ts"
+			"types": "./dist/use-media-query.d.ts",
+			"default": "./dist/use-media-query.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -47,3 +47,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

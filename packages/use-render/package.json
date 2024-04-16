@@ -31,12 +31,12 @@
 	},
 	"exports": {
 		"./use-render": {
-			"default": "./dist/use-render.js",
-			"types": "./dist/use-render.d.ts"
+			"types": "./dist/use-render.d.ts",
+			"default": "./dist/use-render.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -48,3 +48,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

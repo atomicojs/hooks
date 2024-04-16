@@ -34,12 +34,12 @@
 			"types": "./dist/use-css-light-dom.d.ts"
 		},
 		"./utils": {
-			"default": "./dist/utils.js",
-			"types": "./dist/utils.d.ts"
+			"types": "./dist/utils.d.ts",
+			"default": "./dist/utils.js"
 		},
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"typesVersions": {
@@ -54,3 +54,4 @@
 	},
 	"types": "dist/index.d.ts"
 }
+

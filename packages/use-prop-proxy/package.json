@@ -34,12 +34,12 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./use-prop-proxy": {
-			"default": "./dist/use-prop-proxy.js",
-			"types": "./dist/use-prop-proxy.d.ts"
+			"types": "./dist/use-prop-proxy.d.ts",
+			"default": "./dist/use-prop-proxy.js"
 		}
 	},
 	"typesVersions": {
@@ -50,3 +50,4 @@
 		}
 	}
 }
+

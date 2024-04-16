@@ -1,9 +1,12 @@
 import { useCurrentValue } from "@atomico/use-current-value";
-import { useRefValues } from "@atomico/use-ref-values";
 import { addListener } from "@atomico/use-listener";
+import { useRefEffect } from "atomico";
 export function useKeyboard(ref, keys, callback) {
     const value = useCurrentValue(callback);
-    useRefValues(([current]) => {
+    useRefEffect(() => {
+        const { current } = ref;
+        if (!current)
+            return;
         const history = new Set();
         const check = () => {
             if (keys.length == history.size) {

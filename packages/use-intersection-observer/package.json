@@ -31,12 +31,12 @@
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
-			"default": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		},
 		"./use-intersection-observer": {
-			"default": "./dist/use-intersection-observer.js",
-			"types": "./dist/use-intersection-observer.d.ts"
+			"types": "./dist/use-intersection-observer.d.ts",
+			"default": "./dist/use-intersection-observer.js"
 		}
 	},
 	"typesVersions": {
@@ -47,3 +47,4 @@
 		}
 	}
 }
+

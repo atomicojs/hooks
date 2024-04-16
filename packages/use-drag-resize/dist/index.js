@@ -1,32 +1,31 @@
-import { useState, useHost, useEffect } from "atomico";
-import { useListener } from "@atomico/use-listener";
 import { useDebounceState } from "@atomico/use-debounce-state";
-export function useDragResize(ref, rootState = [1, 1]) {
-    const host = useHost();
+import { useListener } from "@atomico/use-listener";
+import { useEffect, useState } from "atomico";
+export function useDragResize(ref, refParent, rootState = [1, 1]) {
     const [active, setActive] = useState(false);
     const [[x, y], setValue] = useDebounceState(1, rootState, "fps");
     useEffect(() => setValue(rootState), rootState);
     const start = () => setActive(true);
     const end = () => setActive(false);
     useListener(ref, "mousedown", start);
-    useListener(host, "mouseup", end);
-    useListener(host, "mouseleave", end);
+    useListener(refParent, "mouseup", end);
+    useListener(refParent, "mouseleave", end);
     useListener(ref, "touchstart", start);
-    useListener(host, "touchend", end);
-    useListener(host, "touchmove", (event) => {
+    useListener(refParent, "touchend", end);
+    useListener(refParent, "touchmove", (event) => {
         const { targetTouches: [touche], } = event;
-        const rect = host.current.getBoundingClientRect();
+        const rect = refParent.current.getBoundingClientRect();
         const offsetX = touche.pageX - rect.x;
         const offsetY = touche.pageY - rect.y;
-        const { current } = host;
+        const { current } = refParent;
         setValue([
             offsetX / current.clientWidth,
             offsetY / current.clientHeight,
         ]);
     });
-    useListener(host, "mousemove", (event) => {
+    useListener(refParent, "mousemove", (event) => {
         if (active) {
-            const { current } = host;
+            const { current } = refParent;
             setValue([
                 event.offsetX / current.clientWidth,
                 event.offsetY / current.clientHeight,

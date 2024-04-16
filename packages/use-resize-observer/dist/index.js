@@ -1,6 +1,5 @@
-import { useState } from "atomico";
 import { useCurrentValue } from "@atomico/use-current-value";
-import { useRefValues } from "@atomico/use-ref-values";
+import { useRefEffect, useState } from "atomico";
 const listenersId = Symbol();
 let resizeObserver;
 /**
@@ -14,7 +13,10 @@ let resizeObserver;
  */
 export function useResizeObserver(ref, callback) {
     const value = useCurrentValue(callback);
-    useRefValues(([current]) => {
+    useRefEffect(() => {
+        const { current } = ref;
+        if (!current)
+            return;
         if (!resizeObserver) {
             resizeObserver = new ResizeObserver((entries) => entries.forEach(({ contentRect, target }) => {
                 const rect = contentRect.toJSON();
@@ -39,7 +41,7 @@ export function useResizeObserver(ref, callback) {
                 resizeObserver.unobserve(current);
             }
         };
-    }, [ref], true);
+    }, [ref]);
 }
 /**
  * Observes the ResizeObserver state of a reference and reflects
