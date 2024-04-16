@@ -1,6 +1,5 @@
 import { useCurrentValue } from "@atomico/use-current-value";
-import { useRefValues } from "@atomico/use-ref-values";
-import { Ref, useState } from "atomico";
+import { Ref, useRefEffect, useState } from "atomico";
 
 export type HandlerEvent<
 	Base extends Node | Window,
@@ -28,17 +27,18 @@ export function useListener<Base extends Ref, Name extends string>(
 	options?: boolean | AddEventListenerOptions,
 ) {
 	const value = useCurrentValue(handler);
-	useRefValues(
-		([current]) => {
-			return addListener(
-				current,
-				name,
-				(event) => value.current(event),
-				options,
-			);
-		},
-		[ref],
-	);
+	useRefEffect(() => {
+		const { current } = ref;
+
+		if (!current) return;
+
+		return addListener(
+			current,
+			name,
+			(event) => value.current(event as any),
+			options,
+		);
+	}, [ref]);
 }
 
 /**

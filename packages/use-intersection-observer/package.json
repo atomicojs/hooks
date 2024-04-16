@@ -1,7 +1,7 @@
 {
 	"name": "@atomico/use-intersection-observer",
 	"description": "Series of utilities in hooks format to extend the operation of Atomico",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"type": "module",
 	"license": "MIT",
 	"author": {
@@ -25,11 +25,8 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"@atomico/use-ref-values": "*"
-	},
 	"peerDependencies": {
-		"atomico": "^1.75.1"
+		"atomico": "^1.76.4"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

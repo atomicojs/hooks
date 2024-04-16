@@ -27,11 +27,10 @@
 		"access": "public"
 	},
 	"dependencies": {
-		"@atomico/use-current-value": "*",
-		"@atomico/use-ref-values": "*"
+		"@atomico/use-current-value": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.75.1"
+		"atomico": "^1.76.4"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

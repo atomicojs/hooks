@@ -1,6 +1,5 @@
-import { Ref, useState } from "atomico";
 import { useCurrentValue } from "@atomico/use-current-value";
-import { useRefValues } from "@atomico/use-ref-values";
+import { Ref, useRefEffect, useState } from "atomico";
 
 interface Rect {
 	width: number;
@@ -29,40 +28,39 @@ let resizeObserver: ResizeObserver;
 export function useResizeObserver(ref: Ref, callback: (rect: Rect) => void) {
 	const value = useCurrentValue(callback);
 
-	useRefValues(
-		([current]) => {
-			if (!resizeObserver) {
-				resizeObserver = new ResizeObserver((entries) =>
-					entries.forEach(({ contentRect, target }) => {
-						const rect = contentRect.toJSON();
-						const listeners = target[listenersId];
-						for (const listener of listeners) listener(rect);
-					}),
-				);
+	useRefEffect(() => {
+		const { current } = ref;
+		if (!current) return;
+
+		if (!resizeObserver) {
+			resizeObserver = new ResizeObserver((entries) =>
+				entries.forEach(({ contentRect, target }) => {
+					const rect = contentRect.toJSON();
+					const listeners = target[listenersId];
+					for (const listener of listeners) listener(rect);
+				}),
+			);
+		}
+		/**
+		 * @param {Rect} rect
+		 */
+		const listener = (rect) => value.current(rect);
+
+		if (!current[listenersId]) {
+			resizeObserver.observe(current);
+			current[listenersId] = new Set();
+		}
+
+		current[listenersId].add(listener);
+
+		return () => {
+			current[listenersId].delete(listener);
+			if (!current[listenersId].size) {
+				delete current[listenersId];
+				resizeObserver.unobserve(current);
 			}
-			/**
-			 * @param {Rect} rect
-			 */
-			const listener = (rect) => value.current(rect);
-
-			if (!current[listenersId]) {
-				resizeObserver.observe(current);
-				current[listenersId] = new Set();
-			}
-
-			current[listenersId].add(listener);
-
-			return () => {
-				current[listenersId].delete(listener);
-				if (!current[listenersId].size) {
-					delete current[listenersId];
-					resizeObserver.unobserve(current);
-				}
-			};
-		},
-		[ref],
-		true,
-	);
+		};
+	}, [ref]);
 }
 
 /**

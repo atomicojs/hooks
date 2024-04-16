@@ -31,7 +31,7 @@
 		"@uppercod/exp-route": "^1.4.2"
 	},
 	"peerDependencies": {
-		"atomico": "^1.75.1"
+		"atomico": "^1.76.4"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

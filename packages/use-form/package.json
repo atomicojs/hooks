@@ -31,7 +31,7 @@
 		"@atomico/use-render": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.75.1",
+		"atomico": "^1.76.4",
 		"element-internals-polyfill": "^0.1.49"
 	},
 	"types": "dist/index.d.ts",

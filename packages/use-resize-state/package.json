@@ -30,7 +30,7 @@
 		"@uppercod/match-media": "*"
 	},
 	"peerDependencies": {
-		"atomico": "^1.75.1"
+		"atomico": "^1.76.4"
 	},
 	"types": "dist/index.d.ts",
 	"exports": {

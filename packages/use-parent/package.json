@@ -26,7 +26,7 @@
 		"access": "public"
 	},
 	"peerDependencies": {
-		"atomico": "^1.75.1"
+		"atomico": "^1.76.4"
 	},
 	"exports": {
 		"./use-parent": {

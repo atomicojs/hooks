@@ -1,20 +1,17 @@
-import { Ref, useHost } from "atomico";
-import { useRefValues } from "@atomico/use-ref-values";
+import { Ref, useHost, useRefEffect } from "atomico";
 
 export function useRefIntersectionObserver(
 	ref: Ref,
 	callback: IntersectionObserverCallback,
 	options?: IntersectionObserverInit,
 ) {
-	useRefValues(
-		() => {
-			const intersection = new IntersectionObserver(callback, options);
-			intersection.observe(ref.current);
-			return () => intersection.disconnect();
-		},
-		[ref],
-		true,
-	);
+	useRefEffect(() => {
+		const { current } = ref;
+		if (!current) return;
+		const intersection = new IntersectionObserver(callback, options);
+		intersection.observe(current);
+		return () => intersection.disconnect();
+	}, [ref]);
 }
 
 export function useIntersectionObserver(
