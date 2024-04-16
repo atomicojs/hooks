@@ -1,34 +1,34 @@
 import { addListener } from "@atomico/use-listener";
-import { Mark, Ref, useEffect, useHost, useState } from "atomico";
+import { Mark, Ref, useEffect, useHost, useState, useRefEffect } from "atomico";
 
 /**
  * returns the assigned nodes of a slot
 3 */
-export function useSlot<Type extends ChildNode>(
+export function useSlot<Type extends Node>(
 	ref: Ref<HTMLSlotElement>,
-	filter?: (node: ChildNode) => boolean,
+	filter?: (node: Node) => boolean,
 ): Ref<Type>["current"][] {
 	const [childNodes, setChildNodes] = useState([]);
 
-	useEffect(() => {
+	useRefEffect(() => {
 		const { current } = ref;
 		if (!current) return;
 		// handler subscriber to the event
 		const handler = () =>
 			setChildNodes(
-				current.assignedNodes().filter(
-					(child) =>
-						//@ts-ignore
-						!(child instanceof Mark) &&
-						//@ts-ignore
-						(filter ? filter(child) : true),
-				),
+				current
+					.assignedNodes()
+					.filter(
+						(child) =>
+							!(child instanceof Mark) &&
+							(filter ? filter(child) : true),
+					),
 			);
 		// First load
 		handler();
 		// listener and unlistener
 		return addListener(current, "slotchange", handler);
-	}, [ref.current]);
+	}, [ref]);
 
 	return childNodes;
 }
