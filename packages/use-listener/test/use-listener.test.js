@@ -1,24 +1,17 @@
-import { it, expect } from "vitest";
-import { useHost } from "atomico";
-import { createHooks } from "atomico/test-hooks";
-import { useListener } from "../src";
+import { it } from "vitest";
+import { Element } from "./element";
+import { asyncEventListener } from "atomico/test-dom";
 
-it("useListener", () =>
-	new Promise((done) => {
-		const host = document.createElement("div");
-		const hooks = createHooks(null, host);
-		const eventName = "customEvent";
+it("useListener", async () => {
+	const element = new Element();
 
-		hooks.load(() => {
-			const host = useHost();
-			useListener(host, eventName, (event) => {
-				expect(event).to.be.instanceof(CustomEvent);
-				expect(event.type).to.equal(eventName);
-				done();
-			});
-		});
+	document.body.append(element);
 
-		hooks.cleanEffects()()();
+	await element.updated;
 
-		host.dispatchEvent(new CustomEvent(eventName));
-	}));
+	setTimeout(() => {
+		element.dispatchEvent(new Event("click"));
+	}, 100);
+
+	await asyncEventListener(element, "fromUseListener");
+});

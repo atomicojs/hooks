@@ -1,25 +1,20 @@
 import { expect, it } from "vitest";
-import { useHost } from "atomico";
-import { createHooks } from "atomico/test-hooks";
-import { useReflectEvent } from "../src";
+import { Element } from "./element";
+import { asyncEventListener } from "atomico/test-dom";
 
-it("useReflectEvent", () =>
-	new Promise((done) => {
-		const host = document.createElement("div");
-		const hooks = createHooks(null, host);
-		const refTo = { current: document.createElement("div") };
+it("useReflectEvent", async () => {
+	const element = new Element();
+	document.body.append(element);
 
-		hooks.load(() => {
-			const refFrom = useHost();
-			useReflectEvent(refFrom, refTo, "click");
-		});
+	await element.updated;
 
-		hooks.cleanEffects()()();
+	const [button1, button2] = element.querySelectorAll("button");
 
-		refTo.current.addEventListener("click", (event) => {
-			done();
-			expect(event).to.be.an.instanceof(Event);
-		});
+	setTimeout(() => {
+		button1.dispatchEvent(new Event("click"));
+	}, 100);
 
-		host.click();
-	}));
+	const event = await asyncEventListener(button2, "click");
+
+	expect(event.type).toEqual("click");
+});

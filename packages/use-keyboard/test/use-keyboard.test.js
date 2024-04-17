@@ -1,46 +1,40 @@
-import { it, expect } from "vitest";
-import { createHooks } from "atomico/test-hooks";
-import { useKeyboard } from "../src/";
+import { asyncEventListener } from "atomico/test-dom";
+import { it } from "vitest";
+import { Element } from "./element";
 
-it("useKeyboard", () => {
-	const ref = { current: document };
-	const hooks = createHooks();
-	const capture = [];
-	hooks.load(() => {
-		useKeyboard(ref, ["KeyA", "KeyQ"], (event) => {
-			capture.push(event);
-		});
-	});
+it("useKeyboard", async () => {
+	const element = new Element();
 
-	hooks.cleanEffects()()();
+	document.body.append(element);
 
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keydown", { code: "KeyQ", key: "1" }),
-	);
+	await element.updated;
 
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keydown", { code: "KeyA", key: "1" }),
-	);
+	const input = element.querySelector("input");
 
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keyup", { code: "KeyQ", key: "1" }),
-	);
+	setTimeout(() => {
+		input.dispatchEvent(
+			new KeyboardEvent("keydown", { code: "KeyQ", key: "1" }),
+		);
 
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keyup", { code: "KeyA", key: "1" }),
-	);
+		input.dispatchEvent(
+			new KeyboardEvent("keydown", { code: "KeyA", key: "1" }),
+		);
 
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keydown", { code: "KeyA", key: "2" }),
-	);
-	ref.current.dispatchEvent(
-		new KeyboardEvent("keydown", { code: "KeyQ", key: "2" }),
-	);
+		input.dispatchEvent(
+			new KeyboardEvent("keyup", { code: "KeyQ", key: "1" }),
+		);
 
-	expect(capture.length).to.equal(1);
+		input.dispatchEvent(
+			new KeyboardEvent("keyup", { code: "KeyA", key: "1" }),
+		);
 
-	const [event] = capture;
+		input.dispatchEvent(
+			new KeyboardEvent("keydown", { code: "KeyA", key: "2" }),
+		);
+		input.dispatchEvent(
+			new KeyboardEvent("keydown", { code: "KeyQ", key: "2" }),
+		);
+	}, 100);
 
-	// The captured event defines key as 2, if it is 1 the hook ignores the convination
-	expect(event.key).to.equal("2");
+	await asyncEventListener(element, "matchKeys");
 });

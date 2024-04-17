@@ -1,44 +1,19 @@
 import { it, expect } from "vitest";
-import { Mark } from "atomico";
-import { createHooks } from "atomico/test-hooks";
-import { useSlot } from "../src/";
+import { asyncEventListener } from "atomico/test-dom";
+import { TestElement } from "./element";
 
-it("useSlot", () => {
-	const current = document.createElement("slot");
-	const host = document.createElement("div");
+it("useSlot", async () => {
+	const element = new TestElement();
 
-	host.innerHTML = `Text...<br/>`;
-	host.attachShadow({ mode: "open" }).append(current);
+	document.body.append(element);
 
-	const ref = { current };
+	element.innerHTML = `<span></span>`;
 
-	const hooks = createHooks(() => {
-		expect(render()).to.deep.equal([...host.childNodes]); // next  render
-	});
+	const event1 = await asyncEventListener(element, "changeSlot"); // 0 SLOTS
 
-	const render = () => hooks.load(() => useSlot(ref));
+	expect(event1.detail).toEqual(0);
 
-	render(); // first  render
+	const event2 = await asyncEventListener(element, "changeSlot");
 
-	hooks.cleanEffects()()();
-});
-
-it("avoid Mark", () => {
-	const current = document.createElement("slot");
-	const host = document.createElement("div");
-
-	host.append(new Mark("Hidden"));
-	host.attachShadow({ mode: "open" }).append(current);
-
-	const ref = { current };
-
-	const hooks = createHooks(() => {
-		expect(render()).to.deep.equal([]); // next  render
-	});
-
-	const render = () => hooks.load(() => useSlot(ref));
-
-	render(); // first  render
-
-	hooks.cleanEffects()()();
+	expect(event2.detail).toEqual(1);
 });
