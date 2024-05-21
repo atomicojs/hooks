@@ -1,5 +1,5 @@
 import { useMemo, useState, createRef } from "atomico";
-import { createMatch, Params } from "@uppercod/exp-route";
+import { createMatch, Params, Match } from "@uppercod/exp-route";
 import { useListener } from "@atomico/use-listener";
 import { getPath, redirect } from "./history.js";
 export * from "./history.js";
@@ -13,8 +13,11 @@ interface RouteSwitch<Result> {
 
 const refGlobalThis = createRef(globalThis);
 
+const cache: { [path: string]: Match } = {};
+
 export function useRouter<Result = any>(
 	router: RouteSwitch<Result>,
+	memo?: any,
 ): {
 	id: string;
 	path: string;
@@ -30,11 +33,12 @@ export function useRouter<Result = any>(
 
 	return useMemo(() => {
 		for (const path in router) {
-			const params = createMatch(path)(id);
+			cache[path] = cache[path] || createMatch(path);
+			const params = cache[path](id);
 			if (params) {
 				const result = router[path](params, { id, path });
 				return { result, id, path, params, redirect };
 			}
 		}
-	}, [id]);
+	}, [id, memo]);
 }
