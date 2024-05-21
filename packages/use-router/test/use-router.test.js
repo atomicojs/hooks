@@ -1,35 +1,35 @@
-import { it, expect } from "vitest";
 import { createHooks } from "atomico/test-hooks";
-import { useRoute, useRouteMatch } from "../src/";
+import { expect, it } from "vitest";
+import { redirect, useRouter } from "../src/";
 
-it("useRouter", () => {
-	const hooks = createHooks(() => {});
-	let render = 0;
+it("useRouter", async () => {
+	const hooks = createHooks(
+		() => {
+			hooks.load(load);
+		},
+		{ updated: Promise.resolve() },
+	);
+
+	const router = [];
+
 	function load() {
-		const result = useRoute("/[...any]");
+		const route = useRouter({
+			"/": () => "home",
+			"/config": () => "config",
+		});
 
-		if (render++) {
-			expect(result[0]).to.deep.equal({ any: "" });
-		} else {
-			expect(result).to.deep.equal([]);
-		}
+		router.push(route.result);
 	}
 
 	hooks.load(load);
 
 	hooks.cleanEffects()()();
 
-	hooks.load(load);
-});
+	await new Promise((resolve) => setTimeout(resolve, 100));
 
-it("useRouteMatch", () => {
-	const hooks = createHooks();
+	redirect("/config");
 
-	function load() {
-		const match = useRouteMatch();
+	await new Promise((resolve) => setTimeout(resolve, 100));
 
-		expect(match("/[id]")).to.deep.equal({ id: "" });
-	}
-
-	hooks.load(load);
+	expect(router).to.deep.equal(["home", "config"]);
 });
